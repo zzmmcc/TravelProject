@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 25/04/2019 11:33:43
+ Date: 25/04/2019 21:15:08
 */
 
 SET NAMES utf8mb4;
@@ -2756,6 +2756,13 @@ CREATE TABLE `tab_user`  (
   PRIMARY KEY (`uid`) USING BTREE,
   UNIQUE INDEX `AK_nq_username`(`username`) USING BTREE,
   UNIQUE INDEX `AK_nq_code`(`code`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tab_user
+-- ----------------------------
+INSERT INTO `tab_user` VALUES (1, 'zhangsan', '21232f297a57a5a743894a0e4a801fc3', '张三', '2019-04-10', '男', '157314213', 'zhangsan@qq.com', '1', '132135431');
+INSERT INTO `tab_user` VALUES (3, 'lisi', '21232f297a57a5a743894a0e4a801fc3', '李四', '2019-01-01', '男', '123421', '1129414986@qq.com', '0', '642aa3854e6f4b20b05d00f7bab5a08d');
+INSERT INTO `tab_user` VALUES (4, 'wangwu', '21232f297a57a5a743894a0e4a801fc3', '王五', '2019-12-01', '男', '1435412', '1129414986@qq.com', '0', '4abd06e700ea477c89886b3e88d31549');
 
 SET FOREIGN_KEY_CHECKS = 1;

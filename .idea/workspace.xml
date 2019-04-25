@@ -7,40 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="237fde26-dc31-4ec0-b699-f01cfbd2542f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jstl.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/standard.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zz/dao/Impl/UserDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zz/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zz/filter/LoginFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zz/service/Impl/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zz/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zz/servlet/checkServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zz/servlet/userServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jstl.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/standard.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zz/bean/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zz/bean/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zz/bean/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zz/bean/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zz/bean/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zz/bean/Route.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zz/bean/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zz/bean/Seller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zz/bean/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zz/bean/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zz/bean/routeImg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zz/bean/routeImg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/favoriterank.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/favoriterank.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/footer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/include.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/include.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/myfavorite.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/myfavorite.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/register_ok.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register_ok.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/route_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/route_detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/route_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/route_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utilTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/travelproject.sql" beforeDir="false" afterPath="$PROJECT_DIR$/travelproject.sql" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -85,8 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/zz/servlet/userServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="92" column="33" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+            <state relative-caret-position="198">
+              <caret line="89" column="41" lean-forward="true" selection-start-line="89" selection-start-column="41" selection-end-line="89" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -350,7 +318,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556197976217" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556198112501" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -564,7 +532,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1556156805105</updated>
-      <workItem from="1556156811083" duration="29180000" />
+      <workItem from="1556156811083" duration="29317000" />
     </task>
     <task id="LOCAL-00001" summary="IDEA 上的第一次提交">
       <created>1556163530457</created>
@@ -580,7 +548,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556163635791</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="登录注册大体完成">
+      <created>1556198010271</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1556198010271</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -616,7 +591,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29180000" />
+    <option name="totallyTimeSpent" value="29317000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -662,7 +637,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="IDEA 上的第一次提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="IDEA 上的第一次提交" />
+    <MESSAGE value="登录注册大体完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="登录注册大体完成" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/resources/jedis.properties">
@@ -1016,8 +992,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/zz/servlet/userServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="92" column="33" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+        <state relative-caret-position="198">
+          <caret line="89" column="41" lean-forward="true" selection-start-line="89" selection-start-column="41" selection-end-line="89" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -51,4 +51,14 @@ public class routeImg {
     public void setSmallpic(String smallpic) {
         this.smallpic = smallpic == null ? null : smallpic.trim();
     }
+
+    @Override
+    public String toString() {
+        return "routeImg{" +
+                "rgid=" + rgid +
+                ", rid=" + rid +
+                ", bigpic='" + bigpic + '\'' +
+                ", smallpic='" + smallpic + '\'' +
+                '}';
+    }
 }

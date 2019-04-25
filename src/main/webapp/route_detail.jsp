@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -17,7 +18,7 @@
 
 <body>
 <!--引入头部-->
-<div id="header"></div>
+<%@include file="header.jsp"%>
 <!-- 详情 start -->
 <div class="wrap">
     <div class="bread_box">
@@ -109,7 +110,7 @@
 <!-- 详情 end -->
 
 <!--引入头部-->
-<div id="footer"></div>
+<%@ include file="footer.jsp"%>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-3.3.1.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->

@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -25,7 +27,7 @@
 </head>
 <body>
 <!--引入头部-->
-<div id="header"></div>
+<%@ include file="header.jsp"%>
 <!-- banner start-->
 <section id="banner">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="2000">
@@ -360,7 +362,7 @@
 </section>
 <!-- 旅游 end-->
 <!--导入底部-->
-<div id="footer"></div>
+<%@ include file="footer.jsp"%>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-3.3.1.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -25,7 +26,7 @@
 </head>
 <body>
 <!--引入头部-->
-<div id="header"></div>
+<%@include file="header.jsp"%>
 <!-- 排行榜 start-->
 <section id="content">
     <section class="hemai_jx">
@@ -175,7 +176,7 @@
 <!-- 排行榜 end-->
 
 <!--引入尾部-->
-<div id="footer"></div>
+<%@ include file="footer.jsp"%>
 <!--导入布局js，共享header和footer-->
 <script type="text/javascript" src="js/include.js"></script>
 </body>

@@ -51,4 +51,14 @@ public class Seller {
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Seller{" +
+                "sid=" + sid +
+                ", sname='" + sname + '\'' +
+                ", consphone='" + consphone + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

@@ -29,4 +29,12 @@ public class Category {
     public void setCname(String cname) {
         this.cname = cname == null ? null : cname.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "cid=" + cid +
+                ", cname='" + cname + '\'' +
+                '}';
+    }
 }

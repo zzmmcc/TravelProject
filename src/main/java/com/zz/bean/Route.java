@@ -139,4 +139,22 @@ public class Route {
     public void setSourceid(String sourceid) {
         this.sourceid = sourceid == null ? null : sourceid.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "rid=" + rid +
+                ", rname='" + rname + '\'' +
+                ", price=" + price +
+                ", routeintroduce='" + routeintroduce + '\'' +
+                ", rflag='" + rflag + '\'' +
+                ", rdate='" + rdate + '\'' +
+                ", isthemetour='" + isthemetour + '\'' +
+                ", count=" + count +
+                ", cid=" + cid +
+                ", rimage='" + rimage + '\'' +
+                ", sid=" + sid +
+                ", sourceid='" + sourceid + '\'' +
+                '}';
+    }
 }

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.zz.bean.User" %><%--
   Created by IntelliJ IDEA.
   User: 张铭传
   Date: 2019/4/25
@@ -6,29 +6,37 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%
+    User user = (User)request.getSession().getAttribute("loginUser");
+%>
 <!-- 头部 start -->
 <header id="header">
     <div class="top_banner">
         <img src="images/top_banner.jpg" alt="">
     </div>
     <div class="shortcut">
-        <!-- 未登录状态  -->
-        <div class="login_out">
-            <a href="login.html">登录</a>
-            <a href="register.html">注册</a>
-        </div>
-        <!-- 登录状态  -->
-        <div class="login">
 
-            <span>欢迎回来，admin</span>
-            <a href="myfavorite.html" class="collection">我的收藏</a>
-            <a href="javascript:;">退出</a>
-        </div>
+        <!-- 未登录状态  -->
+       <c:if test="${empty loginUser}">
+            <div class="login_out">
+                <a href="login.jsp">登录</a>
+                <a href="register.jsp">注册</a>
+            </div>
+        </c:if>
+        <!-- 登录状态  -->
+        <c:if test="${not empty loginUser}" var="u">
+            <div class="login">
+                <span>欢迎回来，<%=user.getName()%> </span>
+                <a href="myfavorite.jsp" class="collection">我的收藏</a>
+                <a href="userServlet?method=logout" >退出</a>
+            </div>
+        </c:if>
     </div>
     <div class="header_wrap">
         <div class="topbar">
             <div class="logo">
-                <a href="/"><img src="images/logo.jpg" alt=""></a>
+                <a href="/"><img src="images/logo.png" alt=""></a>
             </div>
             <div class="search">
                 <input name="" type="text" placeholder="请输入路线名称" class="search_input" autocomplete="off">
@@ -62,3 +70,4 @@
         <li><a href="favoriterank.html">收藏排行榜</a></li>
     </ul>
 </div>
+

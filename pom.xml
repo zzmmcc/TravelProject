@@ -33,6 +33,11 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.1</version>
+    </dependency>
+    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.26</version>
@@ -106,6 +111,8 @@
       <artifactId>log4j</artifactId>
       <version>1.2.17</version>
     </dependency>
+
+
     <!-- lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>

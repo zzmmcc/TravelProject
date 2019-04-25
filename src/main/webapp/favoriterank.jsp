@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -16,7 +17,7 @@
 </head>
 <body>
 <!--引入头部-->
-<div id="header"></div>
+<%@include file="header.jsp"%>
 <div class="contant">
     <div class="shaixuan">
         <span>线路名称</span>
@@ -122,7 +123,7 @@
 </div>
 
 <!--导入底部-->
-<div id="footer"></div>
+<%@ include file="footer.jsp"%>
 <!--导入布局js，共享header和footer-->
 <script type="text/javascript" src="js/include.js"></script>
 </body>

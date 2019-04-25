@@ -35,6 +35,17 @@ public class User {
         this.status = status;
         this.code = code;
     }
+    public User(String username, String password, String name, Date birthday, String sex, String telephone, String email, String status, String code) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.birthday = birthday;
+        this.sex = sex;
+        this.telephone = telephone;
+        this.email = email;
+        this.status = status;
+        this.code = code;
+    }
 
     public User() {
         super();
@@ -118,5 +129,21 @@ public class User {
 
     public void setCode(String code) {
         this.code = code == null ? null : code.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", sex='" + sex + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                ", status='" + status + '\'' +
+                ", code='" + code + '\'' +
+                '}';
     }
 }

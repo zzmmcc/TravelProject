@@ -42,7 +42,6 @@ public class userServlet extends HttpServlet {
     }
 
 
-
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }

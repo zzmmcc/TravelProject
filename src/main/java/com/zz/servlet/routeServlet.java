@@ -2,7 +2,9 @@ package com.zz.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.zz.bean.Route;
+import com.zz.service.Impl.RouteImgServiceImpl;
 import com.zz.service.Impl.RouteServiceImpl;
+import com.zz.service.RouteImgService;
 import com.zz.service.RouteService;
 import org.junit.Test;
 
@@ -14,14 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * @author Administrator
+ */
 @WebServlet(name = "routeServlet",value = "/routeServlet")
 public class routeServlet extends HttpServlet {
     RouteService routeService = new RouteServiceImpl();
+    RouteImgService routeImgService = new RouteImgServiceImpl();
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
@@ -50,6 +58,7 @@ public class routeServlet extends HttpServlet {
     public void getRouteByRid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int rid = Integer.parseInt(request.getParameter("rid"));
         Route route = routeService.getRouteByRid(rid);
+        //RouteImg routeImg =  routeImgService.getRouteImgByRid(rid);
 
         request.setAttribute("route",route);
         request.getRequestDispatcher("route_detail.jsp").forward(request,response);

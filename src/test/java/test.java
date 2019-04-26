@@ -1,7 +1,6 @@
 import com.zz.util.Md5Util;
 import org.junit.Test;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

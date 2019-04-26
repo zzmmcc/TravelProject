@@ -1,6 +1,6 @@
 package com.zz.bean;
 
-public class routeImg {
+public class RouteImg {
     private Integer rgid;
 
     private Integer rid;
@@ -9,14 +9,14 @@ public class routeImg {
 
     private String smallpic;
 
-    public routeImg(Integer rgid, Integer rid, String bigpic, String smallpic) {
+    public RouteImg(Integer rgid, Integer rid, String bigpic, String smallpic) {
         this.rgid = rgid;
         this.rid = rid;
         this.bigpic = bigpic;
         this.smallpic = smallpic;
     }
 
-    public routeImg() {
+    public RouteImg() {
         super();
     }
 
@@ -54,7 +54,7 @@ public class routeImg {
 
     @Override
     public String toString() {
-        return "routeImg{" +
+        return "RouteImg{" +
                 "rgid=" + rgid +
                 ", rid=" + rid +
                 ", bigpic='" + bigpic + '\'' +

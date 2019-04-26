@@ -5,11 +5,8 @@
   Time: 10:22
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
-<%
-    User user = (User)request.getSession().getAttribute("loginUser");
-%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!-- 头部 start -->
 <header id="header">
     <div class="top_banner">
@@ -27,7 +24,7 @@
         <!-- 登录状态  -->
         <c:if test="${not empty loginUser}" var="u">
             <div class="login">
-                <span>欢迎回来，<%=user.getName()%> </span>
+                <span>欢迎回来,${loginUser.name}</span>
                 <a href="myfavorite.jsp" class="collection">我的收藏</a>
                 <a href="userServlet?method=logout" >退出</a>
             </div>

@@ -94,6 +94,9 @@ public class DBUtil {
     //关闭数据库对象的方法
     public void getClose(){
         try {
+            if(dataSource!=null){
+
+            }
             if(rs!=null){
                 rs.close();
             }
@@ -103,6 +106,7 @@ public class DBUtil {
             if(conn!=null){
                 conn.close();
             }
+
         } catch (Exception e) {
             // TODO: handle exception
         }

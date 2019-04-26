@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -63,6 +64,7 @@ public class userServlet extends HttpServlet {
             }else if(user.getStatus().equals("1")){
                 //登录成功
                 request.getSession().setAttribute("loginUser",user);
+                System.out.println("session:"+request.getSession().getAttribute("loginUser"));
                 response.getWriter().print(0);
             }else if(user.getStatus().equals("0")){
                 //账户未激活
@@ -84,9 +86,11 @@ public class userServlet extends HttpServlet {
             String password = request.getParameter("password");
             String telephone = request.getParameter("telephone");
             String email = request.getParameter("email");
+
             String date = request.getParameter("birthday");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date birthday = new Date(sdf.parse(date).getTime());
+
             String name = request.getParameter("name");
             String sex = request.getParameter("sex");
             //加密密码

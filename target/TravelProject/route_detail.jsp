@@ -5,8 +5,9 @@
   Time: 10:29
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -24,8 +25,8 @@
     <div class="bread_box">
         <a href="/">首页</a>
         <span> &gt;</span>
-        <a href="#">国内游</a><span> &gt;</span>
-        <a href="#">全国-曼谷6-7天自由行 泰国出境旅游 特价往返机票自由行二次确认</a>
+        <a href="#">${route.cid}</a><span> &gt;</span>
+        <a href="#">${route.rname}</a>
     </div>
     <div class="prosum_box">
         <dl class="prosum_left">
@@ -65,16 +66,17 @@
             </dd>
         </dl>
         <div class="prosum_right">
-            <p class="pros_title">【尾单特卖】全国-曼谷6-7天自由行 泰国出境旅游 特价往返机票自由行二次确认</p>
-            <p class="hot">1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
+            <p class="pros_title">${route.rname}</p>
+            <p class="hot">${route.routeintroduce}</p>
             <div class="pros_other">
                 <p>经营商家  ：小码国旅</p>
                 <p>咨询电话 : 400-618-9090</p>
                 <p>地址 ： 小码聪聪程序员</p>
             </div>
             <div class="pros_price">
-                <p class="price"><strong>¥2699.00</strong><span>起</span></p>
+                <p class="price"><strong>${route.price}</strong><span>起</span></p>
                 <p class="collect">
+
                     <a class="btn"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
 
                     <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>

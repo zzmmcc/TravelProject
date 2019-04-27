@@ -1,5 +1,8 @@
 package com.zz.filter;
 
+import com.zz.util.JedisUtil;
+import redis.clients.jedis.Jedis;
+
 import javax.servlet.*;
 
 import javax.servlet.annotation.WebFilter;
@@ -12,7 +15,9 @@ public class LoginFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        System.out.println("服务器开启，清除redis中的cate缓存");
+        Jedis jedis = JedisUtil.getJedis();
+        jedis.del("category");
     }
 
     @Override

@@ -54,17 +54,35 @@
 <!-- 头部 end -->
 <!-- 首页导航 -->
 <div class="navitem">
-    <ul class="nav">
-        <li class="nav-active"><a href="index.html">首页</a></li>
-        <li><a href="route_list.html">门票</a></li>
-        <li><a href="route_list.html">酒店</a></li>
-        <li><a href="route_list.html">香港车票</a></li>
-        <li><a href="route_list.html">出境游</a></li>
-        <li><a href="route_list.html">国内游</a></li>
-        <li><a href="route_list.html">港澳游</a></li>
-        <li><a href="route_list.html">抱团定制</a></li>
-        <li><a href="route_list.html">全球自由行</a></li>
-        <li><a href="favoriterank.html">收藏排行榜</a></li>
+    <ul class="nav" id="write_category">
+        <%--append--%>
     </ul>
 </div>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        getCategory();
+    });
+    function getCategory() {
+        $.ajax({
+            url:"categoryServlet?method=getCategory",
+            data:{},
+            type:"POST",
+            dataType:"json",
+            success:function (data) {
+                console.log(1);
+                $('#write_category').append("<li class='nav-active'><a href='index.jsp'>首页</a></li>");
+                $.each(data,function (i,cate) {
+                    var name = cate.cname;
+                    var id = cate.cid;
+                    var con = "<li><a href='routeServlet?method=getRouteListByCid&cid="+id+"'>"+name+"</a></li>";
+                    $('#write_category').append(con);
+                })
+            },
+            error:function (data) {
+                console.log(2);
+            }
+        });
+    }
+</script>
 

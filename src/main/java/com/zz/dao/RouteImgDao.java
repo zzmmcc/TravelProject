@@ -2,6 +2,9 @@ package com.zz.dao;
 
 import com.zz.bean.RouteImg;
 
+import java.util.ArrayList;
+
+
 public interface RouteImgDao {
-     RouteImg getRouteImgByRid(int rid) ;
+     ArrayList<RouteImg> getRouteImgByRid(int rid) ;
 }

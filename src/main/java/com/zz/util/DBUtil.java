@@ -2,7 +2,6 @@ package com.zz.util;
 
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
-import org.junit.Test;
 
 import javax.sql.DataSource;
 import java.io.InputStream;

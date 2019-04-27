@@ -2,6 +2,8 @@ package com.zz.service;
 
 import com.zz.bean.RouteImg;
 
+import java.util.ArrayList;
+
 public interface RouteImgService {
-    RouteImg getRouteImgByRid(int rid);
+    ArrayList<RouteImg> getRouteImgByRid(int rid);
 }

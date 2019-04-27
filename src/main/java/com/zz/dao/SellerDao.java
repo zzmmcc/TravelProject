@@ -3,5 +3,5 @@ package com.zz.dao;
 import com.zz.bean.Seller;
 
 public interface SellerDao {
-    Seller getSellerByRid(int rid);
+    Seller getSellerBySid(int rid);
 }

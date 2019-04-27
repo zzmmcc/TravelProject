@@ -12,7 +12,7 @@ public class SellerDaoImpl implements SellerDao {
     String sql = "";
     ResultSet resultSet = null;
     @Override
-    public Seller getSellerByRid(int sid) {
+    public Seller getSellerBySid(int sid) {
         sql = "select * from tab_seller where sid = "+sid;
         resultSet = util.execQuery(sql,null);
         Seller seller = null;

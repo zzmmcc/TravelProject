@@ -2,14 +2,8 @@ package com.zz.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.zz.bean.*;
-import com.zz.service.FavoriteService;
-import com.zz.service.Impl.FavoriteServiceImpl;
-import com.zz.service.Impl.RouteImgServiceImpl;
-import com.zz.service.Impl.RouteServiceImpl;
-import com.zz.service.Impl.SellerServiceImpl;
-import com.zz.service.RouteImgService;
-import com.zz.service.RouteService;
-import com.zz.service.SellerService;
+import com.zz.service.*;
+import com.zz.service.Impl.*;
 import org.junit.Test;
 
 import javax.servlet.ServletException;
@@ -18,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +24,7 @@ public class routeServlet extends HttpServlet {
     RouteImgService routeImgService = new RouteImgServiceImpl();
     FavoriteService favoriteService = new FavoriteServiceImpl();
     SellerService sellerService = new SellerServiceImpl();
+    CategoryService categoryService = new CategoryServiceImpl();
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,17 +62,16 @@ public class routeServlet extends HttpServlet {
         //获取route
         Route route = routeService.getRouteByRid(rid);
         //获取routeimg
-        RouteImg routeImg =  routeImgService.getRouteImgByRid(rid);
+        ArrayList<RouteImg> routeImg =  routeImgService.getRouteImgByRid(rid);
         //获取favorite
         Favorite favorite = favoriteService.getFavoriteByRid(rid);
         //获取seller
-        Seller seller = sellerService.getSellerByRid(route.getSid());
-        RouteMsg routeMsg = new RouteMsg();
-        routeMsg.setFavorite(favorite);
-        routeMsg.setRoute(route);
-        routeMsg.setRouteImg(routeImg);
-        routeMsg.setSeller(seller);
-        System.out.println(routeMsg.getRoute());
+        Seller seller = sellerService.getSellerBySid(route.getSid());
+        //获取category
+        Category category = categoryService.getCategoryBiCid(route.getCid());
+
+        RouteMsg routeMsg = new RouteMsg(route,routeImg,favorite,seller,null,category);
+
         request.setAttribute("route",route);
         request.setAttribute("routeMsg",routeMsg);
         request.getRequestDispatcher("route_detail.jsp").forward(request,response);
@@ -86,26 +81,22 @@ public class routeServlet extends HttpServlet {
     public String getGuoNeiList() {
         List<Route> list = routeService.getGuoNeiList();
         String jsonStr = JSON.toJSONString(list);
-        System.out.println(jsonStr);
         return jsonStr;
     }
     public String getJingWaiList() {
         List<Route> list = routeService.getJingWaiList();
         String jsonStr = JSON.toJSONString(list);
-        System.out.println(jsonStr);
         return jsonStr;
     }
 
     public String getTheme() {
         List<Route> list = routeService.getTheme();
         String jsonStr = JSON.toJSONString(list);
-        System.out.println(jsonStr);
         return jsonStr;
     }
     public String getNewest() {
         List<Route> list = routeService.getNewest();
         String jsonStr = JSON.toJSONString(list);
-        System.out.println(jsonStr);
         return jsonStr;
     }
 
@@ -114,7 +105,6 @@ public class routeServlet extends HttpServlet {
         List<Route> list = routeService.getHotTravel();
 
         String jsonStr = JSON.toJSONString(list);
-        System.out.println(jsonStr);
         return jsonStr;
     }
 

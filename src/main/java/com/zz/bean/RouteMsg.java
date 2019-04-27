@@ -1,21 +1,25 @@
 package com.zz.bean;
 
+import java.util.ArrayList;
+
 public class RouteMsg {
     private Route route;
-    private RouteImg routeImg;
+    private ArrayList<RouteImg> routeImg;
     private Favorite favorite;
     private Seller seller;
     private User user;
+    private Category category;
 
     public RouteMsg() {
     }
 
-    public RouteMsg(Route route, RouteImg routeImg, Favorite favorite, Seller seller, User user) {
+    public RouteMsg(Route route, ArrayList<RouteImg> routeImg, Favorite favorite, Seller seller, User user,Category category) {
         this.route = route;
         this.routeImg = routeImg;
         this.favorite = favorite;
         this.seller = seller;
         this.user = user;
+        this.category = category;
     }
 
     public Route getRoute() {
@@ -26,11 +30,11 @@ public class RouteMsg {
         this.route = route;
     }
 
-    public RouteImg getRouteImg() {
+    public ArrayList<RouteImg> getRouteImg() {
         return routeImg;
     }
 
-    public void setRouteImg(RouteImg routeImg) {
+    public void setRouteImg(ArrayList<RouteImg> routeImg) {
         this.routeImg = routeImg;
     }
 
@@ -56,5 +60,13 @@ public class RouteMsg {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

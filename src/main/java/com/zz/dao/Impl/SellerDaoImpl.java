@@ -1,0 +1,37 @@
+package com.zz.dao.Impl;
+
+import com.zz.bean.Seller;
+import com.zz.dao.SellerDao;
+import com.zz.util.DBUtil;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class SellerDaoImpl implements SellerDao {
+    DBUtil util = new DBUtil();
+    String sql = "";
+    ResultSet resultSet = null;
+    @Override
+    public Seller getSellerByRid(int sid) {
+        sql = "select * from tab_seller where sid = "+sid;
+        resultSet = util.execQuery(sql,null);
+        Seller seller = null;
+        try {
+            seller = autoGet(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seller;
+    }
+
+    public Seller autoGet(ResultSet resultSet) throws SQLException {
+        Seller seller = new Seller();
+        while (resultSet.next()){
+            seller.setSid(resultSet.getInt("sid"));
+            seller.setSname(resultSet.getString("sname"));
+            seller.setConsphone(resultSet.getString("consphone"));
+            seller.setAddress(resultSet.getString("address"));
+        }
+        return seller;
+    }
+}

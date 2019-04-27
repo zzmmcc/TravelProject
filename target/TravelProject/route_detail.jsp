@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.zz.bean.RouteMsg" %><%--
   Created by IntelliJ IDEA.
   User: 张铭传
   Date: 2019/4/25
@@ -21,12 +21,14 @@
 <!--引入头部-->
 <%@include file="header.jsp"%>
 <!-- 详情 start -->
+
 <div class="wrap">
     <div class="bread_box">
         <a href="/">首页</a>
         <span> &gt;</span>
-        <a href="#">${route.cid}</a><span> &gt;</span>
-        <a href="#">${route.rname}</a>
+
+        <a href="#">${routeMsg.route.cid}</a><span> &gt;</span>
+        <a href="#">${routeMsg.route.rname}</a>
     </div>
     <div class="prosum_box">
         <dl class="prosum_left">
@@ -35,8 +37,8 @@
             </dt>
             <dd>
                 <a class="up_img up_img_disable"></a>
-                <a title="" class="little_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m40920d0669855e745d97f9ad1df966ebb.jpg">
-                    <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m20920d0669855e745d97f9ad1df966ebb.jpg">
+                <a title="" class="little_img" data-bigpic="${routeMsg.routeImg.bigpic}">
+                    <img src="${routeMsg.routeImg.smallpic}">
                 </a>
                 <a title="" class="little_img cur_img" data-bigpic="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size4/201703/m49788843d72171643297ccc033d9288ee.jpg">
                     <img src="http://www.jinmalvyou.com/Public/uploads/goods_img/img_size2/201703/m29788843d72171643297ccc033d9288ee.jpg">
@@ -66,15 +68,15 @@
             </dd>
         </dl>
         <div class="prosum_right">
-            <p class="pros_title">${route.rname}</p>
-            <p class="hot">${route.routeintroduce}</p>
+            <p class="pros_title">${routeMsg.route.rname}</p>
+            <p class="hot">${routeMsg.route.routeintroduce}</p>
             <div class="pros_other">
                 <p>经营商家  ：小码国旅</p>
                 <p>咨询电话 : 400-618-9090</p>
                 <p>地址 ： 小码聪聪程序员</p>
             </div>
             <div class="pros_price">
-                <p class="price"><strong>${route.price}</strong><span>起</span></p>
+                <p class="price"><strong>${routeMsg.route.price}</strong><span>起</span></p>
                 <p class="collect">
 
                     <a class="btn"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>

@@ -20,6 +20,8 @@ public class SellerDaoImpl implements SellerDao {
             seller = autoGet(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            util.getClose(util.rs,util.ps,util.conn);
         }
         return seller;
     }

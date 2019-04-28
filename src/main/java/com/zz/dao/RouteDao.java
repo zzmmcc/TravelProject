@@ -17,4 +17,12 @@ public interface RouteDao {
     List<Route> getJingWaiList();
 
     Route getRouteByRid(int id) throws SQLException;
+
+    List<Route> getRouteListByCid(String cid);
+
+    List<Route> getHotsRouteListByCid(int cid);
+
+    int reduceCountByRid(int rid);
+
+    int plusCountByRid(int rid);
 }

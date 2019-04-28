@@ -43,4 +43,16 @@ public class RouteServiceImpl implements RouteService {
         }
         return  r;
     }
+
+    @Override
+    public List<Route> getRouteListByCid(String cid) {
+        List<Route> list = routeDao.getRouteListByCid(cid);
+        return list;
+    }
+
+    @Override
+    public List<Route> getHotsRouteListByCid(int cid) {
+        List<Route> list = routeDao.getHotsRouteListByCid(cid);
+        return  list;
+    }
 }

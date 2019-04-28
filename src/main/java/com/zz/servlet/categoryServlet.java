@@ -40,6 +40,7 @@ public class categoryServlet extends HttpServlet {
             jedis.set("category", JSON.toJSONString(list));
             System.out.println("缓存中没有");
             category = jedis.get("category");
+            jedis.close();
         }
         response.getWriter().print(category);
     }

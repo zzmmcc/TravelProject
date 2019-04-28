@@ -13,11 +13,11 @@ import java.util.Properties;
 
 public class DBUtil {
 
-    Connection conn  = null;
+    public  static Connection conn  = null;
     //操作对象
-    PreparedStatement ps = null;
+    public  static PreparedStatement ps = null;
     //结果集对象
-    ResultSet rs = null;
+    public  static ResultSet rs = null;
     DataSource dataSource = null;
 
     //加载驱动
@@ -91,11 +91,8 @@ public class DBUtil {
     }
 
     //关闭数据库对象的方法
-    public void getClose(){
+    public void getClose(ResultSet rs,PreparedStatement ps,Connection conn){
         try {
-            if(dataSource!=null){
-
-            }
             if(rs!=null){
                 rs.close();
             }
@@ -105,7 +102,6 @@ public class DBUtil {
             if(conn!=null){
                 conn.close();
             }
-
         } catch (Exception e) {
             // TODO: handle exception
         }

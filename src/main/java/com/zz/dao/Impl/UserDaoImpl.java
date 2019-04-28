@@ -28,9 +28,10 @@ public class UserDaoImpl implements UserDao {
     }
     public User checkLogin(String username, String password)  throws  Exception{
         sql = "select * from tab_user where username='"+username+"' and password='"+password+"'";
-        System.out.println(sql);
         ResultSet res = util.execQuery(sql, null);
-        return autoGet(res);
+        User user = autoGet(res);
+        util.getClose(util.rs,util.ps,util.conn);
+        return user;
     }
 
     @Override
@@ -38,9 +39,8 @@ public class UserDaoImpl implements UserDao {
         sql = "insert into tab_user values(null,'"+user.getUsername()+"','"+user.getPassword()+"', '"
                 +user.getName()+"', '" +user.getBirthday()+"', '"+user.getSex()+"', '"
                 +user.getTelephone()+"', '"+user.getEmail()+"', '"+user.getStatus()+"','"+user.getCode()+"' )";
-        System.out.println(sql);
         util.execUpdate(sql,null);
-
+        util.getClose(util.rs,util.ps,util.conn);
     }
 
     @Override
@@ -48,7 +48,6 @@ public class UserDaoImpl implements UserDao {
         sql = "select * from  tab_user where username = '"+user.getUsername()+"' and password = '"+user.getPassword()+"' and name ='"
                 +user.getName()+"' and birthday = '" +user.getBirthday()+"' and sex = '"+user.getSex()+"' and telephone = '"
                 +user.getTelephone()+"' and email = '"+user.getEmail()+"' and status = '"+user.getStatus()+"' and code = '"+user.getCode()+"' ";
-        System.out.println(sql);
         ResultSet res = util.execQuery(sql, null);
         return autoGet(res);
     }

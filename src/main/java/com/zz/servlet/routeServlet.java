@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.zz.bean.*;
 import com.zz.service.*;
 import com.zz.service.Impl.*;
+import com.zz.util.JedisUtil;
 import org.junit.Test;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -54,7 +56,28 @@ public class routeServlet extends HttpServlet {
             response.getWriter().print(jsonStr);
         }else if(method.equals("getRouteByRid")){
             getRouteByRid(request,response);
+        }else if (method.equals("getRouteListByCid")){
+            getRouteListByCid(request, response);
+        }else if(method.equals("getHotsRouteListByCid")){
+            getHotsRouteListByCid(request,response);
+        } else {
+            System.out.println(method);
         }
+    }
+
+    public void getHotsRouteListByCid(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        Jedis jedis = JedisUtil.getJedis();
+        String key = "hotsTravel_" + cid;
+        String jedis_key = jedis.get(key);
+        if(null==jedis_key || jedis_key.equals("")){
+            List<Route> list = routeService.getHotsRouteListByCid(cid);
+            String jsonStr = JSON.toJSONString(list);
+
+            jedis.set(key,jsonStr);
+        }
+        jedis_key = jedis.get(key);
+        response.getWriter().print(jedis_key);
     }
 
     public void getRouteByRid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -64,7 +87,13 @@ public class routeServlet extends HttpServlet {
         //获取routeimg
         ArrayList<RouteImg> routeImg =  routeImgService.getRouteImgByRid(rid);
         //获取favorite
-        Favorite favorite = favoriteService.getFavoriteByRid(rid);
+        User user = (User) request.getSession().getAttribute("loginUser");
+        Favorite favorite = null;
+        if(user==null || user.equals("")){
+            favorite =  favoriteService.getFavoriteByRid(rid);
+        }else {
+             favorite = favoriteService.getFavoriteByRid_Uid(rid,user.getUid());
+        }
         //获取seller
         Seller seller = sellerService.getSellerBySid(route.getSid());
         //获取category
@@ -76,36 +105,70 @@ public class routeServlet extends HttpServlet {
         request.setAttribute("routeMsg",routeMsg);
         request.getRequestDispatcher("route_detail.jsp").forward(request,response);
     }
-
+    public void getRouteListByCid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String cid = request.getParameter("cid");
+        List<Route> list = routeService.getRouteListByCid(cid);
+        request.setAttribute("routeList",list);
+        request.getRequestDispatcher("route_list.jsp").forward(request,response);
+    }
 
     public String getGuoNeiList() {
-        List<Route> list = routeService.getGuoNeiList();
-        String jsonStr = JSON.toJSONString(list);
-        return jsonStr;
+        Jedis jedis = JedisUtil.getJedis();
+        String guoNeiList = jedis.get("guoNeiList");
+        if (null==guoNeiList || guoNeiList.equals("")){
+            List<Route> list = routeService.getGuoNeiList();
+            String jsonStr = JSON.toJSONString(list);
+            jedis.set("guoNeiList",jsonStr);
+        }
+        guoNeiList = jedis.get("guoNeiList");
+        return guoNeiList;
     }
     public String getJingWaiList() {
-        List<Route> list = routeService.getJingWaiList();
-        String jsonStr = JSON.toJSONString(list);
-        return jsonStr;
+        Jedis jedis = JedisUtil.getJedis();
+        String jingWaiList = jedis.get("jingWaiList");
+        if (null==jingWaiList || jingWaiList.equals("")){
+            List<Route> list = routeService.getJingWaiList();
+            String jsonStr = JSON.toJSONString(list);
+            jedis.set("jingWaiList",jsonStr);
+        }
+        jingWaiList = jedis.get("jingWaiList");
+        return jingWaiList;
     }
 
     public String getTheme() {
-        List<Route> list = routeService.getTheme();
-        String jsonStr = JSON.toJSONString(list);
-        return jsonStr;
+        Jedis jedis = JedisUtil.getJedis();
+        String themeTour = jedis.get("themeTour");
+        if (null==themeTour || themeTour.equals("")){
+            List<Route> list = routeService.getTheme();
+            String jsonStr = JSON.toJSONString(list);
+            jedis.set("themeTour",jsonStr);
+        }
+        themeTour = jedis.get("themeTour");
+        return themeTour;
     }
     public String getNewest() {
-        List<Route> list = routeService.getNewest();
-        String jsonStr = JSON.toJSONString(list);
-        return jsonStr;
+        Jedis jedis = JedisUtil.getJedis();
+        String newEst = jedis.get("newEst");
+        if (null==newEst || newEst.equals("")){
+            List<Route> list = routeService.getNewest();
+            String jsonStr = JSON.toJSONString(list);
+            jedis.set("newEst",jsonStr);
+        }
+        newEst = jedis.get("newEst");
+        return newEst;
     }
 
 
     public String getHotTravel() {
-        List<Route> list = routeService.getHotTravel();
-
-        String jsonStr = JSON.toJSONString(list);
-        return jsonStr;
+        Jedis jedis = JedisUtil.getJedis();
+        String hotTravel = jedis.get("hotTravel");
+        if (null==hotTravel || hotTravel.equals("")){
+            List<Route> list = routeService.getHotTravel();
+            String jsonStr = JSON.toJSONString(list);
+            jedis.set("hotTravel",jsonStr);
+        }
+        hotTravel = jedis.get("hotTravel");
+        return hotTravel;
     }
 
     @Test

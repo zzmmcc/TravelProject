@@ -29,7 +29,6 @@ public class CategoryDapImpl implements CategoryDao {
     @Override
     public Category getCategoryBiCid(int cid) throws SQLException {
         sql = "select * from tab_category where cid = "+cid;
-        System.out.println(sql);
         ResultSet resultSet = util.execQuery(sql, null);
         Category category = null;
         while (resultSet.next()){

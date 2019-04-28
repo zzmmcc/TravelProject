@@ -16,4 +16,8 @@ public interface RouteService {
     List<Route> getJingWaiList();
 
     Route getRouteByRid(int id);
+
+    List<Route> getRouteListByCid(String cid);
+
+    List<Route> getHotsRouteListByCid(int cid);
 }

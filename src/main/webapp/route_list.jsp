@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" href="css/search.css">
     <script src="js/jquery-3.3.1.js"></script>
+    <style type="text/css">
+    </style>
 </head>
 <body>
 <!--引入头部-->
@@ -25,6 +27,7 @@
     <div class="contant">
         <div class="crumbs">
             <img src="images/search.png" alt="">
+            <input type="hidden" id="cid" value="${routeList[0].cid}">
             <p>小码旅行><span>搜索结果</span></p>
         </div>
         <div class="xinxi clearfix">
@@ -34,134 +37,24 @@
                     <span class="jg">价格</span>
                 </div>
                 <ul>
+                    <c:forEach items="${routeList}" var="r">
                     <li>
-                        <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
+                        <div class="img"><img src="${r.rimage}" alt=""></div>
                         <div class="text1">
-                            <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
+                            <p>${r.rname}</p>
                             <br/>
-                            <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
+                            <p>${r.routeintroduce}</p>
                         </div>
                         <div class="price">
                             <p class="price_num">
                                 <span>&yen;</span>
-                                <span>299</span>
+                                <span>${r.price}</span>
                                 <span>起</span>
                             </p>
-                            <p><a href="route_detail.html">查看详情</a></p>
+                            <p><a href="routeServlet?method=getRouteByRid&rid=${r.rid}">查看详情</a></p>
                         </div>
                     </li>
-                    <li>
-                        <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
-                        <div class="text1">
-                            <p>浪花朵朵旅行普吉岛丛林飞跃空中飞人探险游中文服务泰国旅游</p>
-                            <br/>
-                            <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                        </div>
-                        <div class="price">
-                            <p class="price_num">
-                                <span>&yen;</span>
-                                <span>899</span>
-                                <span>起</span>
-                            </p>
-                            <p><a href="route_detail.html">查看详情</a></p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
-                        <div class="text1">
-                            <p>黑妞皇家旅行普吉岛攀牙湾大船星光之旅皮划艇日落休闲特色体验</p>
-                            <br/>
-                            <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                        </div>
-                        <div class="price">
-                            <p class="price_num">
-                                <span>&yen;</span>
-                                <span>999</span>
-                                <span>起</span>
-                            </p>
-                            <p><a href="route_detail.html">查看详情</a></p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
-                        <div class="text1">
-                            <p>浪花朵朵旅行普吉岛皇帝岛珊瑚岛香蕉船拖拽伞水上项目</p>
-                            <br/>
-                            <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                        </div>
-                        <div class="price">
-                            <p class="price_num">
-                                <span>&yen;</span>
-                                <span>99</span>
-                                <span>起</span>
-                            </p>
-                            <p><a href="route_detail.html">查看详情</a></p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
-                        <div class="text1">
-                            <p>环游记 泰国清迈Lila massage女子监狱spa 丽菈泰式按摩马杀鸡</p>
-                            <br/>
-                            <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                        </div>
-                        <div class="price">
-                            <p class="price_num">
-                                <span>&yen;</span>
-                                <span>199</span>
-                                <span>起</span>
-                            </p>
-                            <p><a href="route_detail.html">查看详情</a></p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
-                        <div class="text1">
-                            <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
-                            <br/>
-                            <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                        </div>
-                        <div class="price">
-                            <p class="price_num">
-                                <span>&yen;</span>
-                                <span>899</span>
-                                <span>起</span>
-                            </p>
-                            <p><a href="route_detail.html">查看详情</a></p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
-                        <div class="text1">
-                            <p>【减100元 含除夕/春节出发】广州增城三英温泉度假酒店/自由行套票</p>
-                            <br/>
-                            <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                        </div>
-                        <div class="price">
-                            <p class="price_num">
-                                <span>&yen;</span>
-                                <span>1199</span>
-                                <span>起</span>
-                            </p>
-                            <p><a href="route_detail.html">查看详情</a></p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img"><img src="images/04-search_03.jpg" alt=""></div>
-                        <div class="text1">
-                            <p>泰国芭提雅三合一日游芭提雅蒂芬妮人妖秀成人门票bigeye含接送</p>
-                            <br/>
-                            <p>1-2月出发，网付立享￥1099/2人起！爆款位置有限，抢完即止！</p>
-                        </div>
-                        <div class="price">
-                            <p class="price_num">
-                                <span>&yen;</span>
-                                <span>1589</span>
-                                <span>起</span>
-                            </p>
-                            <p><a href="route_detail.html">查看详情</a></p>
-                        </div>
-                    </li>
+                    </c:forEach>
                 </ul>
                 <div class="page_num_inf">
                     <i></i> 共
@@ -191,47 +84,8 @@
                     <div class="hot">HOT</div>
                     <span>热门推荐</span>
                 </div>
-                <ul>
-                    <li>
-                        <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
-                        <div class="right">
-                            <p>清远新银盏温泉度假村酒店/自由行套...</p>
-                            <p>网付价<span>&yen;<span>899</span>起</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
-                        <div class="right">
-                            <p>清远新银盏温泉度假村酒店/自由行套...</p>
-                            <p>网付价<span>&yen;<span>899</span>起</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
-                        <div class="right">
-                            <p>清远新银盏温泉度假村酒店/自由行套...</p>
-                            <p>网付价<span>&yen;<span>899</span>起</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
-                        <div class="right">
-                            <p>清远新银盏温泉度假村酒店/自由行套...</p>
-                            <p>网付价<span>&yen;<span>899</span>起</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="left"><img src="images/04-search_09.jpg" alt=""></div>
-                        <div class="right">
-                            <p>清远新银盏温泉度假村酒店/自由行套...</p>
-                            <p>网付价<span>&yen;<span>899</span>起</span>
-                            </p>
-                        </div>
-                    </li>
+                <ul id ="write_hotsTravel">
+
                 </ul>
             </div>
         </div>
@@ -242,5 +96,31 @@
 <%@ include file="footer.jsp"%>
 <!--导入布局js，共享header和footer-->
 <script type="text/javascript" src="js/include.js"></script>
+<script SRC="js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+$(function () {
+    getHotsRouteListByCid();
+})
+    function getHotsRouteListByCid() {
+        $.ajax({
+            url:"routeServlet?method=getHotsRouteListByCid&cid="+$('#cid').val(),
+            type:"POST",
+            dataType:"json",
+            success:function (data) {
+                $('#write_hotsTravel').empty();
+                $.each(data,function (i, r) {
+                    var con = "<li ><a href='routeServlet?method=getRouteByRid&rid="+r.rid+"'><div class='left'><img src='"+r.rimage+"' alt=''></div>"
+                             +"<div class='right'><p style='font-size: 10px' >"+r.rname+"</p><p>" + "网付价<span>+"
+                             +"&yen;<span style='font-size: 10px'>"+r.price+"</span>起</span></p></div></a></li>";
+                    $('#write_hotsTravel').append(con);
+                })
+            },
+            error:function (data) {
+                console.log("ajax：getHotsRouteListByCid()")
+            }
+        })
+    }
+
+</script>
 </body>
 </html>

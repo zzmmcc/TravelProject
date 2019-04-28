@@ -3,7 +3,6 @@ package com.zz.dao.Impl;
 import com.zz.bean.Route;
 import com.zz.dao.RouteDao;
 import com.zz.util.DBUtil;
-import org.junit.Test;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +21,8 @@ public class RouteDaoImpl implements RouteDao {
             list = autoGet(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            util.getClose(util.rs,util.ps,util.conn);
         }
         return list;
     }
@@ -35,6 +36,8 @@ public class RouteDaoImpl implements RouteDao {
             list = autoGet(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            util.getClose(util.rs,util.ps,util.conn);
         }
         return list;
     }
@@ -47,6 +50,8 @@ public class RouteDaoImpl implements RouteDao {
             list = autoGet(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            util.getClose(util.rs,util.ps,util.conn);
         }
         return list;
     }
@@ -59,6 +64,8 @@ public class RouteDaoImpl implements RouteDao {
             list = autoGet(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            util.getClose(util.rs,util.ps,util.conn);
         }
         return list;
     }
@@ -71,6 +78,8 @@ public class RouteDaoImpl implements RouteDao {
             list = autoGet(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            util.getClose(util.rs,util.ps,util.conn);
         }
         return list;
 
@@ -84,6 +93,48 @@ public class RouteDaoImpl implements RouteDao {
             r =  getR(resultSet);
         }
         return r;
+    }
+
+    @Override
+    public List<Route> getRouteListByCid(String cid) {
+        sql = "select * from tab_route where cid = "+cid;
+        ResultSet res = util.execQuery(sql, null);
+        List<Route> list = null;
+        try {
+            list = autoGet(res);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            util.getClose(res,null,null);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Route> getHotsRouteListByCid(int cid) {
+        sql = "select * from tab_route where cid = "+cid+" order by count desc limit 0,6";
+        ResultSet res = util.execQuery(sql, null);
+        List<Route> list = null;
+        try {
+            list = autoGet(res);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            util.getClose(res,null,null);
+        }
+        return list;
+    }
+
+    @Override
+    public int reduceCountByRid(int rid) {
+        sql = "update tab_route set count = count-1 where rid = "+rid;
+        return util.execUpdate(sql,null);
+    }
+
+    @Override
+    public int plusCountByRid(int rid) {
+        sql = "update tab_route set count = count+1 where rid = "+rid;
+        return util.execUpdate(sql,null);
     }
 
     public Route getR(ResultSet res) throws SQLException {

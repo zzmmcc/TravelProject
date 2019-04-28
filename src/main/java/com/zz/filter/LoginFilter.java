@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/favoriterank.jsp","/myfavorite.jsp","/route_detail.jsp","/route_list.jsp"})
+@WebFilter(urlPatterns = {"/route_detail.jsp","/route_list.jsp","/myfavorite.jsp","/favoriterank.jsp",
+                })
 public class LoginFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        System.out.println("服务器开启，清除redis中的cate缓存");
+        System.out.println("服务器开启，清除redis中的所有缓存");
         Jedis jedis = JedisUtil.getJedis();
-        jedis.del("category");
+        jedis.flushAll();
+
     }
 
     @Override
@@ -26,10 +28,12 @@ public class LoginFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
         String path = request.getServletPath();
         System.out.println(path+"被Filter过滤了");
-        Object user = request.getSession().getAttribute("loginUser");
-        if(user==null||user.equals("")){
-            response.sendRedirect("login.jsp");
-        }
+            Object user = request.getSession().getAttribute("loginUser");
+            if(user==null||user.equals("")){
+                response.sendRedirect("login.jsp");
+                //return;
+            }
+
         chain.doFilter(request,response);
     }
 

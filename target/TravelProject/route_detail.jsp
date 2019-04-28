@@ -55,12 +55,21 @@
             </div>
             <div class="pros_price">
                 <p class="price"><strong>${routeMsg.route.price}</strong><span>起</span></p>
-                <p class="collect">
-
-                    <a class="btn"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
-
-                    <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
-                    <span>已收藏100次</span>
+                <p class="collect" >
+                    <span id="write_a">
+                        <c:if test="${empty loginUser}">
+                            <a class="btn" href="javascript:;" onclick="alertLogin()"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+                        </c:if>
+                        <c:if test="${not empty loginUser}">
+                            <c:if test="${empty routeMsg.favorite.rid}" var="fa">
+                                <a class="btn" id ="" onclick="l()" ><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+                            </c:if>
+                            <c:if test="${not empty routeMsg.favorite.rid}" var="fa">
+                                <a  class="btn already" onclick="unl()" ><i class="glyphicon glyphicon-heart-empty"></i>点击取消收藏</a>
+                            </c:if>
+                        </c:if>
+                    </span>
+                    已收藏<span id = "count">${routeMsg.route.count}</span>次
                 </p>
             </div>
         </div>
@@ -100,6 +109,54 @@
 <!--导入布局js，共享header和footer-->
 <script type="text/javascript" src="js/include.js"></script>
 <script>
+    function alertLogin(){
+        alert("您还未登录，请登录之后再尝试!");
+        window.location.href="login.jsp";
+    }
+    function l(){
+        $.ajax({
+            url:"favoriteServlet?method=like&rid=${routeMsg.route.rid}&uid=${loginUser.uid}",
+            data:{},
+            type:"post",
+            success:function (data) {
+                if(data=0){
+                    alert("操作失败！")
+                }else {
+                    $('#write_a').empty();
+                    $('#write_a').append("<a  class='btn already' onclick='unl()' ><i class='glyphicon glyphicon-heart-empty'></i>点击取消收藏</a>");
+                    var count = $('#count').text();
+                    count = parseInt(count) + parseInt(1);
+                    $('#count').text(count);
+
+                }
+            },
+            error:function () {
+                alert(2);
+            }
+        });
+
+    }
+    function unl(){
+        $.ajax({
+            url:"favoriteServlet?method=unlike&rid=${routeMsg.route.rid}&uid=${loginUser.uid}",
+            data:{},
+            type:"post",
+            success:function () {
+                if(data=0){
+                    alert("操作失败！")
+                }else {
+                    $('#write_a').empty();
+                    $('#write_a').append("<a class='btn' onclick='l()' ><i class='glyphicon glyphicon-heart-empty'></i>点击收藏</a>");
+                    var count = $('#count').text();
+                    count = parseInt(count) - parseInt(1);
+                    $('#count').text(count);
+                }
+            },
+            error:function () {
+                alert(2);
+            }
+        });
+    }
     $(document).ready(function() {
         //焦点图效果
         //点击图片切换图片

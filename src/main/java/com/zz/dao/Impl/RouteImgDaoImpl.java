@@ -21,6 +21,8 @@ public class RouteImgDaoImpl implements RouteImgDao {
             list = autoGetsList(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            util.getClose(util.rs,util.ps,util.conn);
         }
         return list;
     }

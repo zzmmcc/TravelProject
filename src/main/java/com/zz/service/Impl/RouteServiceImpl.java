@@ -67,4 +67,26 @@ public class RouteServiceImpl implements RouteService {
         }
         return list;
     }
+
+    @Override
+    public List<Route> getRouteListByCount() {
+        List<Route> list = new ArrayList<>();
+        try {
+            list = routeDao.getRouteListByCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Route> getRouteListCountByRnameAndPrice(String rname,double minPrice,double maxPrice) {
+        List<Route> list = new ArrayList<>();
+        try {
+            list = routeDao.getRouteListCountByRnameAndPrice(rname,minPrice,maxPrice);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

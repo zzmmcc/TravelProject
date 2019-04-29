@@ -22,4 +22,9 @@ public interface RouteService {
     List<Route> getHotsRouteListByCid(int cid);
 
     List<Route> searchRouteListByText(String searchtext);
+
+    List<Route> getRouteListByCount();
+
+    List<Route> getRouteListCountByRnameAndPrice(String rname,double minPrice,double maxPrice);
+
 }

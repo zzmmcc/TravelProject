@@ -138,6 +138,26 @@ public class RouteDaoImpl implements RouteDao {
     @Override
     public List<Route> searchRouteListByText(String searchtext) throws SQLException {
         sql = "select * from tab_route where rname like '%"+searchtext+"%'";
+        ResultSet res = util.execQuery(sql, null);
+        List<Route> list = autoGet(res);
+        return  list;
+    }
+
+    @Override
+    public List<Route> getRouteListByCount() throws SQLException {
+        sql = "select * from tab_route order by count desc limit 0,8";
+        ResultSet res = util.execQuery(sql, null);
+        List<Route> list = autoGet(res);
+        return  list;
+    }
+
+    @Override
+    public List<Route> getRouteListCountByRnameAndPrice(String rname,double minPrice,double maxPrice) throws SQLException {
+        if(null==rname || rname.equals("")){
+            sql = "select * from tab_route where price < "+maxPrice+" and price > "+minPrice+" order by count desc limit 0,8";
+        }else {
+            sql = "select * from tab_route where rname like '%"+rname+"%' and price < "+maxPrice+" and price > "+minPrice+" order by count desc limit 0,8";
+        }
         System.out.println(sql);
         ResultSet res = util.execQuery(sql, null);
         List<Route> list = autoGet(res);

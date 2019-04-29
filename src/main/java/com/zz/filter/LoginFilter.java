@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/route_detail.jsp","/route_list.jsp","/myfavorite.jsp","/favoriterank.jsp",
-                })
+@WebFilter(urlPatterns = {"/route_detail.jsp","/route_list.jsp","/myfavorite.jsp"})
 public class LoginFilter implements Filter {
 
     @Override

@@ -22,85 +22,14 @@
 <div class="contant">
     <div class="shaixuan">
         <span>线路名称</span>
-        <input type="text">
+        <input type="text" id="rname">
         <span>金额</span>
-        <input type="text">~<input type="text">
-        <button>搜索</button>
+        <input type="text" id="min_price">~<input type="text" id="max_price">
+        <button type="button" onclick="getRouteListCountByRnameAndPrice()">搜索</button>
     </div>
     <div class="list clearfix">
-        <ul>
-            <li>
-                <span class="num one">1</span>
-                <a href="route_detail.html"><img src="images/jiangxuan_4.jpg" alt=""></a>
-                <h4><a href="route_detail.html">【尾单特卖】全国-曼谷6-7天自由行 泰国出境旅游 特价往6-7天自由行 泰国出境旅游 特价往..</a></h4>
-                <p>
-                    <b class="price">&yen;<span>899</span>起</b>
-                    <span class="shouchang">已收藏450次</span>
-                </p>
-            </li>
-            <li>
-                <span class="num two">2</span>
-                <a href="route_detail.html"><img src="images/jiangxuan_4.jpg" alt=""></a>
-                <h4><a href="route_detail.html">【尾单特卖】全国-曼谷6-7天自由行 泰国出境旅游 特价往6-7天自由行 泰国出境旅游 特价往..</a></h4>
-                <p>
-                    <b class="price">&yen;<span>899</span>起</b>
-                    <span class="shouchang">已收藏450次</span>
-                </p>
-            </li>
-            <li>
-                <span class="num">3</span>
-                <a href="route_detail.html"><img src="images/jiangxuan_4.jpg" alt=""></a>
-                <h4><a href="route_detail.html">【尾单特卖】全国-曼谷6-7天自由行 泰国出境旅游 特价往6-7天自由行 泰国出境旅游 特价往..</a></h4>
-                <p>
-                    <b class="price">&yen;<span>899</span>起</b>
-                    <span class="shouchang">已收藏450次</span>
-                </p>
-            </li>
-            <li>
-                <span class="num">4</span>
-                <a href="route_detail.html"><img src="images/jiangxuan_4.jpg" alt=""></a>
-                <h4><a href="route_detail.html">【尾单特卖】全国-曼谷6-7天自由行 泰国出境旅游 特价往6-7天自由行 泰国出境旅游 特价往..</a></h4>
-                <p>
-                    <b class="price">&yen;<span>899</span>起</b>
-                    <span class="shouchang">已收藏450次</span>
-                </p>
-            </li>
-            <li>
-                <span class="num">5</span>
-                <a href="route_detail.html"><img src="images/jiangxuan_4.jpg" alt=""></a>
-                <h4><a href="route_detail.html">【尾单特卖】全国-曼谷6-7天自由行 泰国出境旅游 特价往6-7天自由行 泰国出境旅游 特价往..</a></h4>
-                <p>
-                    <b class="price">&yen;<span>899</span>起</b>
-                    <span class="shouchang">已收藏450次</span>
-                </p>
-            </li>
-            <li>
-                <span class="num">6</span>
-                <a href="route_detail.html"><img src="images/jiangxuan_4.jpg" alt=""></a>
-                <h4><a href="route_detail.html">【尾单特卖】全国-曼谷6-7天自由行 泰国出境旅游 特价往6-7天自由行 泰国出境旅游 特价往..</a></h4>
-                <p>
-                    <b class="price">&yen;<span>899</span>起</b>
-                    <span class="shouchang">已收藏450次</span>
-                </p>
-            </li>
-            <li>
-                <span class="num">7</span>
-                <a href="route_detail.html"><img src="images/jiangxuan_4.jpg" alt=""></a>
-                <h4><a href="route_detail.html">【尾单特卖】全国-曼谷6-7天自由行 泰国出境旅游 特价往6-7天自由行 泰国出境旅游 特价往..</a></h4>
-                <p>
-                    <b class="price">&yen;<span>899</span>起</b>
-                    <span class="shouchang">已收藏450次</span>
-                </p>
-            </li>
-            <li>
-                <span class="num">8</span>
-                <a href="route_detail.html"><img src="images/jiangxuan_4.jpg" alt=""></a>
-                <h4><a href="route_detail.html">【尾单特卖】全国-曼谷6-7天自由行 泰国出境旅游 特价往6-7天自由行 泰国出境旅游 特价往..</a></h4>
-                <p>
-                    <b class="price">&yen;<span>899</span>起</b>
-                    <span class="shouchang">已收藏450次</span>
-                </p>
-            </li>
+        <ul id="write_route">
+
         </ul>
     </div>
     <div class="pageNum">
@@ -127,5 +56,60 @@
 <%@ include file="footer.jsp"%>
 <!--导入布局js，共享header和footer-->
 <script type="text/javascript" src="js/include.js"></script>
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    function getRouteListCountByRnameAndPrice(){
+        $.ajax({
+            url:"routeServlet?method=getRouteListCountByRnameAndPrice",
+            type:"POST",
+            dataType:"json",
+            data:{"rname":$('#rname').val(),"minPrice":$('#min_price').val(),"maxPrice":$('#max_price').val()},
+            success:function (data) {
+                $('#write_route').empty();
+                $.each(data,function (i, r) {
+                    var con =   "<li><span class='num' id='num_"+(i+1)+"'>"+(i+1)+"</span><a href='routeServlet?method=getRouteByRid&rid="+r.rid+"'>"
+                        +"<img src='"+r.rimage+"' ><h4>"+r.rname+"</a></h4><p><b class='price'>&yen;<span>"
+                        +r.price+"</span>起</b><span class='shouchang'>已收藏"+r.count+"次</span></p></li>";
+                    $('#write_route').append(con);
+
+                    $('#num_1').attr("class","num one");
+                    $('#num_2').attr("class","num two");
+                });
+            },
+            error:function (data) {
+                console.log("ajax:getRouteListByRnameAndPrice()");
+                console.log("favoriterank.jsp");
+            }
+        });
+    }
+    $(function () {
+        getRouteListByCount();
+    });
+    function getRouteListByCount() {
+        $.ajax({
+            url:"routeServlet?method=getRouteListByCount",
+            data:{},
+            type:"POST",
+            dataType:"json",
+            success:function (data) {
+                console.log("成功");
+                $('#write_route').empty();
+                $.each(data,function (i, r) {
+                    var con =   "<li><span class='num' id='num_"+(i+1)+"'>"+(i+1)+"</span><a href='routeServlet?method=getRouteByRid&rid="+r.rid+"'>"
+                                +"<img src='"+r.rimage+"' ><h4>"+r.rname+"</a></h4><p><b class='price'>&yen;<span>"
+                                +r.price+"</span>起</b><span class='shouchang'>已收藏"+r.count+"次</span></p></li>";
+                    $('#write_route').append(con);
+
+                    $('#num_1').attr("class","num one");
+                    $('#num_2').attr("class","num two");
+                });
+
+            },
+            error:function (data) {
+                console.log("ajax:getRouteListByCount()")
+            }
+        });
+    }
+</script>
 </body>
 </html>

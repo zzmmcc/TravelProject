@@ -27,4 +27,9 @@ public interface RouteDao {
     int plusCountByRid(int rid);
 
     List<Route> searchRouteListByText(String searchtext) throws SQLException;
+
+    List<Route> getRouteListByCount() throws SQLException;
+
+    List<Route> getRouteListCountByRnameAndPrice(String rname,double minPrice,double maxPrice) throws SQLException;
+
 }

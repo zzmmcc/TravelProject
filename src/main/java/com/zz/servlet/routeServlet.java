@@ -62,9 +62,34 @@ public class routeServlet extends HttpServlet {
             getHotsRouteListByCid(request,response);
         }else if(method.equals("searchRouteListByText")){
             searchRouteListByText(request,response);
-        }else {
+        }else if(method.equals("getRouteListByCount")){
+            getRouteListByCount(request,response);
+        }else if(method.equals("getRouteListCountByRnameAndPrice")){
+            getRouteListCountByRnameAndPrice(request,response);
+        }else  {
             System.out.println(method);
         }
+    }
+
+    public void getRouteListCountByRnameAndPrice(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String rname = request.getParameter("rname");
+        String minP = request.getParameter("minPrice");
+        double minPrice = Double.MIN_VALUE;
+        double maxPrice = Double.MAX_VALUE;
+        if(null!=minP && !minP.equals("")){
+            minPrice = Double.parseDouble(minP);
+        }
+        String maxP = request.getParameter("maxPrice");
+        if(null!=maxP && !maxP.equals("")){
+            maxPrice = Double.parseDouble(maxP);
+        }
+        List<Route> list = routeService.getRouteListCountByRnameAndPrice(rname,minPrice,maxPrice);
+        response.getWriter().print(JSON.toJSONString(list));
+    }
+
+    public void getRouteListByCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List<Route> list = routeService.getRouteListByCount();
+        response.getWriter().print(JSON.toJSONString(list));
     }
 
     public void searchRouteListByText(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

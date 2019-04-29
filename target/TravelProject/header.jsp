@@ -25,7 +25,7 @@
         <c:if test="${not empty loginUser}" var="u">
             <div class="login">
                 <span>欢迎回来,${loginUser.name}</span>
-                <a href="myfavorite.jsp" class="collection">我的收藏</a>
+                <a href="favoriteServlet?method=getListByUid&uid=${loginUser.uid}" class="collection">我的收藏</a>
                 <a href="userServlet?method=logout" >退出</a>
             </div>
         </c:if>
@@ -35,10 +35,12 @@
             <div class="logo">
                 <a href="/"><img src="images/logo.png" alt=""></a>
             </div>
-            <div class="search">
-                <input name="" type="text" placeholder="请输入路线名称" class="search_input" autocomplete="off">
-                <a href="javascript:;" class="search-button">搜索</a>
-            </div>
+            <form id="search_from" action="routeServlet?method=searchRouteListByText" method="post">
+                <div class="search">
+                    <input name="searchtext" type="text" placeholder="请输入路线名称" class="search_input" autocomplete="off">
+                    <button type="submit" class="search-button">搜索</button>
+                </div>
+            </form>
             <div class="hottel">
                 <div class="hot_pic">
                     <img src="images/hot_tel.jpg" alt="">

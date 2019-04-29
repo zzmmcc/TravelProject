@@ -6,6 +6,7 @@ import com.zz.dao.RouteDao;
 import com.zz.service.RouteService;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RouteServiceImpl implements RouteService {
@@ -54,5 +55,16 @@ public class RouteServiceImpl implements RouteService {
     public List<Route> getHotsRouteListByCid(int cid) {
         List<Route> list = routeDao.getHotsRouteListByCid(cid);
         return  list;
+    }
+
+    @Override
+    public List<Route> searchRouteListByText(String searchtext) {
+        List<Route> list = new ArrayList<Route>();
+        try {
+            list = routeDao.searchRouteListByText(searchtext);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

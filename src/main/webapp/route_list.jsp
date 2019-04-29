@@ -38,22 +38,22 @@
                 </div>
                 <ul>
                     <c:forEach items="${routeList}" var="r">
-                    <li>
-                        <div class="img"><img src="${r.rimage}" alt=""></div>
-                        <div class="text1">
-                            <p>${r.rname}</p>
-                            <br/>
-                            <p>${r.routeintroduce}</p>
-                        </div>
-                        <div class="price">
-                            <p class="price_num">
-                                <span>&yen;</span>
-                                <span>${r.price}</span>
-                                <span>起</span>
-                            </p>
-                            <p><a href="routeServlet?method=getRouteByRid&rid=${r.rid}">查看详情</a></p>
-                        </div>
-                    </li>
+                        <li>
+                            <div class="img"><img src="${r.rimage}" alt=""></div>
+                            <div class="text1">
+                                <p>${r.rname}</p>
+                                <br/>
+                                <p>${r.routeintroduce}</p>
+                            </div>
+                            <div class="price">
+                                <p class="price_num">
+                                    <span>&yen;</span>
+                                    <span>${r.price}</span>
+                                    <span>起</span>
+                                </p>
+                                <p><a href="routeServlet?method=getRouteByRid&rid=${r.rid}">查看详情</a></p>
+                            </div>
+                        </li>
                     </c:forEach>
                 </ul>
                 <div class="page_num_inf">

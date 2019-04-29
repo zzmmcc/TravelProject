@@ -1,11 +1,16 @@
 package com.zz.service.Impl;
 
 import com.zz.bean.Favorite;
+import com.zz.bean.Route;
 import com.zz.dao.FavoriteDao;
 import com.zz.dao.Impl.FavoriteDaoImpl;
 import com.zz.dao.Impl.RouteDaoImpl;
 import com.zz.dao.RouteDao;
 import com.zz.service.FavoriteService;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FavoriteServiceImpl implements FavoriteService {
     FavoriteDao favoriteDao = new FavoriteDaoImpl();
@@ -42,5 +47,21 @@ public class FavoriteServiceImpl implements FavoriteService {
             }
         }
         return 0;
+    }
+
+    @Override
+    public List<Route> getListByUid(int uid) {
+        List<Route> list = new ArrayList<Route>();
+        try {
+            List<Favorite> favorites = favoriteDao.getListByUid(uid);
+            for (Favorite f: favorites){
+                Integer rid = f.getRid();
+                Route route = routeDao.getRouteByRid(rid);
+                list.add(route);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

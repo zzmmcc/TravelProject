@@ -2,14 +2,16 @@ package com.zz.dao.Impl;
 
 import com.zz.bean.Favorite;
 import com.zz.dao.FavoriteDao;
-import com.zz.util.DBUtil;
+import com.zz.util.JDBCUtil;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FavoriteDaoImpl implements FavoriteDao {
-    DBUtil util = new DBUtil();
+    JDBCUtil util = new JDBCUtil();
     String sql = "";
     ResultSet resultSet = null;
     @Override
@@ -18,7 +20,9 @@ public class FavoriteDaoImpl implements FavoriteDao {
         resultSet = util.execQuery(sql,null);
         Favorite favorite = null;
         try {
-            favorite = autoGet(resultSet);
+
+                favorite = autoGet(resultSet);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -33,7 +37,7 @@ public class FavoriteDaoImpl implements FavoriteDao {
             resultSet = util.execQuery(sql,null);
             Favorite favorite = null;
             try {
-                favorite = autoGet(resultSet);
+                    favorite = autoGet(resultSet);
             } catch (SQLException e) {
                 e.printStackTrace();
             }finally {
@@ -63,13 +67,30 @@ public class FavoriteDaoImpl implements FavoriteDao {
         return 0;
     }
 
-    public Favorite autoGet(ResultSet resultSet) throws SQLException {
-        Favorite favorite = new Favorite();
+    @Override
+    public List<Favorite> getListByUid(int uid) throws SQLException {
+        sql = "select * from tab_favorite where uid = "+uid;
+        resultSet = util.execQuery(sql, null);
+        List<Favorite> list = new ArrayList<Favorite>();
         while (resultSet.next()){
+            Favorite favorite = new Favorite();
+            favorite.setFid(resultSet.getInt("fid"));
             favorite.setRid(resultSet.getInt("rid"));
             favorite.setUid(resultSet.getInt("uid"));
             favorite.setDate(resultSet.getDate("date"));
+            list.add(favorite);
         }
+        return list;
+    }
+
+    public Favorite autoGet(ResultSet resultSet) throws SQLException {
+        Favorite favorite = new Favorite();
+            while (resultSet.next()) {
+                favorite.setFid(resultSet.getInt("fid"));
+                favorite.setRid(resultSet.getInt("rid"));
+                favorite.setUid(resultSet.getInt("uid"));
+                favorite.setDate(resultSet.getDate("date"));
+            }
         return favorite;
     }
 }

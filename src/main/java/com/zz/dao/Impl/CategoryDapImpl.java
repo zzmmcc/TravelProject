@@ -2,14 +2,14 @@ package com.zz.dao.Impl;
 
 import com.zz.bean.Category;
 import com.zz.dao.CategoryDao;
-import com.zz.util.DBUtil;
+import com.zz.util.JDBCUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CategoryDapImpl implements CategoryDao {
-    DBUtil util = new DBUtil();
+    JDBCUtil util = new JDBCUtil();
     //C3P0Util util = new C3P0Util();
     String sql = "";
     ResultSet res = null;

@@ -3,6 +3,8 @@ package com.zz.bean;
 import java.util.Date;
 
 public class Favorite  {
+    private int fid;
+
     private Date date;
 
     private Integer rid;
@@ -33,10 +35,19 @@ public class Favorite  {
         this.uid = uid;
     }
 
+    public int getFid() {
+        return fid;
+    }
+
+    public void setFid(int fid) {
+        this.fid = fid;
+    }
+
     public Favorite() {
     }
 
-    public Favorite(Date date, Integer rid, Integer uid) {
+    public Favorite(int fid, Date date, Integer rid, Integer uid) {
+        this.fid = fid;
         this.date = date;
         this.rid = rid;
         this.uid = uid;
@@ -45,7 +56,8 @@ public class Favorite  {
     @Override
     public String toString() {
         return "Favorite{" +
-                "date=" + date +
+                "fid=" + fid +
+                ", date=" + date +
                 ", rid=" + rid +
                 ", uid=" + uid +
                 '}';

@@ -20,4 +20,6 @@ public interface RouteService {
     List<Route> getRouteListByCid(String cid);
 
     List<Route> getHotsRouteListByCid(int cid);
+
+    List<Route> searchRouteListByText(String searchtext);
 }

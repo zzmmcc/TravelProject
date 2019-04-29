@@ -60,9 +60,18 @@ public class routeServlet extends HttpServlet {
             getRouteListByCid(request, response);
         }else if(method.equals("getHotsRouteListByCid")){
             getHotsRouteListByCid(request,response);
-        } else {
+        }else if(method.equals("searchRouteListByText")){
+            searchRouteListByText(request,response);
+        }else {
             System.out.println(method);
         }
+    }
+
+    public void searchRouteListByText(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String searchtext = request.getParameter("searchtext");
+        List<Route> list = routeService.searchRouteListByText(searchtext);
+        request.setAttribute("routeList",list);
+        request.getRequestDispatcher("route_list.jsp").forward(request,response);
     }
 
     public void getHotsRouteListByCid(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -2,13 +2,13 @@ package com.zz.dao.Impl;
 
 import com.zz.bean.Seller;
 import com.zz.dao.SellerDao;
-import com.zz.util.DBUtil;
+import com.zz.util.JDBCUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SellerDaoImpl implements SellerDao {
-    DBUtil util = new DBUtil();
+    JDBCUtil util = new JDBCUtil();
     String sql = "";
     ResultSet resultSet = null;
     @Override

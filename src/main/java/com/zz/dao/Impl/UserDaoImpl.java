@@ -2,13 +2,13 @@ package com.zz.dao.Impl;
 
 import com.zz.bean.User;
 import com.zz.dao.UserDao;
-import com.zz.util.DBUtil;
+import com.zz.util.JDBCUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDaoImpl implements UserDao {
-    DBUtil util = new DBUtil();
+    JDBCUtil util = new JDBCUtil();
     String sql ="";
     public User autoGet(ResultSet res) throws SQLException {
         User user = new User();
@@ -50,5 +50,25 @@ public class UserDaoImpl implements UserDao {
                 +user.getTelephone()+"' and email = '"+user.getEmail()+"' and status = '"+user.getStatus()+"' and code = '"+user.getCode()+"' ";
         ResultSet res = util.execQuery(sql, null);
         return autoGet(res);
+    }
+
+    @Override
+    public Boolean getStatusByCode(String code) throws SQLException {
+        sql = "select * from tab_user where code = '"+code+"' and status = 1";
+        System.out.println(sql);
+        ResultSet res = util.execQuery(sql, null);
+        User user = autoGet(res);
+        if(user.getName()==null || user.getName().equals("")){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int activeUserByCode(String code) {
+        sql = "update tab_user set status = 1 where code = '"+code+"' and status = 0";
+        System.out.println(sql);
+        int i = util.execUpdate(sql, null);
+        return i;
     }
 }

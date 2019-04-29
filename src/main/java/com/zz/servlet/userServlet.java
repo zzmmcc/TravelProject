@@ -3,6 +3,7 @@ package com.zz.servlet;
 import com.zz.bean.User;
 import com.zz.service.Impl.UserServiceImpl;
 import com.zz.service.UserService;
+import com.zz.util.MailUtils;
 import com.zz.util.Md5Util;
 import com.zz.util.UuidUtil;
 
@@ -23,6 +24,9 @@ public class userServlet extends HttpServlet {
 
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         String method = request.getParameter("method");
         if(method.equals("login")){
             try {
@@ -38,6 +42,22 @@ public class userServlet extends HttpServlet {
             }
         }else if(method.equals("logout")){
             logout(request,response);
+        }else if(method.equals("activeUser")){
+            activeUser(request,response);
+        }
+    }
+
+    public void activeUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String code = request.getParameter("code");
+        int i = userService.activeUserByCode(code);
+        if(i==9){
+            response.getWriter().write("<script>alert('该账户无需激活，请直接登录！');window.location.href='http://127.0.0.1:8080/TravelProject/login.jsp';window.close;</script>");
+        }else if(i!=0 && i!=9){
+            //激活成功
+            response.getWriter().write("<script>alert('激活成功，请登录！');window.location.href='http://127.0.0.1:8080/TravelProject/login.jsp';window.close;</script>");
+        }else {
+            response.getWriter().write("<script>alert('激活失败，请重试！');window.close;</script>");
+            //激活失败
         }
     }
 
@@ -85,16 +105,17 @@ public class userServlet extends HttpServlet {
             String password = request.getParameter("password");
             String telephone = request.getParameter("telephone");
             String email = request.getParameter("email");
-
             String date = request.getParameter("birthday");
+            if(date.equals(""))
+                date = null;
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date birthday = new Date(sdf.parse(date).getTime());
 
             String name = request.getParameter("name");
             String sex = request.getParameter("sex");
             //加密密码
-            User user = new User(username, Md5Util.encodeByMd5(password),name,birthday,sex,telephone,email,"0",UuidUtil.getUuid());
-            System.out.println(user);
+            String code = UuidUtil.getUuid();
+            User user = new User(username, Md5Util.encodeByMd5(password),name,birthday,sex,telephone,email,"0",code);
             //注册
             User u = userService.register(user);
             if(u.equals("")||null==u){
@@ -103,6 +124,7 @@ public class userServlet extends HttpServlet {
             }else {
                 //注册成功
                 //给用户发送邮件
+                MailUtils.sendMail(email,"尊敬的"+name+"，请点击链接完成激活：http://127.0.0.1:8080/TravelProject/userServlet?method=activeUser&code="+code,"激活账户");
                 response.getWriter().print(0);
             }
         }else {

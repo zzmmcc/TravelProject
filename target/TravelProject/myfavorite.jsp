@@ -42,114 +42,17 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
                     <div class="row">
-                        <div class="col-md-3">
-                            <a href="route_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="route_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="route_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="route_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="route_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="route_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="route_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="route_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="route_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="route_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="route_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="jroute_detail.html">
-                                <img src="images/collection_pic.jpg" alt="">
-                                <div class="has_border">
-                                    <h3>上海直飞三亚5天4晚自由行(春节预售+亲子/蜜月/休闲游首选+豪华酒店任选+接送机)</h3>
-                                    <div class="price">网付价<em>￥</em><strong>889</strong><em>起</em></div>
-                                </div>
-                            </a>
-                        </div>
+                        <c:forEach items="${routeList}" var="r">
+                            <div class="col-md-3">
+                                <a href="routeServlet?method=getRouteByRid&rid=${r.rid}">
+                                    <img src="${r.rimage}" alt="">
+                                    <div class="has_border">
+                                        <h3>${r.rname}</h3>
+                                        <div class="price">网付价<em>￥</em><strong>${r.price}</strong><em>起</em></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

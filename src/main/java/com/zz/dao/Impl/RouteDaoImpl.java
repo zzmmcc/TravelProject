@@ -2,7 +2,7 @@ package com.zz.dao.Impl;
 
 import com.zz.bean.Route;
 import com.zz.dao.RouteDao;
-import com.zz.util.DBUtil;
+import com.zz.util.JDBCUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RouteDaoImpl implements RouteDao {
-    DBUtil util = new DBUtil();
+    JDBCUtil util = new JDBCUtil();
     String sql = "";
 
     public List<Route> getHotTravel() {
@@ -64,8 +64,6 @@ public class RouteDaoImpl implements RouteDao {
             list = autoGet(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            util.getClose(util.rs,util.ps,util.conn);
         }
         return list;
     }
@@ -135,6 +133,15 @@ public class RouteDaoImpl implements RouteDao {
     public int plusCountByRid(int rid) {
         sql = "update tab_route set count = count+1 where rid = "+rid;
         return util.execUpdate(sql,null);
+    }
+
+    @Override
+    public List<Route> searchRouteListByText(String searchtext) throws SQLException {
+        sql = "select * from tab_route where rname like '%"+searchtext+"%'";
+        System.out.println(sql);
+        ResultSet res = util.execQuery(sql, null);
+        List<Route> list = autoGet(res);
+        return  list;
     }
 
     public Route getR(ResultSet res) throws SQLException {

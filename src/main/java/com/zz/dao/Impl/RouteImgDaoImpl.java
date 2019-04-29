@@ -2,14 +2,14 @@ package com.zz.dao.Impl;
 
 import com.zz.bean.RouteImg;
 import com.zz.dao.RouteImgDao;
-import com.zz.util.DBUtil;
+import com.zz.util.JDBCUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RouteImgDaoImpl implements RouteImgDao {
-    DBUtil util = new DBUtil();
+    JDBCUtil util = new JDBCUtil();
     String sql = "";
     @Override
     public ArrayList<RouteImg> getRouteImgByRid(int rid) {

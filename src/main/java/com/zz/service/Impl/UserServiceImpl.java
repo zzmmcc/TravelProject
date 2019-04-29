@@ -5,6 +5,8 @@ import com.zz.dao.Impl.UserDaoImpl;
 import com.zz.dao.UserDao;
 import com.zz.service.UserService;
 
+import java.sql.SQLException;
+
 public class UserServiceImpl implements UserService {
 
     UserDao userDao = new UserDaoImpl();
@@ -24,5 +26,22 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
         }
         return user;
+    }
+
+    @Override
+    public int activeUserByCode(String code) {
+        int i = 0;
+        Boolean boo = false;
+        try {
+            boo = userDao.getStatusByCode(code);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(boo){
+            i =9;
+        }else {
+            i = userDao.activeUserByCode(code);
+        }
+        return i;
     }
 }

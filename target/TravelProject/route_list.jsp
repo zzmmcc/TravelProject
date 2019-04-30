@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.zz.util.PageUtil" %>
+<%@ page import="com.zz.bean.Route" %><%--
   Created by IntelliJ IDEA.
   User: 张铭传
   Date: 2019/4/25
@@ -16,10 +17,13 @@
     <title>小码旅游-搜索</title>
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/cypager.min.css" />
     <script src="js/jquery-3.3.1.js"></script>
     <style type="text/css">
     </style>
 </head>
+<script type="text/javascript" src="js/cypager.min.js"/>
+<script src="js/jquery-1.11.0.min.js"></script>
 <body>
 <!--引入头部-->
 <%@include file="header.jsp"%>
@@ -37,7 +41,7 @@
                     <span class="jg">价格</span>
                 </div>
                 <ul>
-                    <c:forEach items="${routeList}" var="r">
+                    <c:forEach items="${pageList.list}" var="r">
                         <li>
                             <div class="img"><img src="${r.rimage}" alt=""></div>
                             <div class="text1">
@@ -56,14 +60,66 @@
                         </li>
                     </c:forEach>
                 </ul>
+
                 <div class="page_num_inf">
                     <i></i> 共
                     <span>12</span>页<span>132</span>条
                 </div>
+
+
+
+                <div>
+                            <h3>调用方式</h3>
+                            <p>由于是 jquery 插件，所以在引人 cypager.min.js 之前，要引人 jquery.min.js 本人使用的是 1.7.2 版本的，低版本的没试过。</p>
+                            <pre>
+                引入css : &lt;link rel="stylesheet" href="css/cypager.min.css" /&gt;
+                引人js  : &lt;script type="text/javascript" src="js/cypager.min.js"/&gt;
+                </pre>
+                            <pre>
+                $(function(){
+                    $("#pagerArea").cypager({pg_size:10,pg_nav_count:8,pg_total_count:194,pg_call_fun:function(count){
+                        alert("跳转至页面:"+count+"");
+                    }});
+                });
+                </pre>
+                            <h3>参数说明</h3>
+                            <pre>
+                 pgerId						//插件的ID 默认 : cy_pager
+                 pg_size  					//每页显示记录数 默认：10条
+                 pg_cur_count 					//当前页数（如果需要默认显示指定页面，则设置）
+                 pg_total_count 			//总记录数
+                 pg_nav_count     			//显示多少个导航数  默认：7个
+                 pg_prev_name     			//上一页按钮名称（默认：PREV）
+                 pg_next_name     			//下一页按钮名称 (默认：NEXT)
+                 pg_call_fun(page_count)      //回调函数，点击按钮执行
+                </pre>
+                            <p>
+                                经过本人测试，插件兼容 IE8+,Chrome,Firefox 浏览器,核心文件仅 5KB 。
+                            </p>
+
+                            <div id="pagerArea" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;"></div>
+                            </br>
+                            </br>
+                            <div id="console" style='padding-left:10px'></div>
+
+        <script type="text/javascript" src="js/cypager.min.js" ></script>
+        <script>
+        $(function(){
+            $("#pagerArea").cypager({pg_size:10,pg_nav_count:8,pg_total_count:194,pg_call_fun:function(count){
+                    $("#console").html("正在加载第("+count+")页的数据，请稍后.......");
+                }});
+        });
+        </script>
+
+                </div>
+
+
+
                 <div class="pageNum">
                     <ul>
                         <li><a href="">首页</a></li>
                         <li class="threeword"><a href="#">上一页</a></li>
+                        共${pageList.pageAll}页
                         <li><a href="#">1</a></li>
                         <li><a href="#">2</a></li>
                         <li><a href="#">3</a></li>
@@ -77,7 +133,9 @@
                         <li class="threeword"><a href="javascript:;">下一页</a></li>
                         <li class="threeword"><a href="javascript:;">末页</a></li>
                     </ul>
+
                 </div>
+
             </div>
             <div class="right">
                 <div class="top">
@@ -94,6 +152,7 @@
 
 <!--引入头部-->
 <%@ include file="footer.jsp"%>
+<script src="/js/pagination.js"></script>
 <!--导入布局js，共享header和footer-->
 <script type="text/javascript" src="js/include.js"></script>
 <script SRC="js/jquery-3.3.1.js"></script>

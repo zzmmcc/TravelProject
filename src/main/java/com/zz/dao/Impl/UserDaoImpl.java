@@ -26,6 +26,7 @@ public class UserDaoImpl implements UserDao {
         }
         return user;
     }
+    @Override
     public User checkLogin(String username, String password)  throws  Exception{
         sql = "select * from tab_user where username='"+username+"' and password='"+password+"'";
         ResultSet res = util.execQuery(sql, null);
@@ -59,8 +60,10 @@ public class UserDaoImpl implements UserDao {
         ResultSet res = util.execQuery(sql, null);
         User user = autoGet(res);
         if(user.getName()==null || user.getName().equals("")){
+            util.getClose(util.rs,util.ps,util.conn);
             return false;
         }
+        util.getClose(util.rs,util.ps,util.conn);
         return true;
     }
 
@@ -69,6 +72,7 @@ public class UserDaoImpl implements UserDao {
         sql = "update tab_user set status = 1 where code = '"+code+"' and status = 0";
         System.out.println(sql);
         int i = util.execUpdate(sql, null);
+        util.getClose(util.rs,util.ps,util.conn);
         return i;
     }
 }

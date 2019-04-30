@@ -23,6 +23,7 @@ public class userServlet extends HttpServlet {
     UserService userService = new UserServiceImpl();
 
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("utf-8");
@@ -62,6 +63,7 @@ public class userServlet extends HttpServlet {
     }
 
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }

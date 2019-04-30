@@ -26,7 +26,8 @@ public final class Md5Util {
 	private static String byteArrayToHexString(byte[] byteArray) {
 		StringBuffer sb = new StringBuffer();
 		//遍历
-		for(byte b : byteArray){//16次
+		//16次
+		for(byte b : byteArray){
 			//取出每一个byte类型，进行转换
 			String hex = byteToHexString(b);
 			//将转换后的值放入StringBuffer中

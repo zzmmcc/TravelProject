@@ -5,6 +5,7 @@ import com.zz.bean.*;
 import com.zz.service.*;
 import com.zz.service.Impl.*;
 import com.zz.util.JedisUtil;
+import com.zz.util.PageUtil;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
@@ -57,7 +58,7 @@ public class routeServlet extends HttpServlet {
         }else if(method.equals("getRouteByRid")){
             getRouteByRid(request,response);
         }else if (method.equals("getRouteListByCid")){
-            getRouteListByCid(request, response);
+            getRouteListByCidWithPage(request, response);
         }else if(method.equals("getHotsRouteListByCid")){
             getHotsRouteListByCid(request,response);
         }else if(method.equals("searchRouteListByText")){
@@ -107,10 +108,9 @@ public class routeServlet extends HttpServlet {
         if(null==jedis_key || jedis_key.equals("")){
             List<Route> list = routeService.getHotsRouteListByCid(cid);
             String jsonStr = JSON.toJSONString(list);
-
             jedis.set(key,jsonStr);
+            response.getWriter().print(jsonStr);
         }
-        jedis_key = jedis.get(key);
         response.getWriter().print(jedis_key);
     }
 
@@ -139,10 +139,12 @@ public class routeServlet extends HttpServlet {
         request.setAttribute("routeMsg",routeMsg);
         request.getRequestDispatcher("route_detail.jsp").forward(request,response);
     }
-    public void getRouteListByCid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String cid = request.getParameter("cid");
-        List<Route> list = routeService.getRouteListByCid(cid);
-        request.setAttribute("routeList",list);
+    public void getRouteListByCidWithPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        int pageSize = 8;
+        int pageNow = Integer.parseInt(request.getParameter("pageNow"));
+        PageUtil<Route> pageList = routeService.getRouteListByCidWithPage(cid, pageNow, pageSize);
+        request.setAttribute("pageList",pageList);
         request.getRequestDispatcher("route_list.jsp").forward(request,response);
     }
 
@@ -153,8 +155,8 @@ public class routeServlet extends HttpServlet {
             List<Route> list = routeService.getGuoNeiList();
             String jsonStr = JSON.toJSONString(list);
             jedis.set("guoNeiList",jsonStr);
+            return  jsonStr;
         }
-        guoNeiList = jedis.get("guoNeiList");
         return guoNeiList;
     }
     public String getJingWaiList() {
@@ -164,8 +166,8 @@ public class routeServlet extends HttpServlet {
             List<Route> list = routeService.getJingWaiList();
             String jsonStr = JSON.toJSONString(list);
             jedis.set("jingWaiList",jsonStr);
+            return jsonStr;
         }
-        jingWaiList = jedis.get("jingWaiList");
         return jingWaiList;
     }
 
@@ -176,8 +178,8 @@ public class routeServlet extends HttpServlet {
             List<Route> list = routeService.getTheme();
             String jsonStr = JSON.toJSONString(list);
             jedis.set("themeTour",jsonStr);
+            return jsonStr;
         }
-        themeTour = jedis.get("themeTour");
         return themeTour;
     }
     public String getNewest() {
@@ -187,8 +189,8 @@ public class routeServlet extends HttpServlet {
             List<Route> list = routeService.getNewest();
             String jsonStr = JSON.toJSONString(list);
             jedis.set("newEst",jsonStr);
+            return  jsonStr;
         }
-        newEst = jedis.get("newEst");
         return newEst;
     }
 
@@ -200,8 +202,8 @@ public class routeServlet extends HttpServlet {
             List<Route> list = routeService.getHotTravel();
             String jsonStr = JSON.toJSONString(list);
             jedis.set("hotTravel",jsonStr);
+            return jsonStr;
         }
-        hotTravel = jedis.get("hotTravel");
         return hotTravel;
     }
 

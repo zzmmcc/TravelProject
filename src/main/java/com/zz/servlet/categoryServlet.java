@@ -19,9 +19,11 @@ import java.util.ArrayList;
 public class categoryServlet extends HttpServlet {
     CategoryService categoryService = new CategoryServiceImpl();
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
@@ -39,8 +41,8 @@ public class categoryServlet extends HttpServlet {
             ArrayList<Category> list = categoryService.getCategory();
             jedis.set("category", JSON.toJSONString(list));
             System.out.println("缓存中没有");
-            category = jedis.get("category");
-            jedis.close();
+            response.getWriter().print(JSON.toJSONString(list));
+            return;
         }
         response.getWriter().print(category);
     }

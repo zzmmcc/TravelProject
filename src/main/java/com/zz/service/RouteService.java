@@ -1,6 +1,7 @@
 package com.zz.service;
 
 import com.zz.bean.Route;
+import com.zz.util.PageUtil;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public interface RouteService {
     Route getRouteByRid(int id);
 
     List<Route> getRouteListByCid(String cid);
+    PageUtil<Route> getRouteListByCidWithPage(int cid, int pageNow, int pageSize);
 
     List<Route> getHotsRouteListByCid(int cid);
 

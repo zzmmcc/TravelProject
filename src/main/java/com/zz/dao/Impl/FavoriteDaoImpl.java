@@ -52,8 +52,10 @@ public class FavoriteDaoImpl implements FavoriteDao {
         sql = "insert into tab_favorite values(null,"+rid+",'"+ date +"',"+uid+")";
         int i = util.execUpdate(sql, null);
         if(i!=0){
+            util.getClose(util.rs,util.ps,util.conn);
             return 1;
         }
+        util.getClose(util.rs,util.ps,util.conn);
         return 0;
     }
 
@@ -62,8 +64,10 @@ public class FavoriteDaoImpl implements FavoriteDao {
         sql = "delete from tab_favorite where rid ="+rid+" and uid = "+uid;
         int i = util.execUpdate(sql, null);
         if(i!=0){
+            util.getClose(util.rs,util.ps,util.conn);
             return 1;
         }
+        util.getClose(util.rs,util.ps,util.conn);
         return 0;
     }
 
@@ -80,6 +84,7 @@ public class FavoriteDaoImpl implements FavoriteDao {
             favorite.setDate(resultSet.getDate("date"));
             list.add(favorite);
         }
+        util.getClose(util.rs,util.ps,util.conn);
         return list;
     }
 

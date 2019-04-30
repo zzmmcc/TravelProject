@@ -32,6 +32,7 @@ public class RouteImgDaoImpl implements RouteImgDao {
             RouteImg routeImg = autoGet(res);
             list.add(routeImg);
         }
+        util.getClose(util.rs,util.ps,util.conn);
         return list;
     }
 

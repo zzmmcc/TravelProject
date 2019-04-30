@@ -77,7 +77,7 @@
                 $.each(data,function (i,cate) {
                     var name = cate.cname;
                     var id = cate.cid;
-                    var con = "<li><a href='routeServlet?method=getRouteListByCid&cid="+id+"'>"+name+"</a></li>";
+                    var con = "<li><a href='routeServlet?method=getRouteListByCid&cid="+id+"&pageNow=1'>"+name+"</a></li>";
                     $('#write_category').append(con);
                 });
                 $('#write_category').append("<li><a href='favoriterank.jsp'>收藏排行榜</a></li>");

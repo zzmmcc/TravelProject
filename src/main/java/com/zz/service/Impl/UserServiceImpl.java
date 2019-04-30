@@ -11,6 +11,7 @@ public class UserServiceImpl implements UserService {
 
     UserDao userDao = new UserDaoImpl();
     //登录的方法
+    @Override
     public User checkLogin(String username, String password) throws  Exception {
         User user =userDao.checkLogin(username,password);
         return user;

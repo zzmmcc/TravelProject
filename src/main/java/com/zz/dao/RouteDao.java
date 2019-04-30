@@ -22,6 +22,8 @@ public interface RouteDao {
 
     List<Route> getHotsRouteListByCid(int cid);
 
+    List<Route> getRouteListByCidWithPage(int cid,int pageNow,int pageSize);
+
     int reduceCountByRid(int rid);
 
     int plusCountByRid(int rid);
@@ -32,4 +34,5 @@ public interface RouteDao {
 
     List<Route> getRouteListCountByRnameAndPrice(String rname,double minPrice,double maxPrice) throws SQLException;
 
+    int getPageCount() throws SQLException;
 }

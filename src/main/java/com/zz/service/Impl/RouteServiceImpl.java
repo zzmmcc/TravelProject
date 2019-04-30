@@ -4,6 +4,7 @@ import com.zz.bean.Route;
 import com.zz.dao.Impl.RouteDaoImpl;
 import com.zz.dao.RouteDao;
 import com.zz.service.RouteService;
+import com.zz.util.PageUtil;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,14 +13,17 @@ import java.util.List;
 public class RouteServiceImpl implements RouteService {
     RouteDao routeDao = new RouteDaoImpl();
 
+    @Override
     public List<Route> getHotTravel() {
         return routeDao.getHotTravel();
     }
 
+    @Override
     public List<Route> getNewest() {
         return routeDao.getNewest();
     }
 
+    @Override
     public List<Route> getTheme() {
         return routeDao.getTheme();
     }
@@ -49,6 +53,23 @@ public class RouteServiceImpl implements RouteService {
     public List<Route> getRouteListByCid(String cid) {
         List<Route> list = routeDao.getRouteListByCid(cid);
         return list;
+    }
+
+    @Override
+    public PageUtil<Route> getRouteListByCidWithPage(int cid, int pageNow, int pageSize) {
+        PageUtil page = new PageUtil();
+        List<Route> list = routeDao.getRouteListByCidWithPage(cid,pageNow,pageSize);
+        int pageCount = 0;
+        try {
+            pageCount = routeDao.getPageCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        page.setPageSize(pageSize);
+        page.setPageNow(pageNow);
+        page.setList((ArrayList) list);
+        page.setPageCount(pageCount);
+        return page;
     }
 
     @Override

@@ -23,6 +23,7 @@ public class CategoryDapImpl implements CategoryDao {
             Category category = new Category(res.getInt("cid"),res.getString("cname"));
             list.add(category);
         }
+        util.getClose(util.rs,util.ps,util.conn);
         return list;
     }
 
@@ -36,6 +37,7 @@ public class CategoryDapImpl implements CategoryDao {
             category.setCid(resultSet.getInt("cid"));
             category.setCname(resultSet.getString("cname"));
         }
+        util.getClose(util.rs,util.ps,util.conn);
         return category;
     }
 }

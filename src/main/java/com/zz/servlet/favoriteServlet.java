@@ -16,6 +16,7 @@ import java.util.List;
 public class favoriteServlet extends HttpServlet {
     FavoriteService favoriteService = new FavoriteServiceImpl();
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
@@ -55,6 +56,7 @@ public class favoriteServlet extends HttpServlet {
         response.getWriter().print(i);
     }
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }

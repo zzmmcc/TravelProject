@@ -61,8 +61,8 @@ public class routeServlet extends HttpServlet {
             getRouteListByCidWithPage(request, response);
         }else if(method.equals("getHotsRouteListByCid")){
             getHotsRouteListByCid(request,response);
-        }else if(method.equals("searchRouteListByText")){
-            searchRouteListByText(request,response);
+        }else if(method.equals("searchRouteListByTextWithPage")){
+            searchRouteListByTextWithPage(request,response);
         }else if(method.equals("getRouteListByCount")){
             getRouteListByCount(request,response);
         }else if(method.equals("getRouteListCountByRnameAndPrice")){
@@ -93,10 +93,12 @@ public class routeServlet extends HttpServlet {
         response.getWriter().print(JSON.toJSONString(list));
     }
 
-    public void searchRouteListByText(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void searchRouteListByTextWithPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String searchtext = request.getParameter("searchtext");
-        List<Route> list = routeService.searchRouteListByText(searchtext);
-        request.setAttribute("routeList",list);
+        int pageNow = Integer.parseInt(request.getParameter("pageNow"));
+        PageUtil<Route> list = routeService.searchRouteListByTextWithPage(searchtext,pageNow);
+        request.setAttribute("pageList_Search",list);
+        request.setAttribute("search_text",searchtext);
         request.getRequestDispatcher("route_list.jsp").forward(request,response);
     }
 

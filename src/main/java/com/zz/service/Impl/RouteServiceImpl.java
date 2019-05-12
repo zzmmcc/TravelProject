@@ -61,7 +61,7 @@ public class RouteServiceImpl implements RouteService {
         List<Route> list = routeDao.getRouteListByCidWithPage(cid,pageNow,pageSize);
         int pageCount = 0;
         try {
-            pageCount = routeDao.getPageCount();
+            pageCount = routeDao.getPageCountByCid(cid);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,14 +79,23 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public List<Route> searchRouteListByText(String searchtext) {
+    public PageUtil<Route> searchRouteListByTextWithPage(String searchtext,int pageNow) {
+        PageUtil page = new PageUtil();
         List<Route> list = new ArrayList<Route>();
+        int pageCount = 0;
         try {
-            list = routeDao.searchRouteListByText(searchtext);
+            list = routeDao.searchRouteListByTextWithPage(searchtext,pageNow);
+            pageCount = routeDao.getPageCountByText(searchtext);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return list;
+
+        page.setPageSize(8);
+        page.setPageNow(pageNow);
+        page.setList((ArrayList) list);
+        page.setPageCount(pageCount);
+
+        return page;
     }
 
     @Override

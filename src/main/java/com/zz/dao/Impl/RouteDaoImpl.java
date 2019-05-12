@@ -162,8 +162,8 @@ public class RouteDaoImpl implements RouteDao {
     }
 
     @Override
-    public List<Route> searchRouteListByText(String searchtext) throws SQLException {
-        sql = "select * from tab_route where rname like '%"+searchtext+"%'";
+    public List<Route> searchRouteListByTextWithPage(String searchtext,int pageNow) throws SQLException {
+        sql = "select * from tab_route where rname like '%"+searchtext+"%' limit "+(pageNow-1)*8+",8";
         ResultSet res = util.execQuery(sql, null);
         List<Route> list = autoGet(res);
         util.getClose(util.rs,util.ps,util.conn);
@@ -194,8 +194,18 @@ public class RouteDaoImpl implements RouteDao {
     }
 
     @Override
-    public int getPageCount() throws SQLException {
-        sql = "select count(*) from tab_route";
+    public int getPageCountByCid(int cid) throws SQLException {
+        sql = "select count(*) from tab_route where cid ="+cid+"";
+        ResultSet resultSet = util.execQuery(sql, null);
+        while (resultSet.next()){
+            return resultSet.getInt(1);
+        }
+        return 0;
+    }
+
+    @Override
+    public int getPageCountByText(String searchtext) throws SQLException {
+        sql = "select count(*) from tab_route where rname like '%"+searchtext+"%'";
         ResultSet resultSet = util.execQuery(sql, null);
         while (resultSet.next()){
             return resultSet.getInt(1);

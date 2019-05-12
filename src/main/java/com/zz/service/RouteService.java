@@ -23,7 +23,7 @@ public interface RouteService {
 
     List<Route> getHotsRouteListByCid(int cid);
 
-    List<Route> searchRouteListByText(String searchtext);
+    PageUtil<Route> searchRouteListByTextWithPage(String searchtext,int pageNow);
 
     List<Route> getRouteListByCount();
 

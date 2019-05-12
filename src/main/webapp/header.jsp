@@ -35,7 +35,7 @@
             <div class="logo">
                 <a href="/"><img src="images/logo.png" alt=""></a>
             </div>
-            <form id="search_from" action="routeServlet?method=searchRouteListByText" method="post">
+            <form id="search_from" action="routeServlet?method=searchRouteListByTextWithPage&pageNow=1" method="post">
                 <div class="search">
                     <input name="searchtext" type="text" placeholder="请输入路线名称" class="search_input" autocomplete="off">
                     <button type="submit" class="search-button">搜索</button>

@@ -28,11 +28,13 @@ public interface RouteDao {
 
     int plusCountByRid(int rid);
 
-    List<Route> searchRouteListByText(String searchtext) throws SQLException;
+    List<Route> searchRouteListByTextWithPage(String searchtext,int pageNow) throws SQLException;
 
     List<Route> getRouteListByCount() throws SQLException;
 
     List<Route> getRouteListCountByRnameAndPrice(String rname,double minPrice,double maxPrice) throws SQLException;
 
-    int getPageCount() throws SQLException;
+    int getPageCountByCid(int cid) throws SQLException;
+
+    int getPageCountByText(String searchtext) throws SQLException;
 }

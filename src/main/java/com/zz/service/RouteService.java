@@ -29,4 +29,7 @@ public interface RouteService {
 
     List<Route> getRouteListCountByRnameAndPrice(String rname,double minPrice,double maxPrice);
 
+    PageUtil<Route> getRouteListBySearch_textWithPage(int pageNow,int pageSize,String search_text);
+
+    void delRouteByRid(int rid);
 }

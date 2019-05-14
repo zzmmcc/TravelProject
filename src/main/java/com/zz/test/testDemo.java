@@ -27,7 +27,7 @@ public class testDemo {
     @Test
     public void test2(){
         try {
-            categoryDao.getCategoryBiCid(2);
+            categoryDao.getCategoryByCid(2);
         } catch (SQLException e) {
             e.printStackTrace();
         }

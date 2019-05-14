@@ -37,4 +37,10 @@ public interface RouteDao {
     int getPageCountByCid(int cid) throws SQLException;
 
     int getPageCountByText(String searchtext) throws SQLException;
+
+    int getPageCount() throws SQLException;
+
+    List<Route> getRouteListBySearch_textWithPage(int pageNow,int pageSize,String search_text) throws SQLException;
+
+    void delRouteByRid(int rid);
 }

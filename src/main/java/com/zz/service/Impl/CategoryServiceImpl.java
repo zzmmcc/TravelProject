@@ -22,13 +22,41 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategoryBiCid(int cid) {
+    public Category getCategoryByCid(int cid) {
         Category category = null;
         try {
-            category = categoryDao.getCategoryBiCid(cid);
+            category = categoryDao.getCategoryByCid(cid);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return category;
     }
+
+    @Override
+    public int addCategory(String cname) {
+        int i = categoryDao.addCategory(cname);
+        return i;
+    }
+
+    @Override
+    public ArrayList<Category> getCategoryBySort() {
+        try {
+            return categoryDao.getCategoryBySort();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return  null;
+        }
+    }
+
+    @Override
+    public int delCategoryByCid(int cid) {
+        return categoryDao.delCategoryByCid(cid);
+    }
+
+    @Override
+    public int editCategoryByCate(Category category) {
+        return categoryDao.editCategoryByCate(category);
+    }
+
+
 }

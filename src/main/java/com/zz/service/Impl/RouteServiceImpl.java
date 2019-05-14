@@ -119,4 +119,29 @@ public class RouteServiceImpl implements RouteService {
         }
         return list;
     }
+
+    @Override
+    public PageUtil<Route> getRouteListBySearch_textWithPage(int pageNow,int pageSize,String search_text) {
+        PageUtil page = new PageUtil();
+        List<Route> list = new ArrayList<Route>();
+        int pageCount = 0;
+        try {
+            list = routeDao.getRouteListBySearch_textWithPage(pageNow,pageSize,search_text);
+            pageCount = routeDao.getPageCountByText(search_text);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        page.setPageSize(pageSize);
+        page.setPageNow(pageNow);
+        page.setList((ArrayList) list);
+        page.setPageCount(pageCount);
+
+        return page;
+    }
+
+    @Override
+    public void delRouteByRid(int rid) {
+        routeDao.delRouteByRid(rid);
+    }
 }

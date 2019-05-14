@@ -28,7 +28,7 @@ public class CategoryDapImpl implements CategoryDao {
     }
 
     @Override
-    public Category getCategoryBiCid(int cid) throws SQLException {
+    public Category getCategoryByCid(int cid) throws SQLException {
         sql = "select * from tab_category where cid = "+cid;
         ResultSet resultSet = util.execQuery(sql, null);
         Category category = null;
@@ -39,5 +39,38 @@ public class CategoryDapImpl implements CategoryDao {
         }
         util.getClose(util.rs,util.ps,util.conn);
         return category;
+    }
+
+    @Override
+    public int addCategory(String cname) {
+        sql = "insert into tab_category values(null,'"+cname+"')";
+        int i = util.execUpdate(sql, null);
+        return i;
+    }
+
+    @Override
+    public ArrayList<Category> getCategoryBySort() throws SQLException {
+        sql = "select * from tab_category order by cid";
+        res = util.execQuery(sql, null);
+        ArrayList<Category> list = new ArrayList<>();
+        while (res.next()){
+            Category category = new Category(res.getInt("cid"),res.getString("cname"));
+            list.add(category);
+        }
+        util.getClose(util.rs,util.ps,util.conn);
+        return list;
+    }
+
+    @Override
+    public int delCategoryByCid(int cid) {
+        sql = "delete from tab_category where cid = "+cid+"";
+        int i = util.execUpdate(sql, null);
+        return i;
+    }
+
+    @Override
+    public int editCategoryByCate(Category category) {
+        sql = "update tab_category set cname = '"+category.getCname()+"' where cid ="+category.getCid()+"";
+        return util.execUpdate(sql,null);
     }
 }

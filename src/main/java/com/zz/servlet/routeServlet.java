@@ -67,9 +67,62 @@ public class routeServlet extends HttpServlet {
             getRouteListByCount(request,response);
         }else if(method.equals("getRouteListCountByRnameAndPrice")){
             getRouteListCountByRnameAndPrice(request,response);
+        }else if(method.equals("getRouteListBySearch_textWithPage")){
+            getRouteListBySearch_textWithPage(request,response);
+        }else if(method.equals("getRouteForEditByRid")){
+            getRouteForEditByRid(request,response);
+        }else if(method.equals("delRouteByRid")){
+            delRouteByRid(request,response);
         }else  {
             System.out.println(method);
         }
+
+
+    }
+
+    public void delRouteByRid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int rid = Integer.parseInt(request.getParameter("rid"));
+        routeService.delRouteByRid(rid);
+        getRouteListBySearch_textWithPage(request,response);
+    }
+
+    public void getRouteForEditByRid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int rid = Integer.parseInt(request.getParameter("rid"));
+        //获取route
+        Route route = routeService.getRouteByRid(rid);
+        //获取routeimg
+        ArrayList<RouteImg> routeImg =  routeImgService.getRouteImgByRid(rid);
+        //获取favorite
+        User user = (User) request.getSession().getAttribute("loginUser");
+        Favorite favorite = null;
+        if(user==null || user.equals("")){
+            favorite =  favoriteService.getFavoriteByRid(rid);
+        }else {
+            favorite = favoriteService.getFavoriteByRid_Uid(rid,user.getUid());
+        }
+        //获取seller
+        Seller seller = sellerService.getSellerBySid(route.getSid());
+        //获取category
+        Category category = categoryService.getCategoryByCid(route.getCid());
+
+        RouteMsg routeMsg = new RouteMsg(route,routeImg,favorite,seller,null,category);
+
+        ArrayList<Category> cate = categoryService.getCategory();
+        request.setAttribute("cateList",cate);
+        request.setAttribute("routeMsg",routeMsg);
+        request.getRequestDispatcher("admin/edit_route.jsp").forward(request,response);
+    }
+
+    public void getRouteListBySearch_textWithPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String search_text = request.getParameter("search_text");
+        int pageNow = Integer.parseInt(request.getParameter("pageNow"));
+        int pageSize = 16;
+        PageUtil<Route> pageList = routeService.getRouteListBySearch_textWithPage(pageNow,pageSize,search_text);
+        ArrayList<Category> cate = categoryService.getCategory();
+        request.setAttribute("search_text",search_text);
+        request.setAttribute("cateList",cate);
+        request.setAttribute("pageList",pageList);
+        request.getRequestDispatcher("admin/route_list.jsp").forward(request,response);
     }
 
     public void getRouteListCountByRnameAndPrice(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -133,7 +186,7 @@ public class routeServlet extends HttpServlet {
         //获取seller
         Seller seller = sellerService.getSellerBySid(route.getSid());
         //获取category
-        Category category = categoryService.getCategoryBiCid(route.getCid());
+        Category category = categoryService.getCategoryByCid(route.getCid());
 
         RouteMsg routeMsg = new RouteMsg(route,routeImg,favorite,seller,null,category);
 

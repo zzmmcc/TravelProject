@@ -4,6 +4,7 @@ import com.zz.bean.Route;
 import com.zz.dao.RouteDao;
 import com.zz.util.JDBCUtil;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -211,6 +212,52 @@ public class RouteDaoImpl implements RouteDao {
             return resultSet.getInt(1);
         }
         return 0;
+    }
+
+    @Override
+    public int getPageCount() throws SQLException {
+        sql = "select count(*) from tab_route";
+        ResultSet resultSet = util.execQuery(sql, null);
+        while (resultSet.next()){
+            return resultSet.getInt(1);
+        }
+        return 0;
+    }
+
+    @Override
+    public List<Route> getRouteListBySearch_textWithPage(int pageNow,int pageSize,String search_text) throws SQLException {
+        if(search_text==null || "".equals(search_text)){
+            sql = "select * from tab_route  limit "+(pageNow-1)*pageSize+","+pageSize+"";
+        }else {
+            sql = "select * from tab_route where rname like '%"+search_text+"%' limit "+(pageNow-1)*pageSize+","+pageSize+"";
+        }
+        ResultSet res = util.execQuery(sql, null);
+        List<Route> list = autoGet(res);
+        util.getClose(util.rs,util.ps,util.conn);
+        return  list;
+    }
+
+    @Override
+    public void delRouteByRid(int rid) {
+        Connection conn = util.getConn();
+        try{
+            //开启事务
+            conn.setAutoCommit(false);
+            sql = "UPDATE tab_route_img set rid = 9999 WHERE rid = "+rid+" ";
+            util.execUpdate(sql,null);
+            sql = "delete from tab_route where rid = "+rid+"";
+            util.execUpdate(sql,null);
+            //try的最后提交事务
+            conn.commit();
+        } catch(Exception e) {
+            try {
+                //回滚事务
+                conn.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+
     }
 
     public Route getR(ResultSet res) throws SQLException {

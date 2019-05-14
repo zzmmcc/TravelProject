@@ -8,5 +8,13 @@ import java.util.ArrayList;
 public interface CategoryDao {
     ArrayList<Category> getCategory() throws SQLException;
 
-    Category getCategoryBiCid(int cid) throws SQLException;
+    Category getCategoryByCid(int cid) throws SQLException;
+
+    int addCategory(String cname);
+
+    ArrayList<Category> getCategoryBySort() throws SQLException;
+
+    int delCategoryByCid(int cid);
+
+    int editCategoryByCate(Category category);
 }

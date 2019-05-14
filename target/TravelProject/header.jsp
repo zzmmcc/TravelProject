@@ -19,6 +19,7 @@
             <div class="login_out">
                 <a href="login.jsp">登录</a>
                 <a href="register.jsp">注册</a>
+                <a href="login_admin.jsp" >管理员登录</a>
             </div>
         </c:if>
         <!-- 登录状态  -->
@@ -27,6 +28,7 @@
                 <span>欢迎回来,${loginUser.name}</span>
                 <a href="favoriteServlet?method=getListByUid&uid=${loginUser.uid}" class="collection">我的收藏</a>
                 <a href="userServlet?method=logout" >退出</a>
+                <a href="login_admin.jsp" >管理员登录</a>
             </div>
         </c:if>
     </div>

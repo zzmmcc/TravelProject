@@ -46,7 +46,7 @@
             <tr>
                 <td>
                      <span>
-                         <input type="checkbox" class="middle children-checkbox"/>
+                         <input type="checkbox" name="checkedId" class="middle children-checkbox" value="${r.rid}"/>
                          <i>${r.rid}</i>
                      </span>
                 </td>
@@ -111,9 +111,9 @@
     <div style="overflow:hidden;">
         <!-- Operation -->
         <div class="BatchOperation fl">
-            <input type="checkbox" id="del"/>
-            <label for="del" class="btnStyle middle">全选</label>
-            <input type="button" value="批量删除" class="btnStyle"/>
+            <input type="checkbox" id="box_a" onchange="chooseAll()" />
+            全选
+            <input type="button" value="批量删除" class="btnStyle" onclick="delRoutesByRids()"/>
         </div>
         <!-- turn page -->
         <div class="turnPage center fr">
@@ -128,10 +128,43 @@
 </div>
 </body>
 <script type="text/javascript">
+    function delRoutesByRids() {
+        var checkId = [];
+        $("input[name='checkedId']:checked").each(function (i) {
+            checkId[i] = $(this).val();
+        })
+        console.log(checkId);
+        window.location.href="/TravelProject/routeServlet?method=delRoutesByRids&search_text=${search_text}&pageNow=${pageList.getPageNow()}&checkId="+checkId;
+       /* $.ajax({
+            url:"/TravelProject/routeServlet?method=delRoutesByRids",
+            data:{"checkId":checkId},
+            success:function (data) {
+                console.log(data);
+            },
+            error:function () {
+                console.log("route_list.jsp : delRoutesByrids()");
+            }
+        })*/
+    }
     function delByRid(rid) {
        if(confirm("确认删除该路线吗？")){
                window.location.href="/TravelProject/routeServlet?method=delRouteByRid&search_text=${search_text}&pageNow=${pageList.getPageNow()}&rid="+rid;
        }
     }
+    $(function () {
+        $('#box_a').click(function () {
+           if(this.checked){
+               $("input[name='checkedId']").prop('checked',true);
+           }else {
+               $("input[name='checkedId']").prop('checked',false);
+           }
+
+        });
+        $("input[name='checkedId']").click(function() {
+            var $checkedId = $("input[name='checkedId']");
+            $("#box_a").prop("checked" , $checkedId.length == $checkedId.filter(":checked").length ? true :false);
+        });
+
+    });
 </script>
 </html>

@@ -260,6 +260,20 @@ public class RouteDaoImpl implements RouteDao {
 
     }
 
+    @Override
+    public void delRouteByRids(int[] rids) {
+        String first = "UPDATE tab_route_img set rid = 9999 WHERE rid in ( ";
+        String second = "delete from tab_route where rid in (";
+        for(int i=0;i<rids.length;i++){
+            first += rids[i]+",";
+            second += rids[i]+",";
+        }
+        first = first.substring(0, first.length() - 1) +")";
+        second = second.substring(0, second.length() - 1) +")";
+        util.execUpdate(first,null);
+        util.execUpdate(second,null);
+    }
+
     public Route getR(ResultSet res) throws SQLException {
         Route route = new Route();
         route.setRid(res.getInt("rid"));

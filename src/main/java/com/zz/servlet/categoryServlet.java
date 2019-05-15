@@ -64,7 +64,7 @@ public class categoryServlet extends HttpServlet {
         int i = categoryService.delCategoryByCid(cid);
         String msg ="";
         if(i==0){
-            msg = "移除失败，有路线依赖此分类，不可被移除！";
+            msg = "移除失败，有数据依赖此分类，不可被移除！";
         }else {
             msg = "移除成功！";
         }

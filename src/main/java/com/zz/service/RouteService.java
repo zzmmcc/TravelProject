@@ -32,4 +32,6 @@ public interface RouteService {
     PageUtil<Route> getRouteListBySearch_textWithPage(int pageNow,int pageSize,String search_text);
 
     void delRouteByRid(int rid);
+
+    void delRouteByRids(int[] rids);
 }

@@ -73,10 +73,24 @@ public class routeServlet extends HttpServlet {
             getRouteForEditByRid(request,response);
         }else if(method.equals("delRouteByRid")){
             delRouteByRid(request,response);
+        } else if(method.equals("delRoutesByRids")){
+            delRoutesByRids(request,response);
         }else  {
             System.out.println(method);
         }
 
+
+    }
+
+    public void delRoutesByRids(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String[] checkIds = request.getParameterValues("checkId");
+        String[] split = checkIds[0].split(",");
+        int rids[] = new int[split.length];
+        for(int i=0;i<split.length;i++){
+            rids[i] = Integer.parseInt(split[i]);
+        }
+        routeService.delRouteByRids(rids);
+        getRouteListBySearch_textWithPage(request,response);
 
     }
 

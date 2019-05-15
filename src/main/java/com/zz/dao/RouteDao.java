@@ -43,4 +43,6 @@ public interface RouteDao {
     List<Route> getRouteListBySearch_textWithPage(int pageNow,int pageSize,String search_text) throws SQLException;
 
     void delRouteByRid(int rid);
+
+    void delRouteByRids(int[] rids);
 }

@@ -144,4 +144,9 @@ public class RouteServiceImpl implements RouteService {
     public void delRouteByRid(int rid) {
         routeDao.delRouteByRid(rid);
     }
+
+    @Override
+    public void delRouteByRids(int[] rids) {
+        routeDao.delRouteByRids(rids);
+    }
 }

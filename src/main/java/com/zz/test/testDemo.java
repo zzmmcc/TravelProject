@@ -14,7 +14,6 @@ import com.zz.service.Impl.CategoryServiceImpl;
 import com.zz.service.Impl.RouteServiceImpl;
 import com.zz.service.RouteService;
 import com.zz.util.JedisUtil;
-import com.zz.util.PageUtil;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
@@ -65,10 +64,8 @@ public class testDemo{
     @Test
     public  void testPage(){
         RouteService routeService = new RouteServiceImpl();
-        for (int i=1;i<4;i++){
-            PageUtil<Route> pageList = routeService.getRouteListByCidWithPage(5, i, 5);
-            System.out.println("------------------------");
-        }
+        int[] s = {51025,5111,1};
+        routeService.delRouteByRids(s);
 
     }
 

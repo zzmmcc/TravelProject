@@ -48,14 +48,14 @@
             alert("分类名称不能为空！");
         }else {
             $.ajax({
-                url:"/TravelProject/categoryServlet?method=editCategoryByCate",
+                url:"/TravelProject/adminCategoryServlet?method=editCategoryByCate",
                 data:{"cid":$('#cid').val(),"cname":$('#cname').val()},
                 type:"POST",
                 success:function (data) {
                     if(data==0){
                         alert("修改分类失败！");
                     }else {
-                        window.location.href="/TravelProject/categoryServlet?method=getCategoryBySort";
+                        window.location.href="/TravelProject/adminCategoryServlet?method=getCategoryBySort";
                     }
                 },
                 error:function (data) {

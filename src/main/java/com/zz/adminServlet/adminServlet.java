@@ -1,4 +1,4 @@
-package com.zz.servlet;
+package com.zz.adminServlet;
 
 import com.zz.bean.Admin;
 import com.zz.service.AdminService;
@@ -24,6 +24,8 @@ public class adminServlet extends HttpServlet {
 
         if(method.equals("login")){
             login(request,response);
+        }else if(method.equals("logout")){
+            logout(request,response);
         }
     }
 
@@ -32,13 +34,15 @@ public class adminServlet extends HttpServlet {
         String password = request.getParameter("password");
         Admin admin = adminService.login(username,password);
         if(admin!=null){
-            request.getSession().setAttribute("login_admin",admin);
+            request.getSession().setAttribute("loginAdmin",admin);
             response.sendRedirect("admin/index.jsp");
         }else {
             response.sendRedirect("login_admin.jsp");
         }
-
-
+    }
+    public  void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getSession().removeAttribute("loginAdmin");
+        response.sendRedirect("login_admin.jsp");
     }
 
     @Override

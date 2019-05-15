@@ -24,7 +24,7 @@
         <span class="modular fr"><a href="edit_product.html" class="pt-link-btn">+添加路线</a></span>
     </div>
     <div class="operate">
-        <form action="routeServlet?method=getRouteListBySearch_textWithPage&pageNow=1" method="post">
+        <form action="adminRouteServlet?method=getRouteListBySearch_textWithPage&pageNow=1" method="post">
             <input id="search_text" name="search_text" class="textBox length-long" placeholder="输入产品名称..." value="${search_text}"/>
             <input type="submit" value="查询" class="tdBtn"/>
         </form>
@@ -95,8 +95,8 @@
                 </c:if>
 
                 <td class="center">
-                    <a href="/TravelProject/routeServlet?method=getRouteByRid&rid=${r.rid}" title="查看" target="_blank"><img src="images/icon_view.gif"/></a>
-                    <a href="/TravelProject/routeServlet?method=getRouteForEditByRid&rid=${r.rid}" title="编辑"><img src="images/icon_edit.gif"/></a>
+                    <a href="/TravelProject/adminRouteServlet?method=getRouteByRid&rid=${r.rid}" title="查看" target="_blank"><img src="images/icon_view.gif"/></a>
+                    <a href="/TravelProject/adminRouteServlet?method=getRouteForEditByRid&rid=${r.rid}" title="编辑"><img src="images/icon_edit.gif"/></a>
                     <a href="javascript:;" id="${r.rid}" onclick="delByRid(this.id)" title="删除"><img src="images/icon_drop.gif"/></a>
                 </td>
             </tr>
@@ -118,11 +118,11 @@
         <!-- turn page -->
         <div class="turnPage center fr">
             共${pageList.pageCount}条数据/总计${pageList.getPageAll()}页
-            <a href="/TravelProject/routeServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=1">首页</a>
-            <a href="/TravelProject/routeServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getUpPage()}">上一页</a>
+            <a href="/TravelProject/adminRouteServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=1">首页</a>
+            <a href="/TravelProject/adminRouteServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getUpPage()}">上一页</a>
             <a style="background-color: white;color: #0f0f0f" href="javascript:;">当前页${pageList.getPageNow()}</a>
-            <a href="/TravelProject/routeServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getDownPage()}">下一页</a>
-            <a href="/TravelProject/routeServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getLastIndex()}">尾页</a>
+            <a href="/TravelProject/adminRouteServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getDownPage()}">下一页</a>
+            <a href="/TravelProject/adminRouteServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getLastIndex()}">尾页</a>
         </div>
     </div>
 </div>
@@ -134,7 +134,7 @@
             checkId[i] = $(this).val();
         })
         console.log(checkId);
-        window.location.href="/TravelProject/routeServlet?method=delRoutesByRids&search_text=${search_text}&pageNow=${pageList.getPageNow()}&checkId="+checkId;
+        window.location.href="/TravelProject/adminRouteServlet?method=delRoutesByRids&search_text=${search_text}&pageNow=${pageList.getPageNow()}&checkId="+checkId;
        /* $.ajax({
             url:"/TravelProject/routeServlet?method=delRoutesByRids",
             data:{"checkId":checkId},
@@ -148,7 +148,7 @@
     }
     function delByRid(rid) {
        if(confirm("确认删除该路线吗？")){
-               window.location.href="/TravelProject/routeServlet?method=delRouteByRid&search_text=${search_text}&pageNow=${pageList.getPageNow()}&rid="+rid;
+               window.location.href="/TravelProject/adminRouteServlet?method=delRouteByRid&search_text=${search_text}&pageNow=${pageList.getPageNow()}&rid="+rid;
        }
     }
     $(function () {

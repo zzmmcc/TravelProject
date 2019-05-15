@@ -1,4 +1,4 @@
-package com.zz.servlet;
+package com.zz.adminServlet;
 
 import com.zz.bean.Seller;
 import com.zz.service.Impl.SellerServiceImpl;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "sellerServlet",value = "/sellerServlet")
-public class sellerServlet extends HttpServlet {
+@WebServlet(name = "adminSellerServlet",value = "/adminSellerServlet")
+public class adminSellerServlet extends HttpServlet {
     SellerService sellerService = new SellerServiceImpl();
 
     @Override

@@ -42,14 +42,14 @@
             alert("分类名称不能为空！");
         }else {
             $.ajax({
-                url:"/TravelProject/categoryServlet?method=addCategory",
+                url:"/TravelProject/adminCategoryServlet?method=addCategory",
                 data:{"cname":$('#cname').val()},
                 type:"POST",
                 success:function (data) {
                     if(data==0){
                         alert("新增分类失败！");
                     }else {
-                        window.location.href="/TravelProject/categoryServlet?method=getCategoryBySort";
+                        window.location.href="/TravelProject/adminCategoryServlet?method=getCategoryBySort";
                     }
                 },
                 error:function (data) {

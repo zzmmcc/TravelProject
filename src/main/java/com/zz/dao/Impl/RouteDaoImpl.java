@@ -135,7 +135,6 @@ public class RouteDaoImpl implements RouteDao {
     @Override
     public List<Route>  getRouteListByCidWithPage(int cid,int pageNow,int pageSize) {
         sql = "select * from tab_route where cid = "+cid+"  limit "+pageSize*(pageNow-1)+","+pageSize+"";
-        System.out.println(sql);
         ResultSet res = util.execQuery(sql, null);
         List<Route> list = null;
         try {
@@ -187,7 +186,6 @@ public class RouteDaoImpl implements RouteDao {
         }else {
             sql = "select * from tab_route where rname like '%"+rname+"%' and price < "+maxPrice+" and price > "+minPrice+" order by count desc limit 0,8";
         }
-        System.out.println(sql);
         ResultSet res = util.execQuery(sql, null);
         List<Route> list = autoGet(res);
         util.getClose(util.rs,util.ps,util.conn);

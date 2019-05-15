@@ -26,7 +26,7 @@
         </li>
         <li>
             <ul class="menu-children">
-                <li><a href="/TravelProject/sellerServlet?method=getSellerList" title="商家列表" target="mainCont">商家列表</a></li>
+                <li><a href="/TravelProject/adminSellerServlet?method=getSellerList" title="商家列表" target="mainCont">商家列表</a></li>
             </ul>
         </li>
 
@@ -36,8 +36,8 @@
         </li>
         <li>
             <ul class="menu-children">
-                <li><a href="/TravelProject/routeServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=1" title="路线列表" target="mainCont">路线列表</a></li>
-                <li><a href="/TravelProject/categoryServlet?method=getCategoryBySort" title="路线分类" target="mainCont">路线分类</a></li>
+                <li><a href="/TravelProject/adminRouteServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=1" title="路线列表" target="mainCont">路线列表</a></li>
+                <li><a href="/TravelProject/adminCategoryServlet?method=getCategoryBySort" title="路线分类" target="mainCont">路线分类</a></li>
             </ul>
         </li>
 
@@ -47,7 +47,7 @@
         </li>
         <li>
             <ul class="menu-children">
-                <li><a href="/TravelProject/userServlet?method=getUserListBySearch_textWithPage&search_text=${search_text}&pageNow=1" title="会员列表" target="mainCont">用户列表</a></li>
+                <li><a href="/TravelProject/adminUserServlet?method=getUserListBySearch_textWithPage&search_text=${search_text}&pageNow=1" title="会员列表" target="mainCont">用户列表</a></li>
             </ul>
         </li>
 

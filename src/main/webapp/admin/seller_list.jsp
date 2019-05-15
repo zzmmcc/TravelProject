@@ -22,13 +22,7 @@
         <span class="modular fl"><i class="order"></i><em>商家列表</em></span>
         <span class="modular fr"><a href="admin/add_seller.jsp" class="pt-link-btn">+添加商家</a></span>
     </div>
-    <div class="operate">
-        <form>
-            <img src="images/icon_search.gif"/>
-            <input type="text" class="textBox length-long" placeholder="输入商家名称..."/>
-            <input type="button" value="查询" class="tdBtn"/>
-        </form>
-    </div>
+
     <table class="list-style Interlaced">
         <tr>
             <th>商家ID</th>
@@ -52,7 +46,7 @@
                     <address style="text-align: center">${s.address}</address>
                 </td>
                 <td class="center">
-                    <a href="/TravelProject/sellerServlet?method=getSellerBySid&sid=${s.sid}" class="inline-block" title="修改商家信息"><img src="images/icon_edit.gif"/></a>
+                    <a href="/TravelProject/adminSellerServlet?method=getSellerBySid&sid=${s.sid}" class="inline-block" title="修改商家信息"><img src="images/icon_edit.gif"/></a>
                     <a href="javascript:;" onclick="del_seller(${s.sid})" class="inline-block" title="删除商家"><img src="images/icon_trash.gif"/></a>
                 </td>
             </tr>
@@ -69,7 +63,7 @@
 <script type="text/javascript">
     function del_seller(sid) {
         $.ajax({
-            url:"/TravelProject/sellerServlet?method=delSellerBySid&sid="+sid,
+            url:"/TravelProject/adminSellerServlet?method=delSellerBySid&sid="+sid,
             type:"POST",
             success:function (data) {
                 if(data==0){

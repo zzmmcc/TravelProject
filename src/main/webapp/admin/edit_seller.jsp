@@ -60,14 +60,14 @@
             alert("商家名称不能为空！");
         }else {
             $.ajax({
-                url:"/TravelProject/sellerServlet?method=editSellerBySeller",
+                url:"/TravelProject/adminSellerServlet?method=editSellerBySeller",
                 data:{"sid":$('#sid').val(),"sname":$('#sname').val(),"consphone":$('#consphone').val(),"address":$('#address').val()},
                 type:"POST",
                 success:function (data) {
                     if(data==0){
                         alert("修改商家失败！");
                     }else {
-                        window.location.href="/TravelProject/sellerServlet?method=getSellerList";
+                        window.location.href="/TravelProject/adminSellerServlet?method=getSellerList";
                     }
                 },
                 error:function (data) {

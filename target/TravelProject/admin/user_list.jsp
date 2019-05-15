@@ -22,7 +22,7 @@
         <span class="modular fl"><i class="user"></i><em>用户列表</em></span>
     </div>
     <div class="operate">
-        <form action="${pageContext.request.contextPath}/userServlet?method=getUserListBySearch_textWithPage&pageNow=1" method="post">
+        <form action="${pageContext.request.contextPath}/adminUserServlet?method=getUserListBySearch_textWithPage&pageNow=1" method="post">
             <input id="search_text" name="search_text" class="textBox length-long" placeholder="输入用户姓名" value="${search_text}"/>
             <input type="submit" value="查询" class="tdBtn"/>
         </form>
@@ -58,7 +58,7 @@
                 <td class="center">${u.sex}</td>
                 <td class="center">${u.birthday}</td>
                 <td class="center">
-                    <a href="${pageContext.request.contextPath}/userServlet?method=getUserMsgsByUid&uid=${u.uid}" class="inline-block" title="查看用户信息"><img src="admin/images/icon_view.gif"/></a>
+                    <a href="${pageContext.request.contextPath}/adminUserServlet?method=getUserMsgsByUid&uid=${u.uid}" class="inline-block" title="查看用户信息"><img src="admin/images/icon_view.gif"/></a>
                 </td>
             </tr>
         </c:forEach>
@@ -70,11 +70,11 @@
         <!-- turn page -->
         <div class="turnPage center fr">
             共${pageList.pageCount}条数据/总计${pageList.getPageAll()}页
-            <a href="/TravelProject/userServlet?method=getUserListBySearch_textWithPage&search_text=${search_text}&pageNow=1">首页</a>
-            <a href="/TravelProject/userServlet?method=getUserListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getUpPage()}">上一页</a>
+            <a href="/TravelProject/adminUserServlet?method=getUserListBySearch_textWithPage&search_text=${search_text}&pageNow=1">首页</a>
+            <a href="/TravelProject/adminUserServlet?method=getUserListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getUpPage()}">上一页</a>
             <a style="background-color: white;color: #0f0f0f" href="javascript:;">当前页${pageList.getPageNow()}</a>
-            <a href="/TravelProject/userServlet?method=getUserListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getDownPage()}">下一页</a>
-            <a href="/TravelProject/userServlet?method=getUserListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getLastIndex()}">尾页</a>
+            <a href="/TravelProject/adminUserServlet?method=getUserListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getDownPage()}">下一页</a>
+            <a href="/TravelProject/adminUserServlet?method=getUserListBySearch_textWithPage&search_text=${search_text}&pageNow=${pageList.getLastIndex()}">尾页</a>
         </div>
     </div>
 </div>

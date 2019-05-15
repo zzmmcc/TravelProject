@@ -1,6 +1,5 @@
 package com.zz.servlet;
 
-import com.zz.bean.Route;
 import com.zz.bean.User;
 import com.zz.service.CategoryService;
 import com.zz.service.FavoriteService;
@@ -10,7 +9,6 @@ import com.zz.service.Impl.UserServiceImpl;
 import com.zz.service.UserService;
 import com.zz.util.MailUtils;
 import com.zz.util.Md5Util;
-import com.zz.util.PageUtil;
 import com.zz.util.UuidUtil;
 
 import javax.servlet.ServletException;
@@ -21,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 
 @WebServlet(name = "userServlet",value = "/userServlet")
@@ -52,32 +49,11 @@ public class userServlet extends HttpServlet {
             logout(request,response);
         }else if(method.equals("activeUser")){
             activeUser(request,response);
-        }else if(method.equals("getUserListBySearch_textWithPage")){
-            getUserListBySearch_textWithPage(request,response);
-        }else if(method.equals("getUserMsgsByUid")){
-            getUserMsgsByUid(request,response);
         }
     }
 
-    public void getUserMsgsByUid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int uid = Integer.parseInt(request.getParameter("uid"));
-        User user = userService.getUserByUid(uid);
-        List<Route> routeList = favoriteService.getListByUid(uid);
-        request.setAttribute("user",user);
-        request.setAttribute("routeList",routeList);
-        request.getRequestDispatcher("/admin/user_msg.jsp").forward(request,response);
 
-    }
 
-    public void getUserListBySearch_textWithPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String search_text = request.getParameter("search_text");
-        int pageNow = Integer.parseInt(request.getParameter("pageNow"));
-        int pageSize = 8;
-        PageUtil<User> pageList = userService.getUserListBySearch_textWithPage(pageNow,pageSize,search_text);
-        request.setAttribute("search_text",search_text);
-        request.setAttribute("pageList",pageList);
-        request.getRequestDispatcher("admin/user_list.jsp").forward(request,response);
-    }
 
     public void activeUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String code = request.getParameter("code");

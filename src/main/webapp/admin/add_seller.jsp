@@ -54,14 +54,14 @@
             alert("商家名称不能为空！");
         }else {
             $.ajax({
-                url:"/TravelProject/sellerServlet?method=addSellerBySeller",
+                url:"/TravelProject/adminSellerServlet?method=addSellerBySeller",
                 data:{"sname":$('#sname').val(),"consphone":$('#consphone').val(),"address":$('#address').val()},
                 type:"POST",
                 success:function (data) {
                     if(data==0){
                         alert("新增商家失败！");
                     }else {
-                        window.location.href="/TravelProject/sellerServlet?method=getSellerList";
+                        window.location.href="/TravelProject/adminSellerServlet?method=getSellerList";
                     }
                 },
                 error:function (data) {

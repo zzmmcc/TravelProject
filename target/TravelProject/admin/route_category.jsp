@@ -52,7 +52,7 @@
                     <a class="center" title="移除" href="javascript:;" onclick="del_cate(${c.cid})">
                         <img src="images/icon_trash.gif"/>
                     </a>
-                    <a class="center" title="修改" href="/TravelProject/categoryServlet?method=getCategoryByCid&cid=${c.cid}">
+                    <a class="center" title="修改" href="/TravelProject/adminCategoryServlet?method=getCategoryByCid&cid=${c.cid}">
                         <img src="images/icon_edit.gif"/>
                     </a>
                 </td>
@@ -66,7 +66,7 @@
 <script type="text/javascript">
     function del_cate(cid) {
         $.ajax({
-            url: "/TravelProject/categoryServlet?method=delCategoryByCid&cid=" + cid,
+            url: "/TravelProject/adminCategoryServlet?method=delCategoryByCid&cid=" + cid,
             data: {},
             type: "POST",
             success: function (data) {

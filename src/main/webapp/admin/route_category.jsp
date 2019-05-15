@@ -23,7 +23,7 @@
 <body>
 <div class="wrap">
     <div class="page-title">
-        <span class="modular fl"><i></i><em>产品分类</em></span>
+        <span class="modular fl"><i></i><em>路线分类</em></span>
         <span class="modular fr"><a href="admin/add_category.jsp" class="pt-link-btn">+添加新分类</a></span>
     </div>
 <c:if test="${not empty msg}">

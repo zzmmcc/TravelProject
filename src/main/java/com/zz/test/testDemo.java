@@ -1,9 +1,14 @@
 package com.zz.test;
 
 import com.zz.bean.Route;
+import com.zz.bean.User;
 import com.zz.dao.CategoryDao;
 import com.zz.dao.Impl.CategoryDapImpl;
 import com.zz.dao.Impl.RouteDaoImpl;
+import com.zz.dao.Impl.SellerDaoImpl;
+import com.zz.dao.Impl.UserDaoImpl;
+import com.zz.dao.SellerDao;
+import com.zz.dao.UserDao;
 import com.zz.service.CategoryService;
 import com.zz.service.Impl.CategoryServiceImpl;
 import com.zz.service.Impl.RouteServiceImpl;
@@ -17,9 +22,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-public class testDemo {
+public class testDemo{
+    static int count = 30;
     CategoryService categoryService = new CategoryServiceImpl();
     CategoryDao categoryDao = new CategoryDapImpl();
+    SellerDao sellerDao = new SellerDaoImpl();
     @Test
     public void test1(){
         System.out.println(JedisUtil.getJedis());
@@ -63,5 +70,13 @@ public class testDemo {
             System.out.println("------------------------");
         }
 
+    }
+
+
+    @Test
+    public void test4() throws SQLException {
+        UserDao userDao = new UserDaoImpl();
+        User user = userDao.getUserByUid(1);
+        System.out.println(user);
     }
 }

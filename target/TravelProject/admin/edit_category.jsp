@@ -10,7 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>新增产品分类</title>
+    <title>修改分类信息</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="style/adminStyle.css" rel="stylesheet" type="text/css" />
 </head>

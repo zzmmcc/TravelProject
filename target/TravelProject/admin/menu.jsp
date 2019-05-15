@@ -26,7 +26,7 @@
         </li>
         <li>
             <ul class="menu-children">
-                <li><a href="order_list.jsp" title="商家列表" target="mainCont">商家列表</a></li>
+                <li><a href="/TravelProject/sellerServlet?method=getSellerList" title="商家列表" target="mainCont">商家列表</a></li>
             </ul>
         </li>
 
@@ -38,20 +38,16 @@
             <ul class="menu-children">
                 <li><a href="/TravelProject/routeServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=1" title="路线列表" target="mainCont">路线列表</a></li>
                 <li><a href="/TravelProject/categoryServlet?method=getCategoryBySort" title="路线分类" target="mainCont">路线分类</a></li>
-                <li><a href="recycle_bin.html" title="商品分类" target="mainCont">商品回收站</a></li>
             </ul>
         </li>
 
         <li class="menu-list-title">
-            <span>会员管理</span>
+            <span>用户管理</span>
             <i>◢</i>
         </li>
         <li>
             <ul class="menu-children">
-                <li><a href="user_list.html" title="会员列表" target="mainCont">会员列表</a></li>
-                <li><a href="add_user.html" title="添加会员" target="mainCont">添加会员</a></li>
-                <li><a href="user_rank.html" title="会员等级" target="mainCont">会员等级</a></li>
-                <li><a href="user_message.html" title="会员留言" target="mainCont">会员留言</a></li>
+                <li><a href="/TravelProject/userServlet?method=getUserListBySearch_textWithPage&search_text=${search_text}&pageNow=1" title="会员列表" target="mainCont">用户列表</a></li>
             </ul>
         </li>
 

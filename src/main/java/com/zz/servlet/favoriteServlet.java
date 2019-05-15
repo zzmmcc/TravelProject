@@ -35,9 +35,6 @@ public class favoriteServlet extends HttpServlet {
     public void getListByUid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int uid = Integer.parseInt(request.getParameter("uid"));
         List<Route> list = favoriteService.getListByUid(uid);
-        for (Route r:list) {
-            System.out.println(r);
-        }
         request.setAttribute("routeList",list);
         request.getRequestDispatcher("myfavorite.jsp").forward(request,response);
     }

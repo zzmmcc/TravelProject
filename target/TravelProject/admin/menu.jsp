@@ -18,7 +18,7 @@
 </head>
 <body style="background:#313131">
 <div class="menu-list">
-    <a href="main.html" target="mainCont" class="block menu-list-title center" style="border:none;margin-bottom:8px;color:#fff;">起始页</a>
+    <a href="main.jsp" target="mainCont" class="block menu-list-title center" style="border:none;margin-bottom:8px;color:#fff;">起始页</a>
     <ul>
         <li class="menu-list-title">
             <span>商家管理</span>

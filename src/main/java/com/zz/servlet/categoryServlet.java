@@ -42,7 +42,6 @@ public class categoryServlet extends HttpServlet {
         if (null==category || category.equals("")){
             ArrayList<Category> list = categoryService.getCategory();
             jedis.set("category", JSON.toJSONString(list));
-            System.out.println("缓存中没有");
             response.getWriter().print(JSON.toJSONString(list));
             return;
         }

@@ -1,6 +1,7 @@
 package com.zz.adminServlet;
 
 import com.zz.bean.*;
+import com.zz.filter.MyLoginFilter;
 import com.zz.service.*;
 import com.zz.service.Impl.*;
 import com.zz.util.PageUtil;
@@ -31,6 +32,7 @@ public class adminRouteServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        MyLoginFilter.filterAdmin(request,response);
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");

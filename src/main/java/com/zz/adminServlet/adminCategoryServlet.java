@@ -1,11 +1,10 @@
 package com.zz.adminServlet;
 
-import com.alibaba.fastjson.JSON;
 import com.zz.bean.Category;
+import com.zz.filter.MyLoginFilter;
 import com.zz.service.CategoryService;
 import com.zz.service.Impl.CategoryServiceImpl;
 import com.zz.util.JedisUtil;
-import redis.clients.jedis.Jedis;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,30 +24,34 @@ public class adminCategoryServlet extends HttpServlet {
     }
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=UTF-8");
-        String method = request.getParameter("method");
-        if(method.equals("getCategory")){
-            getCategory(request,response);
-        }else if(method.equals("getCategoryBySort")){
-            getCategoryBySort(request,response);
-        }else if(method.equals("addCategory")){
-            addCategory(request,response);
-        }else if(method.equals("delCategoryByCid")){
-            delCategoryByCid(request,response);
-        }else if(method.equals("getCategoryByCid")){
-            getCategoryByCid(request,response);
-        }else if(method.equals("editCategoryByCate")){
-            editCategoryByCate(request,response);
+         MyLoginFilter.filterAdmin(request, response);
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("text/html;charset=UTF-8");
+            String method = request.getParameter("method");
+           if(method.equals("getCategoryBySort")){
+                getCategoryBySort(request,response);
+            }else if(method.equals("addCategory")){
+                addCategory(request,response);
+            }else if(method.equals("delCategoryByCid")){
+                delCategoryByCid(request,response);
+            }else if(method.equals("getCategoryByCid")){
+                getCategoryByCid(request,response);
+            }else if(method.equals("editCategoryByCate")){
+                editCategoryByCate(request,response);
+            }
         }
-    }
+
+
 
     public void editCategoryByCate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int cid = Integer.parseInt(request.getParameter("cid"));
         String cname = request.getParameter("cname");
         Category category = new Category(cid,cname);
         int i = categoryService.editCategoryByCate(category);
+        if(i==1){
+            JedisUtil.getJedis().del("category");
+        }
         response.getWriter().print(i);
     }
 
@@ -66,6 +69,7 @@ public class adminCategoryServlet extends HttpServlet {
         if(i==0){
             msg = "移除失败，有数据依赖此分类，不可被移除！";
         }else {
+            JedisUtil.getJedis().del("category");
             msg = "移除成功！";
         }
         response.getWriter().print(msg);
@@ -74,20 +78,10 @@ public class adminCategoryServlet extends HttpServlet {
     public void addCategory(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String cname = request.getParameter("cname");
         int i = categoryService.addCategory(cname);
-        response.getWriter().print(i);
-    }
-
-    public void getCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Jedis jedis = JedisUtil.getJedis();
-        String category = jedis.get("category");
-        if (null==category || category.equals("")){
-            ArrayList<Category> list = categoryService.getCategory();
-            jedis.set("category", JSON.toJSONString(list));
-            System.out.println("缓存中没有");
-            response.getWriter().print(JSON.toJSONString(list));
-            return;
+        if(i==1){
+            JedisUtil.getJedis().del("category");
         }
-        response.getWriter().print(category);
+        response.getWriter().print(i);
     }
 
     public void getCategoryBySort(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

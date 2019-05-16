@@ -29,15 +29,17 @@ public class adminServlet extends HttpServlet {
         }
     }
 
-    public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         Admin admin = adminService.login(username,password);
-        if(admin!=null){
+        System.out.println(admin);
+        if(admin.getId()!=null){
             request.getSession().setAttribute("loginAdmin",admin);
             response.sendRedirect("admin/index.jsp");
         }else {
-            response.sendRedirect("login_admin.jsp");
+            request.setAttribute("msg","账号或密码错误！");
+            request.getRequestDispatcher("login_admin.jsp").forward(request,response);
         }
     }
     public  void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {

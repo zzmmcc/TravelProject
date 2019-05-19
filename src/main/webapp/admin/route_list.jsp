@@ -21,7 +21,7 @@
 <div class="wrap">
     <div class="page-title">
         <span class="modular fl"><i></i><em>路线列表</em></span>
-        <span class="modular fr"><a href="edit_product.html" class="pt-link-btn">+添加路线</a></span>
+        <span class="modular fr"><a href="/TravelProject/adminRouteServlet?method=addRouteUI" class="pt-link-btn">+添加路线</a></span>
     </div>
     <div class="operate">
         <form action="adminRouteServlet?method=getRouteListBySearch_textWithPage&pageNow=1" method="post">

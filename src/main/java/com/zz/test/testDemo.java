@@ -76,4 +76,9 @@ public class testDemo{
         User user = userDao.getUserByUid(1);
         System.out.println(user);
     }
+
+    @Test
+    public void test5() throws SQLException {
+        System.out.println("张三");
+    }
 }

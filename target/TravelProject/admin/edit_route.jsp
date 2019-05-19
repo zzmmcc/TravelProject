@@ -18,33 +18,31 @@
 <div class="wrap">
     <div class="page-title">
         <span class="modular fl"><i class="add"></i><em>编辑路线</em></span>
-        <span class="modular fr"><a href="product_list.html" class="pt-link-btn">路线列表</a></span>
+        <span class="modular fr"><a href="/TravelProject/adminRouteServlet?method=getRouteListBySearch_textWithPage&search_text=${search_text}&pageNow=1" class="pt-link-btn">路线列表</a></span>
     </div>
-    <form action="product_list.html">
+    <form action="/TravelProject/adminRouteServlet?method=submitRouteMsg" method="post">
         <table class="list-style">
             <tr>
                 <td style="text-align:right;width:15%;">路线ID：</td>
-                <td><input type="text" readonly class="textBox length-long" style="border: none" value="${routeMsg.route.rid}"/></td>
+                <td><input type="text" readonly class="textBox length-long" name="rid" style="border: none;outline: none;" value="${routeMsg.route.rid}"/></td>
             </tr>
             <tr>
                 <td style="text-align:right;width:25%;">路线名称：</td>
-                <td><input type="text" style="width: 70%" class="textBox length-long" value="${routeMsg.route.rname}" /></td>
+                <td><input type="text" style="width: 70%" class="textBox length-long" name="rname" value="${routeMsg.route.rname}" /></td>
             </tr>
             <tr>
                 <td style="text-align:right;">路线分类：</td>
                 <td>
-                    <select class="textBox">
+                    <select class="textBox" name="cname">
                         <c:forEach items="${cateList}" var="c">
                             <c:if test="${c.cname == routeMsg.category.cname}">
-                                <option selected>${c.cname}</option>
+                                <option selected value="${c.cid}">${c.cname}</option>
                             </c:if>
                             <c:if test="${c.cname != routeMsg.category.cname}">
                                 <option>${c.cname}</option>
                             </c:if>
                         </c:forEach>
                         <script type="text/javascript">
-
-
                         </script>
                     </select>
                 </td>
@@ -52,22 +50,22 @@
             <tr>
                 <td style="text-align:right;">价格：</td>
                 <td>
-                    <input type="text" class="textBox length-short" value="${routeMsg.route.price}"/>
+                    <input type="text" class="textBox length-short" name="price" value="${routeMsg.route.price}"/>
                     <span>元</span>
                 </td>
             </tr>
             <tr>
                 <td style="text-align:right;">上架日期：</td>
-                <td><input type="datetime-local" class="textBox length-long" value="${routeMsg.route.rdate}" /></td>
+                <td><input type="datetime-local" class="textBox length-long"  name="rdate" value="${routeMsg.route.rdate}" /></td>
             </tr>
             <tr>
                 <td style="text-align:right;">是否是在售：</td>
                 <td>
                     <c:if test="${routeMsg.route.rflag == 1}">
-                        <input type="checkbox" name="rflag" id="" checked/>
+                        <input type="checkbox" name="rflag"  value="1" id="" checked/>
                     </c:if>
                     <c:if test="${routeMsg.route.rflag == 0}">
-                        <input type="checkbox" name="rflag" id="" />
+                        <input type="checkbox" value="0" name="rflag" id="" />
                     </c:if>
                 </td>
             </tr>
@@ -75,10 +73,10 @@
                 <td style="text-align:right;">是否是主题游：</td>
                 <td>
                     <c:if test="${routeMsg.route.isthemetour == 1}">
-                        <input type="checkbox" name="rflag" id="" checked/>
+                        <input type="checkbox"  name="tour" id="" checked/>
                     </c:if>
                     <c:if test="${routeMsg.route.isthemetour == 0}">
-                        <input type="checkbox" name="rflag" id="" />
+                        <input type="checkbox"  name="tour" id="" />
                     </c:if>
                 </td>
             </tr>
@@ -86,8 +84,6 @@
             <tr>
                 <td style="text-align:right;">路线小图：</td>
                 <td>
-                    <input type="file" id="suoluetu" class="hide"/>
-                    <label for="suoluetu" class="labelBtnAdd">+</label>
                     <%--<img src="${routeMsg.route.rimage}" width="240" height="240" class="mlr5"/>--%>
                     <c:forEach items="${routeMsg.routeImg}" var="img">
                         <img src="${img.smallpic}" width="100" height="100"/>
@@ -98,8 +94,6 @@
             <tr>
                 <td style="text-align:right;">路线大图</td>
                 <td>
-                    <input type="file" id="suoluetu" class="hide"/>
-                    <label for="suoluetu" class="labelBtnAdd">+</label>
                     <c:forEach items="${routeMsg.routeImg}" var="img">
                         <img src="${img.bigpic}" width="160" height="160"/>
                     </c:forEach>
@@ -108,7 +102,7 @@
 
             <tr>
                 <td style="text-align:right;">路线详情：</td>
-                <td><textarea class="textarea">${routeMsg.route.routeintroduce}</textarea></td>
+                <td><textarea class="textarea" name="routeintroduce" >${routeMsg.route.routeintroduce}</textarea></td>
             </tr>
             <tr>
                 <td style="text-align:right;"></td>

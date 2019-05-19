@@ -149,4 +149,14 @@ public class RouteServiceImpl implements RouteService {
     public void delRouteByRids(int[] rids) {
         routeDao.delRouteByRids(rids);
     }
+
+    @Override
+    public void submitRouteMsg(Route route) {
+        routeDao.submitRouteMsg(route);
+    }
+
+    @Override
+    public int addRouteByRoute(Route route) {
+        return  routeDao.addRouteByRoute(route);
+    }
 }

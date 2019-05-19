@@ -272,6 +272,43 @@ public class RouteDaoImpl implements RouteDao {
         util.execUpdate(second,null);
     }
 
+    @Override
+    public void submitRouteMsg(Route route) {
+        if(null!=route.getRdate() && !"".equals(route.getRdate())){
+            sql = "update tab_route set rname = ?,price = ?,routeIntroduce = ?,rflag = ?,rdate = ?,isThemeTour = ?,cid =? where rid = ?";
+            Object[] obj = {    route.getRname(),route.getPrice(),route.getRouteintroduce(),route.getRflag(),
+                                route.getRdate(),route.getIsthemetour(),route.getCid(),route.getRid()};
+            util.execUpdate(sql,obj);
+        }else {
+            sql = "update tab_route set rname = ?,price = ?,routeIntroduce = ?,rflag = ?,isThemeTour = ?,cid =? where rid = ?";
+            Object[] obj = {    route.getRname(),route.getPrice(),route.getRouteintroduce(),
+                                route.getRflag(), route.getIsthemetour(),route.getCid(),route.getRid()};
+            util.execUpdate(sql,obj);
+        }
+
+
+    }
+
+    @Override
+    public int addRouteByRoute(Route r) {
+        int rid = -1;
+        try {
+            sql = "insert into tab_route(rname,price,routeIntroduce,rflag,rdate,isThemeTour,cid,sid,sourceId) values(?,?,?,?,?,?,?,?,?)";
+            Object[] obj = {r.getRname(),r.getPrice(),r.getRouteintroduce(),r.getRflag(),r.getRdate(),
+                    r.getIsthemetour(),r.getCid(),r.getSid(),r.getSourceid()};
+            util.execUpdate(sql,obj);
+            sql = "select rid from tab_route where rname = ? and price = ? and routeIntroduce = ? and rflag = ? and rdate = ? and isThemeTour = ? and cid = ? and sid = ? and sourceId = ?";
+            System.out.println(sql);
+            ResultSet set = util.execQuery(sql, obj);
+            while (set.next()){
+                 rid= set.getInt("rid");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rid;
+    }
+
     public Route getR(ResultSet res) throws SQLException {
         Route route = new Route();
         route.setRid(res.getInt("rid"));

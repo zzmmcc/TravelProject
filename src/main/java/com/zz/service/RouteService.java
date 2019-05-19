@@ -34,4 +34,8 @@ public interface RouteService {
     void delRouteByRid(int rid);
 
     void delRouteByRids(int[] rids);
+
+    void submitRouteMsg(Route route);
+
+    int addRouteByRoute(Route route);
 }

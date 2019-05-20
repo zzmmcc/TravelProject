@@ -159,4 +159,9 @@ public class RouteServiceImpl implements RouteService {
     public int addRouteByRoute(Route route) {
         return  routeDao.addRouteByRoute(route);
     }
+
+    @Override
+    public void addRimageByRid(int rid, String rimage) {
+        routeDao.addRimageByRid(rid,rimage);
+    }
 }

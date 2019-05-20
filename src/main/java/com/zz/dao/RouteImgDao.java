@@ -7,4 +7,6 @@ import java.util.ArrayList;
 
 public interface RouteImgDao {
      ArrayList<RouteImg> getRouteImgByRid(int rid) ;
+
+    void addRouteImgByRid(int rid, String smallpic, String bigpic);
 }

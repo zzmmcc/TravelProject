@@ -95,7 +95,7 @@
                 </c:if>
 
                 <td class="center">
-                    <a href="/TravelProject/adminRouteServlet?method=getRouteByRid&rid=${r.rid}" title="查看" target="_blank"><img src="images/icon_view.gif"/></a>
+                    <a href="/TravelProject/adminRouteServlet?method=getRouteImgByRid&rid=${r.rid}" title="修改图片" target="_blank"><img src="images/icon_view.gif"/></a>
                     <a href="/TravelProject/adminRouteServlet?method=getRouteForEditByRid&rid=${r.rid}" title="编辑"><img src="images/icon_edit.gif"/></a>
                     <a href="javascript:;" id="${r.rid}" onclick="delByRid(this.id)" title="删除"><img src="images/icon_drop.gif"/></a>
                 </td>

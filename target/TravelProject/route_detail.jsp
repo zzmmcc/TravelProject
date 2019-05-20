@@ -27,7 +27,7 @@
         <a href="index.jsp">首页</a>
         <span> &gt;</span>
 
-        <a href='routeServlet?method=getRouteListByCid&cid=${routeMsg.route.cid}'>${routeMsg.category.cname}</a><span> &gt;</span>
+        <a href='routeServlet?method=getRouteListByCid&pageNow=1&cid=${routeMsg.route.cid}'>${routeMsg.category.cname}</a><span> &gt;</span>
         <a href="javascript:;">${routeMsg.route.rname}</a>
     </div>
     <div class="prosum_box">

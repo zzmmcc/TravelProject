@@ -39,7 +39,7 @@
                 <ul>
                     <c:forEach items="${pageList.list}" var="r">
                         <li>
-                            <div class="img"><img src="${r.rimage}" alt=""></div>
+                            <div class="img"><img src="${r.rimage}" alt="" width="310" height="195"></div>
                             <div class="text1">
                                 <p>${r.rname}</p>
                                 <br/>

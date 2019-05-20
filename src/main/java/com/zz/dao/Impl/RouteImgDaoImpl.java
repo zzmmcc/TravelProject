@@ -26,6 +26,14 @@ public class RouteImgDaoImpl implements RouteImgDao {
         }
         return list;
     }
+
+    @Override
+    public void addRouteImgByRid(int rid, String smallpic, String bigpic) {
+        sql = "insert into tab_route_img (rgid,rid,bigPic,smallPic) values(null,?,?,?)";
+        Object[] obj = {rid,bigpic,smallpic};
+        util.execUpdate(sql,obj);
+    }
+
     public ArrayList<RouteImg> autoGetsList(ResultSet res) throws SQLException{
         ArrayList<RouteImg> list = new ArrayList<RouteImg>();
         while (res.next()) {

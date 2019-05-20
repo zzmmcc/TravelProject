@@ -309,6 +309,12 @@ public class RouteDaoImpl implements RouteDao {
         return rid;
     }
 
+    @Override
+    public void addRimageByRid(int rid, String rimage) {
+        sql = "update tab_route set rimage = '"+rimage+"' where rid = "+rid+" and rimage  is null" ;
+        util.execUpdate(sql,null);
+    }
+
     public Route getR(ResultSet res) throws SQLException {
         Route route = new Route();
         route.setRid(res.getInt("rid"));

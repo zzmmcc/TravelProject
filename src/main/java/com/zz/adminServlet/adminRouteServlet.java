@@ -4,15 +4,25 @@ import com.zz.bean.*;
 import com.zz.filter.MyLoginFilter;
 import com.zz.service.*;
 import com.zz.service.Impl.*;
+import com.zz.util.FileUtils;
 import com.zz.util.PageUtil;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Administrator
@@ -51,12 +61,89 @@ public class adminRouteServlet extends HttpServlet {
             addRouteUI(request,response);
         }else if(method.equals("addRouteByRoute")){
             addRouteByRoute(request,response);
+        }else if(method.equals("getRouteImgByRid")){
+            getRouteImgByRid(request,response);
+        }else if(method.equals("upPic")){
+            upPic(request,response);
         }else{
             System.out.println(method);
             response.getWriter().print("请求不存在");
         }
+    }
 
+    public void upPic(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int rid = Integer.parseInt(request.getParameter("rid"));
+        //建立上传的核心对象
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        //建立上传对象
+        ServletFileUpload fileUpload = new ServletFileUpload(factory);
+        //防止乱码
+        fileUpload.setHeaderEncoding("utf-8");
+        //设置文件大小
+        fileUpload.setFileSizeMax(1024*1024*10);
 
+        List<FileItem> list = null;
+        try {
+            list = fileUpload.parseRequest(request);
+        } catch (FileUploadException e) {
+            e.printStackTrace();
+        }
+        String smallpic = "";
+        String bigpic = "";
+        String rimage = "";
+        for(int i=0;i<list.size();i++){
+            FileItem item = list.get(i);
+            String filename = item.getName();
+            filename = FileUtils.getRealFileName(filename);
+            filename = "m" + FileUtils.getUUIDFileName(filename);
+            if(i==0){
+                //缩略图
+                String path = "H:\\Resource2.26\\TravelProject\\src\\main\\webapp\\img\\product\\small";
+                rimage = "img/product/small/"+filename;
+                savePic(path,item,filename);
+                //小图
+                smallpic = "img/product/size2/"+filename;
+                path = "H:\\Resource2.26\\TravelProject\\src\\main\\webapp\\img\\product\\size2";
+                savePic(path,item,filename);
+            }else if(i==1){
+                //大图
+                String path = "H:\\Resource2.26\\TravelProject\\src\\main\\webapp\\img\\product\\size4";
+                bigpic = "img/product/size4/"+filename;
+                savePic(path,item,filename);
+                }
+            }
+        routeService.addRimageByRid(rid,rimage);
+        routeImgService.addRouteImgByRid(rid,smallpic,bigpic);
+        System.out.println(rid);
+        response.getWriter().print("<script type='text/javascript'>window.onload=function(){window.location.href='/TravelProject/adminRouteServlet?method=getRouteImgByRid&rid="+rid+"'}</script>");
+    }
+
+    public void savePic(String path,FileItem item,String filename){
+        try {
+            File file = new File(path);
+            if(!file.exists()){
+                file.mkdirs();
+            }
+            InputStream in = item.getInputStream();
+            path = path+File.separator+filename;
+            FileOutputStream outputStream = new FileOutputStream(path);
+            IOUtils.copy(in,outputStream);
+            outputStream.close();
+            in.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void getRouteImgByRid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int rid = Integer.parseInt(request.getParameter("rid"));
+        Route r = routeService.getRouteByRid(rid);
+        //获取routeimg
+        ArrayList<RouteImg> routeImg =  routeImgService.getRouteImgByRid(rid);
+        RouteMsg routeMsg = new RouteMsg(r,routeImg,null,null,null,null);
+        request.setAttribute("routeMsg",routeMsg);
+        request.getRequestDispatcher("admin/edit_routeImg.jsp").forward(request,response);
     }
 
     public void addRouteByRoute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -88,29 +175,12 @@ public class adminRouteServlet extends HttpServlet {
         route.setSourceid(sourceId);
         route.setRouteintroduce(routeintroduce);
         int rid = routeService.addRouteByRoute(route);
-        System.out.println(rid);
+        Route r = routeService.getRouteByRid(rid);
         //获取routeimg
         ArrayList<RouteImg> routeImg =  routeImgService.getRouteImgByRid(rid);
-        //获取favorite
-        User user = (User) request.getSession().getAttribute("loginUser");
-        Favorite favorite = null;
-        if(user==null || user.equals("")){
-            favorite =  favoriteService.getFavoriteByRid(rid);
-        }else {
-            favorite = favoriteService.getFavoriteByRid_Uid(rid,user.getUid());
-        }
-        //获取seller
-        Seller seller = sellerService.getSellerBySid(route.getSid());
-        //获取category
-        Category category = categoryService.getCategoryByCid(route.getCid());
-
-        RouteMsg routeMsg = new RouteMsg(route,routeImg,favorite,seller,null,category);
-
-        ArrayList<Category> cate = categoryService.getCategory();
-        request.setAttribute("cateList",cate);
+        RouteMsg routeMsg = new RouteMsg(r,routeImg,null,null,null,null);
         request.setAttribute("routeMsg",routeMsg);
-        request.getRequestDispatcher("admin/edit_route.jsp").forward(request,response);
-
+        request.getRequestDispatcher("admin/edit_routeImg.jsp").forward(request,response);
     }
 
     public void addRouteUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

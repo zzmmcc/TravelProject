@@ -10,7 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>路线列表</title>
+    <title>添加图片</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="style/adminStyle.css" rel="stylesheet" type="text/css" />
 </head>

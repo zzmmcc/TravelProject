@@ -49,4 +49,6 @@ public interface RouteDao {
     void submitRouteMsg(Route route);
 
     int addRouteByRoute(Route route);
+
+    void addRimageByRid(int rid, String rimage);
 }

@@ -12,4 +12,9 @@ public class RouteImgServiceImpl implements RouteImgService {
     public ArrayList<RouteImg> getRouteImgByRid(int rid) {
         return routeImgDao.getRouteImgByRid(rid);
     }
+
+    @Override
+    public void addRouteImgByRid(int rid, String smallpic, String bigpic) {
+        routeImgDao.addRouteImgByRid(rid,smallpic,bigpic);
+    }
 }

@@ -13,7 +13,7 @@ public class RouteMsg {
     public RouteMsg() {
     }
 
-    public RouteMsg(Route route, ArrayList<RouteImg> routeImg, Favorite favorite, Seller seller, User user,Category category) {
+    public RouteMsg(Route route, ArrayList<RouteImg> routeImg, Favorite favorite, Seller seller, User user, Category category) {
         this.route = route;
         this.routeImg = routeImg;
         this.favorite = favorite;

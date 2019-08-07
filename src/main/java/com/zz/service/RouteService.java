@@ -19,17 +19,18 @@ public interface RouteService {
     Route getRouteByRid(int id);
 
     List<Route> getRouteListByCid(String cid);
+
     PageUtil<Route> getRouteListByCidWithPage(int cid, int pageNow, int pageSize);
 
     List<Route> getHotsRouteListByCid(int cid);
 
-    PageUtil<Route> searchRouteListByTextWithPage(String searchtext,int pageNow);
+    PageUtil<Route> searchRouteListByTextWithPage(String searchtext, int pageNow);
 
     List<Route> getRouteListByCount();
 
-    List<Route> getRouteListCountByRnameAndPrice(String rname,double minPrice,double maxPrice);
+    List<Route> getRouteListCountByRnameAndPrice(String rname, double minPrice, double maxPrice);
 
-    PageUtil<Route> getRouteListBySearch_textWithPage(int pageNow,int pageSize,String search_text);
+    PageUtil<Route> getRouteListBySearch_textWithPage(int pageNow, int pageSize, String search_text);
 
     void delRouteByRid(int rid);
 

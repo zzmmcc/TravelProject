@@ -5,14 +5,14 @@
   Time: 10:57
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>路线列表</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="style/adminStyle.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="style/adminStyle.css" rel="stylesheet" type="text/css"/>
     <script src="js/jquery.js"></script>
     <script src="js/public.js"></script>
 </head>
@@ -21,11 +21,13 @@
 <div class="wrap">
     <div class="page-title">
         <span class="modular fl"><i></i><em>路线列表</em></span>
-        <span class="modular fr"><a href="/TravelProject/adminRouteServlet?method=addRouteUI" class="pt-link-btn">+添加路线</a></span>
+        <span class="modular fr"><a href="/TravelProject/adminRouteServlet?method=addRouteUI"
+                                    class="pt-link-btn">+添加路线</a></span>
     </div>
     <div class="operate">
         <form action="adminRouteServlet?method=getRouteListBySearch_textWithPage&pageNow=1" method="post">
-            <input id="search_text" name="search_text" class="textBox length-long" placeholder="输入产品名称..." value="${search_text}"/>
+            <input id="search_text" name="search_text" class="textBox length-long" placeholder="输入产品名称..."
+                   value="${search_text}"/>
             <input type="submit" value="查询" class="tdBtn"/>
         </form>
     </div>
@@ -64,7 +66,7 @@
                  <span id="write_cate">
                      <c:forEach items="${cateList}" var="c">
                          <c:if test="${c.cid==r.cid}">
-                            ${c.cname}
+                             ${c.cname}
                          </c:if>
                      </c:forEach>
                  </span>
@@ -77,7 +79,7 @@
                 </td>
                 <td class="center">
                      <span>
-                      ${r.rdate}
+                             ${r.rdate}
                      </span>
                 </td>
                 <c:if test="${0 == r.isthemetour}">
@@ -95,15 +97,18 @@
                 </c:if>
 
                 <td class="center">
-                    <a href="/TravelProject/adminRouteServlet?method=getRouteImgByRid&rid=${r.rid}" title="修改图片" target="_blank"><img src="images/icon_view.gif"/></a>
-                    <a href="/TravelProject/adminRouteServlet?method=getRouteForEditByRid&rid=${r.rid}" title="编辑"><img src="images/icon_edit.gif"/></a>
-                    <a href="javascript:;" id="${r.rid}" onclick="delByRid(this.id)" title="删除"><img src="images/icon_drop.gif"/></a>
+                    <a href="/TravelProject/adminRouteServlet?method=getRouteImgByRid&rid=${r.rid}" title="修改图片"
+                       target="_blank"><img src="images/icon_view.gif"/></a>
+                    <a href="/TravelProject/adminRouteServlet?method=getRouteForEditByRid&rid=${r.rid}" title="编辑"><img
+                            src="images/icon_edit.gif"/></a>
+                    <a href="javascript:;" id="${r.rid}" onclick="delByRid(this.id)" title="删除"><img
+                            src="images/icon_drop.gif"/></a>
                 </td>
             </tr>
         </c:forEach>
         <c:if test="${empty pageList.list}">
             <tr>
-                <td colspan="10" height="100px" align="center"><font  color="red">暂无数据</font></td>
+                <td colspan="10" height="100px" align="center"><font color="red">暂无数据</font></td>
             </tr>
         </c:if>
     </table>
@@ -111,7 +116,7 @@
     <div style="overflow:hidden;">
         <!-- Operation -->
         <div class="BatchOperation fl">
-            <input type="checkbox" id="box_a" onchange="chooseAll()" />
+            <input type="checkbox" id="box_a" onchange="chooseAll()"/>
             全选
             <input type="button" value="批量删除" class="btnStyle" onclick="delRoutesByRids()"/>
         </div>
@@ -134,35 +139,37 @@
             checkId[i] = $(this).val();
         })
         console.log(checkId);
-        window.location.href="/TravelProject/adminRouteServlet?method=delRoutesByRids&search_text=${search_text}&pageNow=${pageList.getPageNow()}&checkId="+checkId;
-       /* $.ajax({
-            url:"/TravelProject/routeServlet?method=delRoutesByRids",
-            data:{"checkId":checkId},
-            success:function (data) {
-                console.log(data);
-            },
-            error:function () {
-                console.log("route_list.jsp : delRoutesByrids()");
-            }
-        })*/
+        window.location.href = "/TravelProject/adminRouteServlet?method=delRoutesByRids&search_text=${search_text}&pageNow=${pageList.getPageNow()}&checkId=" + checkId;
+        /* $.ajax({
+             url:"/TravelProject/routeServlet?method=delRoutesByRids",
+             data:{"checkId":checkId},
+             success:function (data) {
+                 console.log(data);
+             },
+             error:function () {
+                 console.log("route_list.jsp : delRoutesByrids()");
+             }
+         })*/
     }
+
     function delByRid(rid) {
-       if(confirm("确认删除该路线吗？")){
-               window.location.href="/TravelProject/adminRouteServlet?method=delRouteByRid&search_text=${search_text}&pageNow=${pageList.getPageNow()}&rid="+rid;
-       }
+        if (confirm("确认删除该路线吗？")) {
+            window.location.href = "/TravelProject/adminRouteServlet?method=delRouteByRid&search_text=${search_text}&pageNow=${pageList.getPageNow()}&rid=" + rid;
+        }
     }
+
     $(function () {
         $('#box_a').click(function () {
-           if(this.checked){
-               $("input[name='checkedId']").prop('checked',true);
-           }else {
-               $("input[name='checkedId']").prop('checked',false);
-           }
+            if (this.checked) {
+                $("input[name='checkedId']").prop('checked', true);
+            } else {
+                $("input[name='checkedId']").prop('checked', false);
+            }
 
         });
-        $("input[name='checkedId']").click(function() {
+        $("input[name='checkedId']").click(function () {
             var $checkedId = $("input[name='checkedId']");
-            $("#box_a").prop("checked" , $checkedId.length == $checkedId.filter(":checked").length ? true :false);
+            $("#box_a").prop("checked", $checkedId.length == $checkedId.filter(":checked").length ? true : false);
         });
 
     });

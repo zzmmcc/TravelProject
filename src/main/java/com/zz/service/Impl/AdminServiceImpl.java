@@ -9,11 +9,12 @@ import java.sql.SQLException;
 
 public class AdminServiceImpl implements AdminService {
     AdminDao adminDao = new AdminDaoImpl();
+
     @Override
-    public Admin login(String username, String password)  {
+    public Admin login(String username, String password) {
         Admin admin = null;
         try {
-            admin = adminDao.login(username,password);
+            admin = adminDao.login(username, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }

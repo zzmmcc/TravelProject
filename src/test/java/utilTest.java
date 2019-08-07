@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class utilTest {
 
     @Test
-    public void test1(){
+    public void test1() {
         DBUtil util = new DBUtil();
         System.out.println(util.getConn());
     }

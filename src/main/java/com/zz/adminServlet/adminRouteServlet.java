@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
-@WebServlet(name = "adminRouteServlet",value = "/adminRouteServlet")
+@WebServlet(name = "adminRouteServlet", value = "/adminRouteServlet")
 public class adminRouteServlet extends HttpServlet {
     RouteService routeService = new RouteServiceImpl();
     RouteImgService routeImgService = new RouteImgServiceImpl();
@@ -37,35 +37,35 @@ public class adminRouteServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        MyLoginFilter.filterAdmin(request,response);
+        MyLoginFilter.filterAdmin(request, response);
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         String method = request.getParameter("method");
-        if(method.equals("getRouteListBySearch_textWithPage")){
-            getRouteListBySearch_textWithPage(request,response);
-        }else if(method.equals("getRouteForEditByRid")){
-            getRouteForEditByRid(request,response);
-        }else if(method.equals("delRouteByRid")){
-            delRouteByRid(request,response);
-        } else if(method.equals("delRoutesByRids")){
-            delRoutesByRids(request,response);
-        }else if(method.equals("submitRouteMsg")){
-            submitRouteMsg(request,response);
-        }else if(method.equals("addRouteUI")){
-            addRouteUI(request,response);
-        }else if(method.equals("addRouteByRoute")){
-            addRouteByRoute(request,response);
-        }else if(method.equals("getRouteImgByRid")){
-            getRouteImgByRid(request,response);
-        }else if(method.equals("upPic")){
-            upPic(request,response);
-        }else{
+        if (method.equals("getRouteListBySearch_textWithPage")) {
+            getRouteListBySearch_textWithPage(request, response);
+        } else if (method.equals("getRouteForEditByRid")) {
+            getRouteForEditByRid(request, response);
+        } else if (method.equals("delRouteByRid")) {
+            delRouteByRid(request, response);
+        } else if (method.equals("delRoutesByRids")) {
+            delRoutesByRids(request, response);
+        } else if (method.equals("submitRouteMsg")) {
+            submitRouteMsg(request, response);
+        } else if (method.equals("addRouteUI")) {
+            addRouteUI(request, response);
+        } else if (method.equals("addRouteByRoute")) {
+            addRouteByRoute(request, response);
+        } else if (method.equals("getRouteImgByRid")) {
+            getRouteImgByRid(request, response);
+        } else if (method.equals("upPic")) {
+            upPic(request, response);
+        } else {
             System.out.println(method);
             response.getWriter().print("请求不存在");
         }
@@ -80,7 +80,7 @@ public class adminRouteServlet extends HttpServlet {
         //防止乱码
         fileUpload.setHeaderEncoding("utf-8");
         //设置文件大小
-        fileUpload.setFileSizeMax(1024*1024*10);
+        fileUpload.setFileSizeMax(1024 * 1024 * 10);
 
         List<FileItem> list = null;
         try {
@@ -91,46 +91,46 @@ public class adminRouteServlet extends HttpServlet {
         String smallpic = "";
         String bigpic = "";
         String rimage = "";
-        for(int i=0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             FileItem item = list.get(i);
             String filename = item.getName();
             filename = FileUtils.getRealFileName(filename);
             filename = "m" + FileUtils.getUUIDFileName(filename);
-            if(i==0){
+            if (i == 0) {
                 //缩略图
                 String path = "H:\\Resource2.26\\TravelProject\\src\\main\\webapp\\img\\product\\small";
-                rimage = "img/product/small/"+filename;
-                savePic(path,item,filename);
+                rimage = "img/product/small/" + filename;
+                savePic(path, item, filename);
                 //小图
-                smallpic = "img/product/size2/"+filename;
+                smallpic = "img/product/size2/" + filename;
                 path = "H:\\Resource2.26\\TravelProject\\src\\main\\webapp\\img\\product\\size2";
-                savePic(path,item,filename);
-            }else if(i==1){
+                savePic(path, item, filename);
+            } else if (i == 1) {
                 //大图
                 String path = "H:\\Resource2.26\\TravelProject\\src\\main\\webapp\\img\\product\\size4";
-                bigpic = "img/product/size4/"+filename;
-                savePic(path,item,filename);
-                }
+                bigpic = "img/product/size4/" + filename;
+                savePic(path, item, filename);
             }
-        routeService.addRimageByRid(rid,rimage);
-        routeImgService.addRouteImgByRid(rid,smallpic,bigpic);
+        }
+        routeService.addRimageByRid(rid, rimage);
+        routeImgService.addRouteImgByRid(rid, smallpic, bigpic);
         System.out.println(rid);
-        response.getWriter().print("<script type='text/javascript'>window.onload=function(){window.location.href='/TravelProject/adminRouteServlet?method=getRouteImgByRid&rid="+rid+"'}</script>");
+        response.getWriter().print("<script type='text/javascript'>window.onload=function(){window.location.href='/TravelProject/adminRouteServlet?method=getRouteImgByRid&rid=" + rid + "'}</script>");
     }
 
-    public void savePic(String path,FileItem item,String filename){
+    public void savePic(String path, FileItem item, String filename) {
         try {
             File file = new File(path);
-            if(!file.exists()){
+            if (!file.exists()) {
                 file.mkdirs();
             }
             InputStream in = item.getInputStream();
-            path = path+File.separator+filename;
+            path = path + File.separator + filename;
             FileOutputStream outputStream = new FileOutputStream(path);
-            IOUtils.copy(in,outputStream);
+            IOUtils.copy(in, outputStream);
             outputStream.close();
             in.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -140,10 +140,10 @@ public class adminRouteServlet extends HttpServlet {
         int rid = Integer.parseInt(request.getParameter("rid"));
         Route r = routeService.getRouteByRid(rid);
         //获取routeimg
-        ArrayList<RouteImg> routeImg =  routeImgService.getRouteImgByRid(rid);
-        RouteMsg routeMsg = new RouteMsg(r,routeImg,null,null,null,null);
-        request.setAttribute("routeMsg",routeMsg);
-        request.getRequestDispatcher("admin/edit_routeImg.jsp").forward(request,response);
+        ArrayList<RouteImg> routeImg = routeImgService.getRouteImgByRid(rid);
+        RouteMsg routeMsg = new RouteMsg(r, routeImg, null, null, null, null);
+        request.setAttribute("routeMsg", routeMsg);
+        request.getRequestDispatcher("admin/edit_routeImg.jsp").forward(request, response);
     }
 
     public void addRouteByRoute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -155,12 +155,12 @@ public class adminRouteServlet extends HttpServlet {
         String sourceId = request.getParameter("sourceId");
         String rflag = "0";
         String[] rflags = request.getParameterValues("rflag");
-        if (null!=rflags){
+        if (null != rflags) {
             rflag = "1";
         }
         String tour = "0";
         String[] tours = request.getParameterValues("tour");
-        if(null!=tours){
+        if (null != tours) {
             tour = "1";
         }
         String routeintroduce = request.getParameter("routeintroduce");
@@ -177,18 +177,18 @@ public class adminRouteServlet extends HttpServlet {
         int rid = routeService.addRouteByRoute(route);
         Route r = routeService.getRouteByRid(rid);
         //获取routeimg
-        ArrayList<RouteImg> routeImg =  routeImgService.getRouteImgByRid(rid);
-        RouteMsg routeMsg = new RouteMsg(r,routeImg,null,null,null,null);
-        request.setAttribute("routeMsg",routeMsg);
-        request.getRequestDispatcher("admin/edit_routeImg.jsp").forward(request,response);
+        ArrayList<RouteImg> routeImg = routeImgService.getRouteImgByRid(rid);
+        RouteMsg routeMsg = new RouteMsg(r, routeImg, null, null, null, null);
+        request.setAttribute("routeMsg", routeMsg);
+        request.getRequestDispatcher("admin/edit_routeImg.jsp").forward(request, response);
     }
 
     public void addRouteUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Category> categoryList = categoryService.getCategory();
         ArrayList<Seller> sellerList = sellerService.getSellerList();
-        request.setAttribute("categoryList",categoryList);
-        request.setAttribute("sellerList",sellerList);
-        request.getRequestDispatcher("admin/add_route.jsp").forward(request,response);
+        request.setAttribute("categoryList", categoryList);
+        request.setAttribute("sellerList", sellerList);
+        request.getRequestDispatcher("admin/add_route.jsp").forward(request, response);
     }
 
     public void submitRouteMsg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -199,12 +199,12 @@ public class adminRouteServlet extends HttpServlet {
         String rdate = request.getParameter("rdate");
         String rflag = "0";
         String[] rflags = request.getParameterValues("rflag");
-        if (null!=rflags){
+        if (null != rflags) {
             rflag = "1";
         }
         String tour = "0";
         String[] tours = request.getParameterValues("tour");
-        if(null!=tours){
+        if (null != tours) {
             tour = "1";
         }
         String routeintroduce = request.getParameter("routeintroduce");
@@ -218,25 +218,25 @@ public class adminRouteServlet extends HttpServlet {
         route.setIsthemetour(tour);
         route.setRouteintroduce(routeintroduce);
         routeService.submitRouteMsg(route);
-        getRouteForEditByRid(request,response);
+        getRouteForEditByRid(request, response);
     }
 
     public void delRoutesByRids(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String[] checkIds = request.getParameterValues("checkId");
         String[] split = checkIds[0].split(",");
         int rids[] = new int[split.length];
-        for(int i=0;i<split.length;i++){
+        for (int i = 0; i < split.length; i++) {
             rids[i] = Integer.parseInt(split[i]);
         }
         routeService.delRouteByRids(rids);
-        getRouteListBySearch_textWithPage(request,response);
+        getRouteListBySearch_textWithPage(request, response);
 
     }
 
     public void delRouteByRid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int rid = Integer.parseInt(request.getParameter("rid"));
         routeService.delRouteByRid(rid);
-        getRouteListBySearch_textWithPage(request,response);
+        getRouteListBySearch_textWithPage(request, response);
     }
 
     public void getRouteForEditByRid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -244,44 +244,39 @@ public class adminRouteServlet extends HttpServlet {
         //获取route
         Route route = routeService.getRouteByRid(rid);
         //获取routeimg
-        ArrayList<RouteImg> routeImg =  routeImgService.getRouteImgByRid(rid);
+        ArrayList<RouteImg> routeImg = routeImgService.getRouteImgByRid(rid);
         //获取favorite
         User user = (User) request.getSession().getAttribute("loginUser");
         Favorite favorite = null;
-        if(user==null || user.equals("")){
-            favorite =  favoriteService.getFavoriteByRid(rid);
-        }else {
-            favorite = favoriteService.getFavoriteByRid_Uid(rid,user.getUid());
+        if (user == null || user.equals("")) {
+            favorite = favoriteService.getFavoriteByRid(rid);
+        } else {
+            favorite = favoriteService.getFavoriteByRid_Uid(rid, user.getUid());
         }
         //获取seller
         Seller seller = sellerService.getSellerBySid(route.getSid());
         //获取category
         Category category = categoryService.getCategoryByCid(route.getCid());
 
-        RouteMsg routeMsg = new RouteMsg(route,routeImg,favorite,seller,null,category);
+        RouteMsg routeMsg = new RouteMsg(route, routeImg, favorite, seller, null, category);
 
         ArrayList<Category> cate = categoryService.getCategory();
-        request.setAttribute("cateList",cate);
-        request.setAttribute("routeMsg",routeMsg);
-        request.getRequestDispatcher("admin/edit_route.jsp").forward(request,response);
+        request.setAttribute("cateList", cate);
+        request.setAttribute("routeMsg", routeMsg);
+        request.getRequestDispatcher("admin/edit_route.jsp").forward(request, response);
     }
 
     public void getRouteListBySearch_textWithPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String search_text = request.getParameter("search_text");
         int pageNow = Integer.parseInt(request.getParameter("pageNow"));
         int pageSize = 16;
-        PageUtil<Route> pageList = routeService.getRouteListBySearch_textWithPage(pageNow,pageSize,search_text);
+        PageUtil<Route> pageList = routeService.getRouteListBySearch_textWithPage(pageNow, pageSize, search_text);
         ArrayList<Category> cate = categoryService.getCategory();
-        request.setAttribute("search_text",search_text);
-        request.setAttribute("cateList",cate);
-        request.setAttribute("pageList",pageList);
-        request.getRequestDispatcher("admin/route_list.jsp").forward(request,response);
+        request.setAttribute("search_text", search_text);
+        request.setAttribute("cateList", cate);
+        request.setAttribute("pageList", pageList);
+        request.getRequestDispatcher("admin/route_list.jsp").forward(request, response);
     }
-
-
-
-
-
 
 
 }

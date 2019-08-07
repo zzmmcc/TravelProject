@@ -13,13 +13,12 @@ public final class MailUtils {
     private static final String PASSWORD = "isalbniefkuxiebi"; // 如果是qq邮箱可以使户端授权码，或者登录密码
 
     /**
-     *
-     * @param to 收件人邮箱
-     * @param text 邮件正文
+     * @param to    收件人邮箱
+     * @param text  邮件正文
      * @param title 标题
      */
     /* 发送验证信息的邮件 */
-    public static boolean sendMail(String to, String text, String title){
+    public static boolean sendMail(String to, String text, String title) {
         try {
             final Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
@@ -61,7 +60,7 @@ public final class MailUtils {
             // 发送邮件
             Transport.send(message);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -69,10 +68,9 @@ public final class MailUtils {
 
     public static void main(String[] args) throws Exception { // 做测试用
         String code = UuidUtil.getUuid();
-        MailUtils.sendMail("1129414986@qq.com","尊敬的用户，请点击链接完成激活：http://127.0.0.1:8080/TravelProject/userServlet?method=activeUser&code="+code,"激活账户");
+        MailUtils.sendMail("1129414986@qq.com", "尊敬的用户，请点击链接完成激活：http://127.0.0.1:8080/TravelProject/userServlet?method=activeUser&code=" + code, "激活账户");
         System.out.println("发送成功");
     }
-
 
 
 }

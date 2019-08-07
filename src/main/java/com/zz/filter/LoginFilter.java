@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/route_detail.jsp","/route_list.jsp","/myfavorite.jsp"})
+@WebFilter(urlPatterns = {"/route_detail.jsp", "/route_list.jsp", "/myfavorite.jsp"})
 public class LoginFilter implements Filter {
 
     @Override
@@ -19,14 +19,14 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         String path = request.getServletPath();
-        System.out.println(path+"被Filter过滤了");
-            Object user = request.getSession().getAttribute("loginUser");
-            if(user==null||user.equals("")){
-                response.sendRedirect("login.jsp");
-                //return;
-            }
+        System.out.println(path + "被Filter过滤了");
+        Object user = request.getSession().getAttribute("loginUser");
+        if (user == null || user.equals("")) {
+            response.sendRedirect("login.jsp");
+            //return;
+        }
 
-        chain.doFilter(request,response);
+        chain.doFilter(request, response);
     }
 
     @Override

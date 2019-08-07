@@ -5,7 +5,7 @@
   Time: 10:27
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
@@ -16,9 +16,10 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" href="css/index.css">
     <style>
-        .tab-content .row>div {
+        .tab-content .row > div {
             margin-top: 16px;
         }
+
         .tab-content {
             margin-bottom: 36px;
         }
@@ -27,7 +28,7 @@
 </head>
 <body>
 <!--引入头部-->
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 <!-- 排行榜 start-->
 <section id="content">
     <section class="hemai_jx">
@@ -80,7 +81,7 @@
 <!-- 排行榜 end-->
 
 <!--引入尾部-->
-<%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp" %>
 <!--导入布局js，共享header和footer-->
 <script type="text/javascript" src="js/include.js"></script>
 </body>

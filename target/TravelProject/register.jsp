@@ -5,7 +5,7 @@
   Time: 10:27
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
@@ -19,7 +19,7 @@
 </head>
 <body>
 <!--引入头部-->
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 <!-- 头部 end -->
 <div class="rg_layout">
     <div class="rg_form clearfix">
@@ -97,7 +97,7 @@
                         </td>
                         <td class="td_right check">
                             <input type="text" id="check" name="check" class="check">
-                            <img src="checkcode" id="codeimg"  height="32px" alt="" onclick="changeCheckCode()"></img>
+                            <img src="checkcode" id="codeimg" height="32px" alt="" onclick="changeCheckCode()"></img>
                         </td>
                     </tr>
                     <tr>
@@ -120,39 +120,40 @@
     </div>
 </div>
 <!--引入尾部-->
-<%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp" %>
 <!--导入布局js，共享header和footer-->
 <script type="text/javascript">
     //图片点击事件
     function changeCheckCode() {
         $.ajax({
-            url:"checkcode",
-            data:{},
-            type:"POST",
-            success:function (data) {
-                $('#codeimg').attr("src","checkcode");
+            url: "checkcode",
+            data: {},
+            type: "POST",
+            success: function (data) {
+                $('#codeimg').attr("src", "checkcode");
             },
-            error:function (data) {
+            error: function (data) {
                 alert("fail");
             }
         })
     }
-   function submitmsg(){
-       $.ajax({
-           url:"userServlet?method=register",
-           data:$('#registerForm').serialize(),
-           type:"POST",
-           success:function (data) {
-              if(data==0){
-                  window.location.href="register_ok.jsp";
-              }else if(data==2){
-                  alert("验证码错误，请重试!");
-              }else {
-                  alert("注册失败，请重试!");
-              }
-           }
-       })
-   }
+
+    function submitmsg() {
+        $.ajax({
+            url: "userServlet?method=register",
+            data: $('#registerForm').serialize(),
+            type: "POST",
+            success: function (data) {
+                if (data == 0) {
+                    window.location.href = "register_ok.jsp";
+                } else if (data == 2) {
+                    alert("验证码错误，请重试!");
+                } else {
+                    alert("注册失败，请重试!");
+                }
+            }
+        })
+    }
 
 </script>
 </body>

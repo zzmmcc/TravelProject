@@ -17,7 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
             return categoryDao.getCategory();
         } catch (SQLException e) {
             e.printStackTrace();
-            return  null;
+            return null;
         }
     }
 
@@ -44,7 +44,7 @@ public class CategoryServiceImpl implements CategoryService {
             return categoryDao.getCategoryBySort();
         } catch (SQLException e) {
             e.printStackTrace();
-            return  null;
+            return null;
         }
     }
 

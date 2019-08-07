@@ -19,31 +19,31 @@ public class CategoryDapImpl implements CategoryDao {
         sql = "select * from tab_category";
         res = util.execQuery(sql, null);
         ArrayList<Category> list = new ArrayList<>();
-        while (res.next()){
-            Category category = new Category(res.getInt("cid"),res.getString("cname"));
+        while (res.next()) {
+            Category category = new Category(res.getInt("cid"), res.getString("cname"));
             list.add(category);
         }
-        util.getClose(util.rs,util.ps,util.conn);
+        util.getClose(util.rs, util.ps, util.conn);
         return list;
     }
 
     @Override
     public Category getCategoryByCid(int cid) throws SQLException {
-        sql = "select * from tab_category where cid = "+cid;
+        sql = "select * from tab_category where cid = " + cid;
         ResultSet resultSet = util.execQuery(sql, null);
         Category category = null;
-        while (resultSet.next()){
+        while (resultSet.next()) {
             category = new Category();
             category.setCid(resultSet.getInt("cid"));
             category.setCname(resultSet.getString("cname"));
         }
-        util.getClose(util.rs,util.ps,util.conn);
+        util.getClose(util.rs, util.ps, util.conn);
         return category;
     }
 
     @Override
     public int addCategory(String cname) {
-        sql = "insert into tab_category values(null,'"+cname+"')";
+        sql = "insert into tab_category values(null,'" + cname + "')";
         int i = util.execUpdate(sql, null);
         return i;
     }
@@ -53,24 +53,24 @@ public class CategoryDapImpl implements CategoryDao {
         sql = "select * from tab_category order by cid";
         res = util.execQuery(sql, null);
         ArrayList<Category> list = new ArrayList<>();
-        while (res.next()){
-            Category category = new Category(res.getInt("cid"),res.getString("cname"));
+        while (res.next()) {
+            Category category = new Category(res.getInt("cid"), res.getString("cname"));
             list.add(category);
         }
-        util.getClose(util.rs,util.ps,util.conn);
+        util.getClose(util.rs, util.ps, util.conn);
         return list;
     }
 
     @Override
     public int delCategoryByCid(int cid) {
-        sql = "delete from tab_category where cid = "+cid+"";
+        sql = "delete from tab_category where cid = " + cid + "";
         int i = util.execUpdate(sql, null);
         return i;
     }
 
     @Override
     public int editCategoryByCate(Category category) {
-        sql = "update tab_category set cname = '"+category.getCname()+"' where cid ="+category.getCid()+"";
-        return util.execUpdate(sql,null);
+        sql = "update tab_category set cname = '" + category.getCname() + "' where cid =" + category.getCid() + "";
+        return util.execUpdate(sql, null);
     }
 }

@@ -5,7 +5,7 @@
   Time: 10:28
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
@@ -19,13 +19,13 @@
 </head>
 <body>
 <!--引入头部-->
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 <!-- 头部 end -->
 <div style="text-align:center;red:yellow;font-weight:bold;height:150px;padding-top:100px;font-size:30px;">
     <h4>恭喜，注册成功！请登录您的注册邮箱进行激活您的账号，激活后才能登录。</h4>
 </div>
 <!--引入尾部-->
-<%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp" %>
 <!--导入布局js，共享header和footer-->
 <script type="text/javascript" src="js/include.js"></script>
 </body>

@@ -19,12 +19,12 @@ public class AdminLoginFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
-            Admin admin = (Admin) request.getSession().getAttribute("loginAdmin");
-            if(null==admin||"".equals(admin)){
-                response.sendRedirect("/TravelProject/login_admin.jsp");
-                //return;
-            }
-        chain.doFilter(request,response);
+        Admin admin = (Admin) request.getSession().getAttribute("loginAdmin");
+        if (null == admin || "".equals(admin)) {
+            response.sendRedirect("/TravelProject/login_admin.jsp");
+            //return;
+        }
+        chain.doFilter(request, response);
     }
 
     @Override

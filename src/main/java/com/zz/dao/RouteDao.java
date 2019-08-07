@@ -22,17 +22,17 @@ public interface RouteDao {
 
     List<Route> getHotsRouteListByCid(int cid);
 
-    List<Route> getRouteListByCidWithPage(int cid,int pageNow,int pageSize);
+    List<Route> getRouteListByCidWithPage(int cid, int pageNow, int pageSize);
 
     int reduceCountByRid(int rid);
 
     int plusCountByRid(int rid);
 
-    List<Route> searchRouteListByTextWithPage(String searchtext,int pageNow) throws SQLException;
+    List<Route> searchRouteListByTextWithPage(String searchtext, int pageNow) throws SQLException;
 
     List<Route> getRouteListByCount() throws SQLException;
 
-    List<Route> getRouteListCountByRnameAndPrice(String rname,double minPrice,double maxPrice) throws SQLException;
+    List<Route> getRouteListCountByRnameAndPrice(String rname, double minPrice, double maxPrice) throws SQLException;
 
     int getPageCountByCid(int cid) throws SQLException;
 
@@ -40,7 +40,7 @@ public interface RouteDao {
 
     int getPageCount() throws SQLException;
 
-    List<Route> getRouteListBySearch_textWithPage(int pageNow,int pageSize,String search_text) throws SQLException;
+    List<Route> getRouteListBySearch_textWithPage(int pageNow, int pageSize, String search_text) throws SQLException;
 
     void delRouteByRid(int rid);
 

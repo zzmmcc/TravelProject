@@ -29,7 +29,7 @@ public final class JedisUtil {
         JedisPoolConfig config = new JedisPoolConfig();
         config.setMaxTotal(Integer.parseInt(pro.getProperty("maxTotal")));
         config.setMaxIdle(Integer.parseInt(pro.getProperty("maxIdle")));
-        
+
 
         //初始化JedisPool
         jedisPool = new JedisPool(config, pro.getProperty("host"), Integer.parseInt(pro.getProperty("port")));

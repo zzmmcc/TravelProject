@@ -14,69 +14,70 @@ public class FavoriteDaoImpl implements FavoriteDao {
     JDBCUtil util = new JDBCUtil();
     String sql = "";
     ResultSet resultSet = null;
+
     @Override
     public Favorite getFavoriteByRid(int rid) {
-        sql = "select * from tab_favorite where rid = "+rid;
-        resultSet = util.execQuery(sql,null);
+        sql = "select * from tab_favorite where rid = " + rid;
+        resultSet = util.execQuery(sql, null);
         Favorite favorite = null;
         try {
 
-                favorite = autoGet(resultSet);
+            favorite = autoGet(resultSet);
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            util.getClose(util.rs,util.ps,util.conn);
+        } finally {
+            util.getClose(util.rs, util.ps, util.conn);
         }
         return favorite;
     }
 
     @Override
     public Favorite getFavoriteByRid_Uid(int rid, int uid) {
-            sql = "select * from tab_favorite where rid = "+rid+" and uid = "+uid;
-            resultSet = util.execQuery(sql,null);
-            Favorite favorite = null;
-            try {
-                    favorite = autoGet(resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }finally {
-                util.getClose(util.rs,util.ps,util.conn);
-            }
-            return favorite;
+        sql = "select * from tab_favorite where rid = " + rid + " and uid = " + uid;
+        resultSet = util.execQuery(sql, null);
+        Favorite favorite = null;
+        try {
+            favorite = autoGet(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.getClose(util.rs, util.ps, util.conn);
+        }
+        return favorite;
     }
 
     @Override
     public int likeByRidAndUid(int rid, int uid) {
         Date date = new Date(new java.util.Date().getTime());
-        sql = "insert into tab_favorite values(null,"+rid+",'"+ date +"',"+uid+")";
+        sql = "insert into tab_favorite values(null," + rid + ",'" + date + "'," + uid + ")";
         int i = util.execUpdate(sql, null);
-        if(i!=0){
-            util.getClose(util.rs,util.ps,util.conn);
+        if (i != 0) {
+            util.getClose(util.rs, util.ps, util.conn);
             return 1;
         }
-        util.getClose(util.rs,util.ps,util.conn);
+        util.getClose(util.rs, util.ps, util.conn);
         return 0;
     }
 
     @Override
     public int unlikeByRidAndUid(int rid, int uid) {
-        sql = "delete from tab_favorite where rid ="+rid+" and uid = "+uid;
+        sql = "delete from tab_favorite where rid =" + rid + " and uid = " + uid;
         int i = util.execUpdate(sql, null);
-        if(i!=0){
-            util.getClose(util.rs,util.ps,util.conn);
+        if (i != 0) {
+            util.getClose(util.rs, util.ps, util.conn);
             return 1;
         }
-        util.getClose(util.rs,util.ps,util.conn);
+        util.getClose(util.rs, util.ps, util.conn);
         return 0;
     }
 
     @Override
     public List<Favorite> getListByUid(int uid) throws SQLException {
-        sql = "select * from tab_favorite where uid = "+uid;
+        sql = "select * from tab_favorite where uid = " + uid;
         resultSet = util.execQuery(sql, null);
         List<Favorite> list = new ArrayList<Favorite>();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             Favorite favorite = new Favorite();
             favorite.setFid(resultSet.getInt("fid"));
             favorite.setRid(resultSet.getInt("rid"));
@@ -84,18 +85,18 @@ public class FavoriteDaoImpl implements FavoriteDao {
             favorite.setDate(resultSet.getDate("date"));
             list.add(favorite);
         }
-        util.getClose(util.rs,util.ps,util.conn);
+        util.getClose(util.rs, util.ps, util.conn);
         return list;
     }
 
     public Favorite autoGet(ResultSet resultSet) throws SQLException {
         Favorite favorite = new Favorite();
-            while (resultSet.next()) {
-                favorite.setFid(resultSet.getInt("fid"));
-                favorite.setRid(resultSet.getInt("rid"));
-                favorite.setUid(resultSet.getInt("uid"));
-                favorite.setDate(resultSet.getDate("date"));
-            }
+        while (resultSet.next()) {
+            favorite.setFid(resultSet.getInt("fid"));
+            favorite.setRid(resultSet.getInt("rid"));
+            favorite.setUid(resultSet.getInt("uid"));
+            favorite.setDate(resultSet.getDate("date"));
+        }
         return favorite;
     }
 }

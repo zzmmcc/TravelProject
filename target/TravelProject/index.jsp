@@ -5,12 +5,13 @@
   Time: 10:23
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
-<head><meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>小码旅游网</title>
@@ -27,7 +28,7 @@
 </head>
 <body>
 <!--引入头部-->
-<%@ include file="header.jsp"%>
+<%@ include file="header.jsp" %>
 <!-- banner start-->
 <section id="banner">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="2000">
@@ -74,7 +75,7 @@
             <ul class="jx_tabs" role="tablist">
                 <li role="presentation" class="active">
                     <span></span>
-                    <a href="#popularity" aria-controls="popularity"   role="tab" data-toggle="tab">人气旅游</a>
+                    <a href="#popularity" aria-controls="popularity" role="tab" data-toggle="tab">人气旅游</a>
                 </li>
                 <li role="presentation">
                     <span></span>
@@ -154,7 +155,7 @@
 </section>
 <!-- 旅游 end-->
 <!--导入底部-->
-<%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp" %>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-3.3.1.js"></script>
 <script src="js/index_js.js"></script>

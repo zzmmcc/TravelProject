@@ -21,27 +21,30 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-public class testDemo{
+public class testDemo {
     static int count = 30;
     CategoryService categoryService = new CategoryServiceImpl();
     CategoryDao categoryDao = new CategoryDapImpl();
     SellerDao sellerDao = new SellerDaoImpl();
+
     @Test
-    public void test1(){
+    public void test1() {
         System.out.println(JedisUtil.getJedis());
     }
+
     @Test
-    public void test2(){
+    public void test2() {
         try {
             categoryDao.getCategoryByCid(2);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     @Test
-    public void Test(){
+    public void Test() {
         Jedis jedis = JedisUtil.getJedis();
-        jedis.set("test","123");
+        jedis.set("test", "123");
         System.out.println(jedis.get("test"));
         jedis.flushAll();
         System.out.println(jedis.get("test"));
@@ -49,9 +52,9 @@ public class testDemo{
     }
 
     @Test
-    public  void testGuoNei1(){
+    public void testGuoNei1() {
         RouteDaoImpl dao = new RouteDaoImpl();
-        for (int i=1;i<4;i++){
+        for (int i = 1; i < 4; i++) {
             List<Route> list = dao.getGuoNeiListWithPage(i, 3);
             for (Route route : list) {
                 System.out.println(route);
@@ -61,10 +64,11 @@ public class testDemo{
         }
 
     }
+
     @Test
-    public  void testPage(){
+    public void testPage() {
         RouteService routeService = new RouteServiceImpl();
-        int[] s = {51025,5111,1};
+        int[] s = {51025, 5111, 1};
         routeService.delRouteByRids(s);
 
     }

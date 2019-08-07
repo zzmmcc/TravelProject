@@ -5,16 +5,16 @@
   Time: 16:49
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>用户详情</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="style/adminStyle.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="style/adminStyle.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
-        td{
+        td {
             text-align: center;
         }
     </style>

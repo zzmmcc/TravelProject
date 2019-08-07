@@ -9,8 +9,8 @@
 <html>
 <head>
     <title>header</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="style/adminStyle.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="style/adminStyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="header">
@@ -19,10 +19,12 @@
     </div>
     <div class="fr top-link">
         <a href="#" target="_blank" title="访问站点"><i class="shopLinkIcon"></i><span>访问站点</span></a>
-        <a href="admin_list.jsp" target="mainCont" title="DeathGhost"><i class="adminIcon"></i><span>管理员：DeathGhost</span></a>
+        <a href="admin_list.jsp" target="mainCont" title="DeathGhost"><i
+                class="adminIcon"></i><span>管理员：DeathGhost</span></a>
         <a href="#" title="修改密码"><i class="clearIcon"></i><span>清除缓存</span></a>
         <a href="revise_password.jsp" target="mainCont" title="修改密码"><i class="revisepwdIcon"></i><span>修改密码</span></a>
-        <a href="/TravelProject/adminServlet?method=logout" title="安全退出" style="background:rgb(60,60,60);" target="mainCont"><i class="quitIcon"></i><span>安全退出</span></a>
+        <a href="/TravelProject/adminServlet?method=logout" title="安全退出" style="background:rgb(60,60,60);"
+           target="mainCont"><i class="quitIcon"></i><span>安全退出</span></a>
     </div>
 </div>
 </body>

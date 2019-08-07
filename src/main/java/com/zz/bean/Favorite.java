@@ -2,7 +2,7 @@ package com.zz.bean;
 
 import java.util.Date;
 
-public class Favorite  {
+public class Favorite {
     private int fid;
 
     private Date date;

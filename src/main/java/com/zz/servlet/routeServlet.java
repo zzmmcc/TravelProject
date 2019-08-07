@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
-@WebServlet(name = "routeServlet",value = "/routeServlet")
+@WebServlet(name = "routeServlet", value = "/routeServlet")
 public class routeServlet extends HttpServlet {
     RouteService routeService = new RouteServiceImpl();
     RouteImgService routeImgService = new RouteImgServiceImpl();
@@ -30,7 +30,7 @@ public class routeServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
     @Override
@@ -39,40 +39,38 @@ public class routeServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         String method = request.getParameter("method");
-        if(method.equals("getHotTravel")){
+        if (method.equals("getHotTravel")) {
             String jsonStr = getHotTravel();
             response.getWriter().print(jsonStr);
-        }else if(method.equals("getNewest")){
+        } else if (method.equals("getNewest")) {
             String jsonStr = getNewest();
             response.getWriter().print(jsonStr);
-        }else if(method.equals("getTheme")){
+        } else if (method.equals("getTheme")) {
             String jsonStr = getTheme();
             response.getWriter().print(jsonStr);
-        }else if(method.equals("getGuoNeiList")){
+        } else if (method.equals("getGuoNeiList")) {
             String jsonStr = getGuoNeiList();
             response.getWriter().print(jsonStr);
-        }else if(method.equals("getJingWaiList")){
+        } else if (method.equals("getJingWaiList")) {
             String jsonStr = getJingWaiList();
             response.getWriter().print(jsonStr);
-        }else if(method.equals("getRouteByRid")){
-            getRouteByRid(request,response);
-        }else if (method.equals("getRouteListByCid")){
+        } else if (method.equals("getRouteByRid")) {
+            getRouteByRid(request, response);
+        } else if (method.equals("getRouteListByCid")) {
             getRouteListByCidWithPage(request, response);
-        }else if(method.equals("getHotsRouteListByCid")){
-            getHotsRouteListByCid(request,response);
-        }else if(method.equals("searchRouteListByTextWithPage")){
-            searchRouteListByTextWithPage(request,response);
-        }else if(method.equals("getRouteListByCount")){
-            getRouteListByCount(request,response);
-        }else if(method.equals("getRouteListCountByRnameAndPrice")){
-            getRouteListCountByRnameAndPrice(request,response);
-        }else  {
+        } else if (method.equals("getHotsRouteListByCid")) {
+            getHotsRouteListByCid(request, response);
+        } else if (method.equals("searchRouteListByTextWithPage")) {
+            searchRouteListByTextWithPage(request, response);
+        } else if (method.equals("getRouteListByCount")) {
+            getRouteListByCount(request, response);
+        } else if (method.equals("getRouteListCountByRnameAndPrice")) {
+            getRouteListCountByRnameAndPrice(request, response);
+        } else {
             System.out.println(method);
             response.getWriter().print("404！请求不存在");
         }
     }
-
-
 
 
     public void getRouteListCountByRnameAndPrice(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -80,14 +78,14 @@ public class routeServlet extends HttpServlet {
         String minP = request.getParameter("minPrice");
         double minPrice = Double.MIN_VALUE;
         double maxPrice = Double.MAX_VALUE;
-        if(null!=minP && !minP.equals("")){
+        if (null != minP && !minP.equals("")) {
             minPrice = Double.parseDouble(minP);
         }
         String maxP = request.getParameter("maxPrice");
-        if(null!=maxP && !maxP.equals("")){
+        if (null != maxP && !maxP.equals("")) {
             maxPrice = Double.parseDouble(maxP);
         }
-        List<Route> list = routeService.getRouteListCountByRnameAndPrice(rname,minPrice,maxPrice);
+        List<Route> list = routeService.getRouteListCountByRnameAndPrice(rname, minPrice, maxPrice);
         response.getWriter().print(JSON.toJSONString(list));
     }
 
@@ -99,10 +97,10 @@ public class routeServlet extends HttpServlet {
     public void searchRouteListByTextWithPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String searchtext = request.getParameter("searchtext");
         int pageNow = Integer.parseInt(request.getParameter("pageNow"));
-        PageUtil<Route> list = routeService.searchRouteListByTextWithPage(searchtext,pageNow);
-        request.setAttribute("pageList_Search",list);
-        request.setAttribute("search_text",searchtext);
-        request.getRequestDispatcher("route_list.jsp").forward(request,response);
+        PageUtil<Route> list = routeService.searchRouteListByTextWithPage(searchtext, pageNow);
+        request.setAttribute("pageList_Search", list);
+        request.setAttribute("search_text", searchtext);
+        request.getRequestDispatcher("route_list.jsp").forward(request, response);
     }
 
     public void getHotsRouteListByCid(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -110,10 +108,10 @@ public class routeServlet extends HttpServlet {
         Jedis jedis = JedisUtil.getJedis();
         String key = "hotsTravel_" + cid;
         String jedis_key = jedis.get(key);
-        if(null==jedis_key || jedis_key.equals("")){
+        if (null == jedis_key || jedis_key.equals("")) {
             List<Route> list = routeService.getHotsRouteListByCid(cid);
             String jsonStr = JSON.toJSONString(list);
-            jedis.set(key,jsonStr);
+            jedis.set(key, jsonStr);
             response.getWriter().print(jsonStr);
         }
         response.getWriter().print(jedis_key);
@@ -124,53 +122,55 @@ public class routeServlet extends HttpServlet {
         //获取route
         Route route = routeService.getRouteByRid(rid);
         //获取routeimg
-        ArrayList<RouteImg> routeImg =  routeImgService.getRouteImgByRid(rid);
+        ArrayList<RouteImg> routeImg = routeImgService.getRouteImgByRid(rid);
         //获取favorite
         User user = (User) request.getSession().getAttribute("loginUser");
         Favorite favorite = null;
-        if(user==null || user.equals("")){
-            favorite =  favoriteService.getFavoriteByRid(rid);
-        }else {
-             favorite = favoriteService.getFavoriteByRid_Uid(rid,user.getUid());
+        if (user == null || user.equals("")) {
+            favorite = favoriteService.getFavoriteByRid(rid);
+        } else {
+            favorite = favoriteService.getFavoriteByRid_Uid(rid, user.getUid());
         }
         //获取seller
         Seller seller = sellerService.getSellerBySid(route.getSid());
         //获取category
         Category category = categoryService.getCategoryByCid(route.getCid());
 
-        RouteMsg routeMsg = new RouteMsg(route,routeImg,favorite,seller,null,category);
+        RouteMsg routeMsg = new RouteMsg(route, routeImg, favorite, seller, null, category);
 
-        request.setAttribute("route",route);
-        request.setAttribute("routeMsg",routeMsg);
-        request.getRequestDispatcher("route_detail.jsp").forward(request,response);
+        request.setAttribute("route", route);
+        request.setAttribute("routeMsg", routeMsg);
+        request.getRequestDispatcher("route_detail.jsp").forward(request, response);
     }
+
     public void getRouteListByCidWithPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int cid = Integer.parseInt(request.getParameter("cid"));
         int pageSize = 8;
         int pageNow = Integer.parseInt(request.getParameter("pageNow"));
         PageUtil<Route> pageList = routeService.getRouteListByCidWithPage(cid, pageNow, pageSize);
-        request.setAttribute("pageList",pageList);
-        request.getRequestDispatcher("route_list.jsp").forward(request,response);
+        request.setAttribute("pageList", pageList);
+        request.getRequestDispatcher("route_list.jsp").forward(request, response);
     }
 
     public String getGuoNeiList() {
         Jedis jedis = JedisUtil.getJedis();
         String guoNeiList = jedis.get("guoNeiList");
-        if (null==guoNeiList || guoNeiList.equals("")){
+        if (null == guoNeiList || guoNeiList.equals("")) {
             List<Route> list = routeService.getGuoNeiList();
             String jsonStr = JSON.toJSONString(list);
-            jedis.set("guoNeiList",jsonStr);
-            return  jsonStr;
+            jedis.set("guoNeiList", jsonStr);
+            return jsonStr;
         }
         return guoNeiList;
     }
+
     public String getJingWaiList() {
         Jedis jedis = JedisUtil.getJedis();
         String jingWaiList = jedis.get("jingWaiList");
-        if (null==jingWaiList || jingWaiList.equals("")){
+        if (null == jingWaiList || jingWaiList.equals("")) {
             List<Route> list = routeService.getJingWaiList();
             String jsonStr = JSON.toJSONString(list);
-            jedis.set("jingWaiList",jsonStr);
+            jedis.set("jingWaiList", jsonStr);
             return jsonStr;
         }
         return jingWaiList;
@@ -179,22 +179,23 @@ public class routeServlet extends HttpServlet {
     public String getTheme() {
         Jedis jedis = JedisUtil.getJedis();
         String themeTour = jedis.get("themeTour");
-        if (null==themeTour || themeTour.equals("")){
+        if (null == themeTour || themeTour.equals("")) {
             List<Route> list = routeService.getTheme();
             String jsonStr = JSON.toJSONString(list);
-            jedis.set("themeTour",jsonStr);
+            jedis.set("themeTour", jsonStr);
             return jsonStr;
         }
         return themeTour;
     }
+
     public String getNewest() {
         Jedis jedis = JedisUtil.getJedis();
         String newEst = jedis.get("newEst");
-        if (null==newEst || newEst.equals("")){
+        if (null == newEst || newEst.equals("")) {
             List<Route> list = routeService.getNewest();
             String jsonStr = JSON.toJSONString(list);
-            jedis.set("newEst",jsonStr);
-            return  jsonStr;
+            jedis.set("newEst", jsonStr);
+            return jsonStr;
         }
         return newEst;
     }
@@ -203,10 +204,10 @@ public class routeServlet extends HttpServlet {
     public String getHotTravel() {
         Jedis jedis = JedisUtil.getJedis();
         String hotTravel = jedis.get("hotTravel");
-        if (null==hotTravel || hotTravel.equals("")){
+        if (null == hotTravel || hotTravel.equals("")) {
             List<Route> list = routeService.getHotTravel();
             String jsonStr = JSON.toJSONString(list);
-            jedis.set("hotTravel",jsonStr);
+            jedis.set("hotTravel", jsonStr);
             return jsonStr;
         }
         return hotTravel;

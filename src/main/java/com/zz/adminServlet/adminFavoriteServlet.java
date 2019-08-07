@@ -13,31 +13,32 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "adminFavoriteServlet",value = "/adminFavoriteServlet")
+@WebServlet(name = "adminFavoriteServlet", value = "/adminFavoriteServlet")
 public class adminFavoriteServlet extends HttpServlet {
     FavoriteService favoriteService = new FavoriteServiceImpl();
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        MyLoginFilter.filterAdmin(request,response);
+        MyLoginFilter.filterAdmin(request, response);
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        String method = request.getParameter("method");if (method.equals("getListByUid")){
-            getListByUid(request,response);
+        String method = request.getParameter("method");
+        if (method.equals("getListByUid")) {
+            getListByUid(request, response);
         }
     }
 
     public void getListByUid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int uid = Integer.parseInt(request.getParameter("uid"));
         List<Route> list = favoriteService.getListByUid(uid);
-        request.setAttribute("routeList",list);
-        request.getRequestDispatcher("myfavorite.jsp").forward(request,response);
+        request.setAttribute("routeList", list);
+        request.getRequestDispatcher("myfavorite.jsp").forward(request, response);
     }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 }

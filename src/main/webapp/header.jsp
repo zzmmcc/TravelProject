@@ -5,7 +5,7 @@
   Time: 10:22
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!-- 头部 start -->
 <header id="header">
@@ -15,11 +15,11 @@
     <div class="shortcut">
 
         <!-- 未登录状态  -->
-       <c:if test="${empty loginUser}">
+        <c:if test="${empty loginUser}">
             <div class="login_out">
                 <a href="login.jsp">登录</a>
                 <a href="register.jsp">注册</a>
-                <a href="login_admin.jsp" >管理员登录</a>
+                <a href="login_admin.jsp">管理员登录</a>
             </div>
         </c:if>
         <!-- 登录状态  -->
@@ -27,8 +27,8 @@
             <div class="login">
                 <span>欢迎回来,${loginUser.name}</span>
                 <a href="favoriteServlet?method=getListByUid&uid=${loginUser.uid}" class="collection">我的收藏</a>
-                <a href="userServlet?method=logout" >退出</a>
-                <a href="login_admin.jsp" >管理员登录</a>
+                <a href="userServlet?method=logout">退出</a>
+                <a href="login_admin.jsp">管理员登录</a>
             </div>
         </c:if>
     </div>
@@ -67,24 +67,25 @@
     $(function () {
         getCategory();
     });
+
     function getCategory() {
         $.ajax({
-            url:"categoryServlet?method=getCategory",
-            data:{},
-            type:"POST",
-            dataType:"json",
-            success:function (data) {
+            url: "categoryServlet?method=getCategory",
+            data: {},
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
                 console.log(1);
                 $('#write_category').append("<li class='nav-active'><a href='index.jsp'>首页</a></li>");
-                $.each(data,function (i,cate) {
+                $.each(data, function (i, cate) {
                     var name = cate.cname;
                     var id = cate.cid;
-                    var con = "<li><a href='routeServlet?method=getRouteListByCid&cid="+id+"&pageNow=1'>"+name+"</a></li>";
+                    var con = "<li><a href='routeServlet?method=getRouteListByCid&cid=" + id + "&pageNow=1'>" + name + "</a></li>";
                     $('#write_category').append(con);
                 });
                 $('#write_category').append("<li><a href='favoriterank.jsp'>收藏排行榜</a></li>");
             },
-            error:function (data) {
+            error: function (data) {
                 console.log(2);
             }
         });

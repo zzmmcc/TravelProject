@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class SellerServiceImpl implements SellerService {
     SellerDao sellerDao = new SellerDaoImpl();
+
     @Override
     public Seller getSellerBySid(int sid) {
         return sellerDao.getSellerBySid(sid);

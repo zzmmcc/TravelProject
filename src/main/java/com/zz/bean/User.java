@@ -35,6 +35,7 @@ public class User {
         this.status = status;
         this.code = code;
     }
+
     public User(String username, String password, String name, Date birthday, String sex, String telephone, String email, String status, String code) {
         this.username = username;
         this.password = password;

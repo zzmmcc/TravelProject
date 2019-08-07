@@ -5,7 +5,7 @@
   Time: 10:29
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
@@ -19,7 +19,7 @@
 
 <body>
 <!--引入头部-->
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 <!-- 详情 start -->
 
 <div class="wrap">
@@ -38,9 +38,9 @@
             <dd>
                 <a class="up_img up_img_disable"></a>
                 <c:forEach items="${routeMsg.routeImg}" var="img">
-                <a title="" class="little_img" data-bigpic="${img.bigpic}">
-                    <img src="${img.smallpic}">
-                </a>
+                    <a title="" class="little_img" data-bigpic="${img.bigpic}">
+                        <img src="${img.smallpic}">
+                    </a>
                 </c:forEach>
                 <a class="down_img down_img_disable" style="margin-bottom: 0;"></a>
             </dd>
@@ -49,27 +49,29 @@
             <p class="pros_title">${routeMsg.route.rname}</p>
             <p class="hot">${routeMsg.route.routeintroduce}</p>
             <div class="pros_other">
-                <p>经营商家  ：${routeMsg.seller.sname}</p>
+                <p>经营商家 ：${routeMsg.seller.sname}</p>
                 <p>咨询电话 : ${routeMsg.seller.consphone}</p>
                 <p>地址 ： ${routeMsg.seller.address}</p>
             </div>
             <div class="pros_price">
                 <p class="price"><strong>${routeMsg.route.price}</strong><span>起</span></p>
-                <p class="collect" >
+                <p class="collect">
                     <span id="write_a">
                         <c:if test="${empty loginUser}">
-                            <a class="btn" href="javascript:;" onclick="alertLogin()"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+                            <a class="btn" href="javascript:;" onclick="alertLogin()"><i
+                                    class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
                         </c:if>
                         <c:if test="${not empty loginUser}">
                             <c:if test="${empty routeMsg.favorite.rid}" var="fa">
-                                <a class="btn" id ="" onclick="l()" ><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+                                <a class="btn" id="" onclick="l()"><i
+                                        class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
                             </c:if>
                             <c:if test="${not empty routeMsg.favorite.rid}" var="fa">
-                                <a  class="btn already" onclick="unl()" ><i class="glyphicon glyphicon-heart-empty"></i>点击取消收藏</a>
+                                <a class="btn already" onclick="unl()"><i class="glyphicon glyphicon-heart-empty"></i>点击取消收藏</a>
                             </c:if>
                         </c:if>
                     </span>
-                    已收藏<span id = "count">${routeMsg.route.count}</span>次
+                    已收藏<span id="count">${routeMsg.route.count}</span>次
                 </p>
             </div>
         </div>
@@ -79,18 +81,22 @@
         <div class="notice">
             <p>1、旅行社已投保旅行社责任险。建议游客购买旅游意外保险 <br>
 
-            <p>2、旅游者参加打猎、潜水、海边游泳、漂流、滑水、滑雪、滑草、蹦极、跳伞、滑翔、乘热气球、骑马、赛车、攀岩、水疗、水上飞机等属于高风险性游乐项目的，敬请旅游者务必在参加前充分了解项目的安全须知并确保身体状况能适应此类活动；如旅游者不具备较好的身体条件及技能，可能会造成身体伤害。</p>
+            <p>
+                2、旅游者参加打猎、潜水、海边游泳、漂流、滑水、滑雪、滑草、蹦极、跳伞、滑翔、乘热气球、骑马、赛车、攀岩、水疗、水上飞机等属于高风险性游乐项目的，敬请旅游者务必在参加前充分了解项目的安全须知并确保身体状况能适应此类活动；如旅游者不具备较好的身体条件及技能，可能会造成身体伤害。</p>
 
-            <p>3、参加出海活动时，请务必穿着救生设备。参加水上活动应注意自己的身体状况，有心脏病、冠心病、高血压、感冒、发烧和饮酒及餐后不可以参加水上活动及潜水。在海里活动时，严禁触摸海洋中各种鱼类，水母，海胆，珊瑚等海洋生物，避免被其蛰伤。老人和小孩必须有成年人陪同才能参加合适的水上活动。在海边游玩时，注意保管好随身携带的贵重物品。</p>
+            <p>
+                3、参加出海活动时，请务必穿着救生设备。参加水上活动应注意自己的身体状况，有心脏病、冠心病、高血压、感冒、发烧和饮酒及餐后不可以参加水上活动及潜水。在海里活动时，严禁触摸海洋中各种鱼类，水母，海胆，珊瑚等海洋生物，避免被其蛰伤。老人和小孩必须有成年人陪同才能参加合适的水上活动。在海边游玩时，注意保管好随身携带的贵重物品。</p>
 
             <p>4、根据中国海关总署的规定，旅客在境外购买的物品，在进入中国海关时可能需要征收关税。详细内容见《中华人民共和国海关总署公告2010年第54号文件》。</p>
 
             <p>5、建议出发时行李托运，贵重物品、常用物品、常用药品、御寒衣物等请随身携带，尽量不要托运。行李延误属于不可抗力因素，我司将全力协助客人跟进后续工作，但我司对此不承担任何责任。</p>
             <p>1、旅行社已投保旅行社责任险。建议游客购买旅游意外保险 <br>
 
-            <p>2、旅游者参加打猎、潜水、海边游泳、漂流、滑水、滑雪、滑草、蹦极、跳伞、滑翔、乘热气球、骑马、赛车、攀岩、水疗、水上飞机等属于高风险性游乐项目的，敬请旅游者务必在参加前充分了解项目的安全须知并确保身体状况能适应此类活动；如旅游者不具备较好的身体条件及技能，可能会造成身体伤害。</p>
+            <p>
+                2、旅游者参加打猎、潜水、海边游泳、漂流、滑水、滑雪、滑草、蹦极、跳伞、滑翔、乘热气球、骑马、赛车、攀岩、水疗、水上飞机等属于高风险性游乐项目的，敬请旅游者务必在参加前充分了解项目的安全须知并确保身体状况能适应此类活动；如旅游者不具备较好的身体条件及技能，可能会造成身体伤害。</p>
 
-            <p>3、参加出海活动时，请务必穿着救生设备。参加水上活动应注意自己的身体状况，有心脏病、冠心病、高血压、感冒、发烧和饮酒及餐后不可以参加水上活动及潜水。在海里活动时，严禁触摸海洋中各种鱼类，水母，海胆，珊瑚等海洋生物，避免被其蛰伤。老人和小孩必须有成年人陪同才能参加合适的水上活动。在海边游玩时，注意保管好随身携带的贵重物品。</p>
+            <p>
+                3、参加出海活动时，请务必穿着救生设备。参加水上活动应注意自己的身体状况，有心脏病、冠心病、高血压、感冒、发烧和饮酒及餐后不可以参加水上活动及潜水。在海里活动时，严禁触摸海洋中各种鱼类，水母，海胆，珊瑚等海洋生物，避免被其蛰伤。老人和小孩必须有成年人陪同才能参加合适的水上活动。在海边游玩时，注意保管好随身携带的贵重物品。</p>
 
             <p>4、根据中国海关总署的规定，旅客在境外购买的物品，在进入中国海关时可能需要征收关税。详细内容见《中华人民共和国海关总署公告2010年第54号文件》。</p>
 
@@ -101,7 +107,7 @@
 <!-- 详情 end -->
 
 <!--引入头部-->
-<%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp" %>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-3.3.1.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -109,19 +115,20 @@
 <!--导入布局js，共享header和footer-->
 <script type="text/javascript" src="js/include.js"></script>
 <script>
-    function alertLogin(){
+    function alertLogin() {
         alert("您还未登录，请登录之后再尝试!");
-        window.location.href="login.jsp";
+        window.location.href = "login.jsp";
     }
-    function l(){
+
+    function l() {
         $.ajax({
-            url:"favoriteServlet?method=like&rid=${routeMsg.route.rid}&uid=${loginUser.uid}",
-            data:{},
-            type:"post",
-            success:function (data) {
-                if(data=0){
+            url: "favoriteServlet?method=like&rid=${routeMsg.route.rid}&uid=${loginUser.uid}",
+            data: {},
+            type: "post",
+            success: function (data) {
+                if (data = 0) {
                     alert("操作失败！")
-                }else {
+                } else {
                     $('#write_a').empty();
                     $('#write_a').append("<a  class='btn already' onclick='unl()' ><i class='glyphicon glyphicon-heart-empty'></i>点击取消收藏</a>");
                     var count = $('#count').text();
@@ -130,21 +137,22 @@
 
                 }
             },
-            error:function () {
+            error: function () {
                 alert(2);
             }
         });
 
     }
-    function unl(){
+
+    function unl() {
         $.ajax({
-            url:"favoriteServlet?method=unlike&rid=${routeMsg.route.rid}&uid=${loginUser.uid}",
-            data:{},
-            type:"post",
-            success:function () {
-                if(data=0){
+            url: "favoriteServlet?method=unlike&rid=${routeMsg.route.rid}&uid=${loginUser.uid}",
+            data: {},
+            type: "post",
+            success: function () {
+                if (data = 0) {
                     alert("操作失败！")
-                }else {
+                } else {
                     $('#write_a').empty();
                     $('#write_a').append("<a class='btn' onclick='l()' ><i class='glyphicon glyphicon-heart-empty'></i>点击收藏</a>");
                     var count = $('#count').text();
@@ -152,15 +160,16 @@
                     $('#count').text(count);
                 }
             },
-            error:function () {
+            error: function () {
                 alert(2);
             }
         });
     }
-    $(document).ready(function() {
+
+    $(document).ready(function () {
         //焦点图效果
         //点击图片切换图片
-        $('.little_img').on('mousemove', function() {
+        $('.little_img').on('mousemove', function () {
             $('.little_img').removeClass('cur_img');
             var big_pic = $(this).data('bigpic');
             $('.big_img').attr('src', big_pic);
@@ -169,20 +178,20 @@
         //上下切换
         var picindex = 0;
         var nextindex = 4;
-        $('.down_img').on('click',function(){
+        $('.down_img').on('click', function () {
             var num = $('.little_img').length;
-            if((nextindex + 1) <= num){
-                $('.little_img:eq('+picindex+')').hide();
-                $('.little_img:eq('+nextindex+')').show();
+            if ((nextindex + 1) <= num) {
+                $('.little_img:eq(' + picindex + ')').hide();
+                $('.little_img:eq(' + nextindex + ')').show();
                 picindex = picindex + 1;
                 nextindex = nextindex + 1;
             }
         });
-        $('.up_img').on('click',function(){
+        $('.up_img').on('click', function () {
             var num = $('.little_img').length;
-            if(picindex > 0){
-                $('.little_img:eq('+(nextindex-1)+')').hide();
-                $('.little_img:eq('+(picindex-1)+')').show();
+            if (picindex > 0) {
+                $('.little_img:eq(' + (nextindex - 1) + ')').hide();
+                $('.little_img:eq(' + (picindex - 1) + ')').show();
                 picindex = picindex - 1;
                 nextindex = nextindex - 1;
             }

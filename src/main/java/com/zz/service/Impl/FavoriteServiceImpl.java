@@ -15,6 +15,7 @@ import java.util.List;
 public class FavoriteServiceImpl implements FavoriteService {
     FavoriteDao favoriteDao = new FavoriteDaoImpl();
     RouteDao routeDao = new RouteDaoImpl();
+
     @Override
     public Favorite getFavoriteByRid(int rid) {
         return favoriteDao.getFavoriteByRid(rid);
@@ -22,15 +23,15 @@ public class FavoriteServiceImpl implements FavoriteService {
 
     @Override
     public Favorite getFavoriteByRid_Uid(int rid, int uid) {
-        return favoriteDao.getFavoriteByRid_Uid(rid,uid);
+        return favoriteDao.getFavoriteByRid_Uid(rid, uid);
     }
 
     @Override
     public int unlikeByRidAndUid(int rid, int uid) {
         int i = favoriteDao.unlikeByRidAndUid(rid, uid);
-        if (i!=0){
-            i =routeDao.reduceCountByRid(rid);
-            if(i!=0){
+        if (i != 0) {
+            i = routeDao.reduceCountByRid(rid);
+            if (i != 0) {
                 return 1;
             }
         }
@@ -39,10 +40,10 @@ public class FavoriteServiceImpl implements FavoriteService {
 
     @Override
     public int likeByRidAndUid(int rid, int uid) {
-        int i =  favoriteDao.likeByRidAndUid(rid,uid);
-        if (i!=0){
-            i =routeDao.plusCountByRid(rid);
-            if(i!=0){
+        int i = favoriteDao.likeByRidAndUid(rid, uid);
+        if (i != 0) {
+            i = routeDao.plusCountByRid(rid);
+            if (i != 0) {
                 return 1;
             }
         }
@@ -54,7 +55,7 @@ public class FavoriteServiceImpl implements FavoriteService {
         List<Route> list = new ArrayList<Route>();
         try {
             List<Favorite> favorites = favoriteDao.getListByUid(uid);
-            for (Favorite f: favorites){
+            for (Favorite f : favorites) {
                 Integer rid = f.getRid();
                 Route route = routeDao.getRouteByRid(rid);
                 list.add(route);

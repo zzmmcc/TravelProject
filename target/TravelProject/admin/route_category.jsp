@@ -5,16 +5,16 @@
   Time: 19:46
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>产品分类</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="style/adminStyle.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="style/adminStyle.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
-        td{
+        td {
             text-align: center;
         }
     </style>
@@ -26,14 +26,14 @@
         <span class="modular fl"><i></i><em>路线分类</em></span>
         <span class="modular fr"><a href="admin/add_category.jsp" class="pt-link-btn">+添加新分类</a></span>
     </div>
-<c:if test="${not empty msg}">
-    <script type="text/javascript">
-        alert(${msg});
-    </script>
-</c:if>
+    <c:if test="${not empty msg}">
+        <script type="text/javascript">
+            alert(${msg});
+        </script>
+    </c:if>
     <table class="list-style" align="center">
         <tr>
-            <th >分类ID</th>
+            <th>分类ID</th>
             <th>分类名称</th>
             <th>操作</th>
         </tr>
@@ -42,7 +42,7 @@
         </c:if>
         <c:forEach items="${cateList}" var="c">
             <tr>
-                <td >
+                <td>
                     <span>${c.cid}</span>
                 </td>
                 <td class="center">
@@ -52,7 +52,8 @@
                     <a class="center" title="移除" href="javascript:;" onclick="del_cate(${c.cid})">
                         <img src="images/icon_trash.gif"/>
                     </a>
-                    <a class="center" title="修改" href="/TravelProject/adminCategoryServlet?method=getCategoryByCid&cid=${c.cid}">
+                    <a class="center" title="修改"
+                       href="/TravelProject/adminCategoryServlet?method=getCategoryByCid&cid=${c.cid}">
                         <img src="images/icon_edit.gif"/>
                     </a>
                 </td>

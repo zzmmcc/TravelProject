@@ -13,11 +13,11 @@ import java.util.Properties;
 
 public class DBUtil {
 
-    public  static Connection conn  = null;
+    public static Connection conn = null;
     //操作对象
-    public  static PreparedStatement ps = null;
+    public static PreparedStatement ps = null;
     //结果集对象
-    public  static ResultSet rs = null;
+    public static ResultSet rs = null;
     DataSource dataSource = null;
 
     //加载驱动
@@ -37,7 +37,7 @@ public class DBUtil {
 
     //获取数据库的连接
 
-    public Connection getConn(){
+    public Connection getConn() {
         try {
             //获取连接对象
             conn = dataSource.getConnection();
@@ -51,17 +51,18 @@ public class DBUtil {
 
     /**
      * 用于增删改的方法
-     * @param sql  外部传入的sql语句
-     * @param obj  外部传入的参数 因为不确定参数就的个数和类型 所以使用obj[]
+     *
+     * @param sql 外部传入的sql语句
+     * @param obj 外部传入的参数 因为不确定参数就的个数和类型 所以使用obj[]
      */
-    public int execUpdate(String sql,Object[] obj){
+    public int execUpdate(String sql, Object[] obj) {
         try {
             getConn();
             ps = conn.prepareStatement(sql);
-            if(obj!=null){
+            if (obj != null) {
                 //循环赋值
                 for (int i = 0; i < obj.length; i++) {
-                    ps.setObject(i+1, obj[i]);
+                    ps.setObject(i + 1, obj[i]);
                 }
             }
             return ps.executeUpdate();
@@ -71,15 +72,16 @@ public class DBUtil {
         }
         return 0;
     }
+
     //用于查询的方法
-    public ResultSet execQuery(String sql,Object[] obj){
+    public ResultSet execQuery(String sql, Object[] obj) {
         try {
             getConn();
             ps = conn.prepareStatement(sql);
-            if(obj!=null){
+            if (obj != null) {
                 //循环赋值
                 for (int i = 0; i < obj.length; i++) {
-                    ps.setObject(i+1, obj[i]);
+                    ps.setObject(i + 1, obj[i]);
                 }
             }
             return ps.executeQuery();
@@ -91,15 +93,15 @@ public class DBUtil {
     }
 
     //关闭数据库对象的方法
-    public void getClose(ResultSet rs,PreparedStatement ps,Connection conn){
+    public void getClose(ResultSet rs, PreparedStatement ps, Connection conn) {
         try {
-            if(rs!=null){
+            if (rs != null) {
                 rs.close();
             }
-            if(ps!=null){
+            if (ps != null) {
                 ps.close();
             }
-            if(conn!=null){
+            if (conn != null) {
                 conn.close();
             }
         } catch (Exception e) {

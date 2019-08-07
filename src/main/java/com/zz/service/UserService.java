@@ -4,7 +4,7 @@ import com.zz.bean.User;
 import com.zz.util.PageUtil;
 
 public interface UserService {
-    User checkLogin(String username, String password) throws  Exception;
+    User checkLogin(String username, String password) throws Exception;
 
     User register(User user);
 

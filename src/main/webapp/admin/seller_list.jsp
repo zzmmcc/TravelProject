@@ -5,14 +5,14 @@
   Time: 10:39
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>商家列表</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="style/adminStyle.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="style/adminStyle.css" rel="stylesheet" type="text/css"/>
     <script src="js/jquery.js"></script>
     <script src="js/public.js"></script>
 </head>
@@ -34,7 +34,7 @@
         <c:forEach items="${sellerList}" var="s">
             <tr>
                 <td align="center">
-                    ${s.sid}
+                        ${s.sid}
                 </td>
                 <td class="center">
                     <span class="block">${s.sname}</span>
@@ -46,8 +46,10 @@
                     <address style="text-align: center">${s.address}</address>
                 </td>
                 <td class="center">
-                    <a href="/TravelProject/adminSellerServlet?method=getSellerBySid&sid=${s.sid}" class="inline-block" title="修改商家信息"><img src="images/icon_edit.gif"/></a>
-                    <a href="javascript:;" onclick="del_seller(${s.sid})" class="inline-block" title="删除商家"><img src="images/icon_trash.gif"/></a>
+                    <a href="/TravelProject/adminSellerServlet?method=getSellerBySid&sid=${s.sid}" class="inline-block"
+                       title="修改商家信息"><img src="images/icon_edit.gif"/></a>
+                    <a href="javascript:;" onclick="del_seller(${s.sid})" class="inline-block" title="删除商家"><img
+                            src="images/icon_trash.gif"/></a>
                 </td>
             </tr>
         </c:forEach>
@@ -63,17 +65,17 @@
 <script type="text/javascript">
     function del_seller(sid) {
         $.ajax({
-            url:"/TravelProject/adminSellerServlet?method=delSellerBySid&sid="+sid,
-            type:"POST",
-            success:function (data) {
-                if(data==0){
+            url: "/TravelProject/adminSellerServlet?method=delSellerBySid&sid=" + sid,
+            type: "POST",
+            success: function (data) {
+                if (data == 0) {
                     alert("删除失败！");
-                }else {
+                } else {
                     window.location.reload();
                 }
 
             },
-            error:function () {
+            error: function () {
                 console.log("seller_list.jsp  : del_seller()");
             }
         })

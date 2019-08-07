@@ -5,7 +5,7 @@
   Time: 9:53
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
@@ -36,15 +36,20 @@
 
 <body class="user-select">
 <div class="container">
-    <div class="siteIcon"><img src="images/icon/icon.png" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用后台管理系统" draggable="false" /></div>
+    <div class="siteIcon"><img src="images/icon/icon.png" alt="" data-toggle="tooltip" data-placement="top"
+                               title="欢迎使用后台管理系统" draggable="false"/></div>
     <form action="adminServlet?method=login" method="post" autocomplete="off" class="form-signin">
         <h2 class="form-signin-heading">管理员登录</h2>
         ${msg}
         <label for="userName" class="sr-only">用户名</label>
-        <input type="text" id="userName" name="username" class="form-control" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10">
+        <input type="text" id="userName" name="username" class="form-control" placeholder="请输入用户名" required autofocus
+               autocomplete="off" maxlength="10">
         <label for="userPwd" class="sr-only">密码</label>
-        <input type="password" id="userPwd" name="password" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
-        <a href="javascript:;"><button class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit">登录</button></a>
+        <input type="password" id="userPwd" name="password" class="form-control" placeholder="请输入密码" required
+               autocomplete="off" maxlength="18">
+        <a href="javascript:;">
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit">登录</button>
+        </a>
     </form>
     <div class="footer">
         <p><a href="index.jsp" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">回到商城 →</a></p>
@@ -53,18 +58,18 @@
 <script src="js/bootstrap.min.js"></script>
 <script>
     $('[data-toggle="tooltip"]').tooltip();
-    window.oncontextmenu = function(){
+    window.oncontextmenu = function () {
         //return false;
     };
-    $('.siteIcon img').click(function(){
+    $('.siteIcon img').click(function () {
         window.location.reload();
     });
-    $('#signinSubmit').click(function(){
-        if($('#userName').val() === ''){
+    $('#signinSubmit').click(function () {
+        if ($('#userName').val() === '') {
             $(this).text('用户名不能为空');
-        }else if($('#userPwd').val() === ''){
+        } else if ($('#userPwd').val() === '') {
             $(this).text('密码不能为空');
-        }else{
+        } else {
             $(this).text('请稍后...');
         }
     });

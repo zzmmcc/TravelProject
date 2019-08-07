@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet(name = "adminUserServlet",value = "/adminUserServlet")
+@WebServlet(name = "adminUserServlet", value = "/adminUserServlet")
 public class adminUserServlet extends HttpServlet {
     UserService userService = new UserServiceImpl();
     FavoriteService favoriteService = new FavoriteServiceImpl();
@@ -28,15 +28,15 @@ public class adminUserServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        MyLoginFilter.filterAdmin(request,response);
+        MyLoginFilter.filterAdmin(request, response);
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         String method = request.getParameter("method");
-        if(method.equals("getUserListBySearch_textWithPage")){
-            getUserListBySearch_textWithPage(request,response);
-        }else if(method.equals("getUserMsgsByUid")){
-            getUserMsgsByUid(request,response);
+        if (method.equals("getUserListBySearch_textWithPage")) {
+            getUserListBySearch_textWithPage(request, response);
+        } else if (method.equals("getUserMsgsByUid")) {
+            getUserMsgsByUid(request, response);
         }
     }
 
@@ -44,9 +44,9 @@ public class adminUserServlet extends HttpServlet {
         int uid = Integer.parseInt(request.getParameter("uid"));
         User user = userService.getUserByUid(uid);
         List<Route> routeList = favoriteService.getListByUid(uid);
-        request.setAttribute("user",user);
-        request.setAttribute("routeList",routeList);
-        request.getRequestDispatcher("/admin/user_msg.jsp").forward(request,response);
+        request.setAttribute("user", user);
+        request.setAttribute("routeList", routeList);
+        request.getRequestDispatcher("/admin/user_msg.jsp").forward(request, response);
 
     }
 
@@ -54,17 +54,16 @@ public class adminUserServlet extends HttpServlet {
         String search_text = request.getParameter("search_text");
         int pageNow = Integer.parseInt(request.getParameter("pageNow"));
         int pageSize = 8;
-        PageUtil<User> pageList = userService.getUserListBySearch_textWithPage(pageNow,pageSize,search_text);
-        request.setAttribute("search_text",search_text);
-        request.setAttribute("pageList",pageList);
-        request.getRequestDispatcher("admin/user_list.jsp").forward(request,response);
+        PageUtil<User> pageList = userService.getUserListBySearch_textWithPage(pageNow, pageSize, search_text);
+        request.setAttribute("search_text", search_text);
+        request.setAttribute("pageList", pageList);
+        request.getRequestDispatcher("admin/user_list.jsp").forward(request, response);
     }
-
 
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
 

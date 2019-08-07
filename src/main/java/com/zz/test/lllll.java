@@ -7,7 +7,7 @@ import java.util.List;
 
 public class lllll {
     @Test
-    public void test1(){
+    public void test1() {
         List<String> list = new ArrayList<>();
         list.add("1");
         list.add("2");

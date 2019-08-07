@@ -13,10 +13,11 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     UserDao userDao = new UserDaoImpl();
+
     //登录的方法
     @Override
-    public User checkLogin(String username, String password) throws  Exception {
-        User user =userDao.checkLogin(username,password);
+    public User checkLogin(String username, String password) throws Exception {
+        User user = userDao.checkLogin(username, password);
         return user;
     }
 
@@ -41,9 +42,9 @@ public class UserServiceImpl implements UserService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if(boo){
-            i =9;
-        }else {
+        if (boo) {
+            i = 9;
+        } else {
             i = userDao.activeUserByCode(code);
         }
         return i;
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
         List<User> list = new ArrayList<User>();
         int pageCount = 0;
         try {
-            list = userDao.getUserListBySearch_textWithPage(pageNow,pageSize,search_text);
+            list = userDao.getUserListBySearch_textWithPage(pageNow, pageSize, search_text);
             pageCount = userDao.getPageCountByText(search_text);
         } catch (SQLException e) {
             e.printStackTrace();
